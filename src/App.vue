@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>Vuex: {{ $store.state.user }}</h1>
-    <input type="text" v-model="userName" @keyup="setUser"/>
+    <!-- <h1>Vuex: {{ $store.state.user }}</h1>
+    <input type="text" v-model="userName" @keyup="setUser"/> -->
     <router-view />
   </div>
 </template>
@@ -24,15 +24,18 @@ export default {
 };
 </script>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;800&display=swap");
+body {
+  margin: 0px;
+  padding: 0px;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Jost", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
+/* #nav {
   padding: 30px;
 }
 
@@ -43,5 +46,5 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>
