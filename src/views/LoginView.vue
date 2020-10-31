@@ -8,8 +8,10 @@
         >Forgot Password</router-link
       >
       <button @click="handleLogin" class="login-btn">Log in</button>
-      <router-link to="/foo">Create an account</router-link>
-      <button @click="handleGoogle" class="google-btn">Continue with Google</button>
+      <router-link to="/register">Create an account</router-link>
+      <button @click="handleGoogle" class="google-btn">
+        Continue with Google
+      </button>
     </div>
   </div>
 </template>
@@ -31,22 +33,22 @@ export default {
         password: this.password,
       });
       this.$store.dispatch("setUser", res.data);
-      this.$router.push('/');
+      this.$router.push("/");
     },
     async handleGoogle() {
       const googleUser = await this.$gAuth.signIn();
       this.$store.dispatch("setUser", googleUser.tt);
-      this.$router.push('/');
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-.google-btn{
+.google-btn {
   margin-top: 2rem;
 }
-.login-btn{
+.login-btn {
   margin-top: 1.5rem;
 }
 .container {
@@ -68,6 +70,7 @@ export default {
   padding: 2rem;
   background-color: var(--background-color);
   border-radius: var(--border-radius);
+  width: 250px;
 }
 input {
   border-radius: var(--border-radius);
