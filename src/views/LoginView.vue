@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="box">
+    <form class="box">
       <img class="logo" src="@/assets/logo.png" />
       <input type="email" placeholder="E-Mail" v-model="email" />
       <input type="password" placeholder="Passwort" v-model="password" />
@@ -12,10 +12,10 @@
         <p v-else>Loading</p>
         </button>
       <router-link to="/register">Create an account</router-link>
-      <button @click="handleGoogle" class="google-btn">
+      <button @click.prevent="handleGoogle" class="google-btn">
         Continue with Google
       </button>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
       });
       this.isLoading = false;
       this.$store.dispatch("setUser", res.data);
-      this.$router.push("/");
+      this.$router.replace("/");
     },
     async handleGoogle() {
       const googleUser = await this.$gAuth.signIn();
