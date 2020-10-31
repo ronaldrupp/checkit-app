@@ -25,9 +25,19 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;800&display=swap");
+
+:root {
+  --primary-color: #30a1f2;
+  --background-color: white;
+  --border-radius: 10px;
+}
+
 body {
   margin: 0px;
   padding: 0px;
+}
+h1 {
+  margin: 0;
 }
 #app {
   font-family: "Jost", sans-serif;

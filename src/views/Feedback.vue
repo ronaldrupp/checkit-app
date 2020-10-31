@@ -1,40 +1,36 @@
-com<template>
-  <div class="container">
-    <div class="header">
-      <div class="progress-container">
-        <div
-          class="progress-bar"
-          :class="{
-            completed: questionIndex >= index,
-            'not-completed': questionIndex <= index,
-          }"
-          v-for="(quest, index) in dataFromAPI.questions"
-          :key="quest.id"
-        ></div>
-      </div>
-      <h3 style="margin: 0px">WEBT: Unterricht vom 15.10.2020</h3>
-      <div class="creator">
-        <img
-          class="profile-img"
-          src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
-        />
-        <p style="margin-left: 0.5rem">Elon Musk</p>
-      </div>
+<template>
+  <div>
+    <div
+      class="feedback"
+      v-if="dataFromAPI.questions.length - 1 >= questionIndex"
+    >
+      <FeedbackHeader
+        :dataFromAPI="dataFromAPI"
+        :questionIndex="questionIndex"
+      />
+      <FeedbackItem
+        v-if="questionIndex <= dataFromAPI.questions.length"
+        :question="dataFromAPI.questions[questionIndex]"
+        @next-quest="handleIncoming"
+        style=""
+      />
     </div>
-    <FeedbackItem
-      :question="dataFromAPI.questions[questionIndex]"
-      @next-quest="questionIndex++"
-    />
+    <FeedbackCompleted v-else :creator="dataFromAPI.creator" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
+import FeedbackHeader from "@/components/FeedbackHeader.vue";
 import FeedbackItem from "@/components/FeedbackItem.vue";
+import FeedbackCompleted from "@/components/FeedbackCompleted.vue";
+
 export default {
   data() {
     return {
       questionIndex: 0,
+      answers: [],
       dataFromAPI: {
         id: 10,
         creator_id: 1,
@@ -44,8 +40,7 @@ export default {
           {
             id: 14,
             survey_id: 10,
-            question:
-              "Wie fandest du heute den Unterricht? Wie fandest du heute den Unterricht? Wie fandest du heute den Unterricht? Wie fandest du heute den Unterricht? Wie fandest du heute den Unterricht?",
+            question: "Wie fandest du heute den Unterricht? ",
             answers: ["gut", "schlecht"],
           },
           {
@@ -57,66 +52,42 @@ export default {
           {
             id: 13,
             survey_id: 10,
-            question: "Was willst du das nächste Mal machen?",
-            answers: ["nichts.", "auch nichts"],
+            question: "Magst du Corona?",
+            answers: ["ja", "naja", "lästig"],
           },
         ],
-        name: "Anna Jakobsen",
+        creator: {
+          name: "Anna Jakobsen",
+        },
       },
     };
   },
   components: {
     FeedbackItem,
+    FeedbackCompleted,
+    FeedbackHeader,
   },
-  created () {
-      this.getFeedback();
+  created() {
+    this.getFeedback();
   },
   methods: {
     async getFeedback() {
-      let res = await axios.get(`${process.env.VUE_APP_API_URL}/survey/${this.$route.params.id}`);
+      let res = await axios.get(
+        `${process.env.VUE_APP_API_URL}/survey/${this.$route.params.id}`
+      );
       console.log(res);
+    },
+    handleIncoming(value) {
+      this.answers.push(value);
+      this.questionIndex++;
     },
   },
 };
 </script>
 
 <style scoped>
-.container {
-  padding: 1rem;
-}
-.header {
-  position: fixed;
-  width: 100%;
-  top: 0px;
-  background-color: white;
-}
-.progress-container {
-  width: 100%;
-  height: 0.5rem;
-  display: flex;
-}
-.progress-bar {
-  flex-grow: 1;
-  border-radius: 1rem;
-  margin-right: 0.2rem;
-}
-.progress-bar:last-child {
-  margin: 0px;
-}
-.completed {
-  background-color: #30a1f2;
-}
-.not-completed {
-  border: 2px solid #30a1f2;
-}
-.profile-img {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.creator {
-  display: flex;
-  align-items: center;
+.feedback {
+  max-width: 768px;
+  margin: 0px auto;
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <h1 style="max-width: 70%;margin: 5rem 0rem">{{ question.question }}</h1>
+  <div class="container">
+    <div class="question">
+      <h1 style="max-width: 70%;">{{ question.question }}</h1>
+    </div>
     <div class="choice-section">
       <button
         v-for="choice of question.answers"
         :key="choice.id"
-        @click="$emit('next-quest')"
+        @click="clickChoice(choice)"
         class="choice"
       >
         {{ choice }}
@@ -21,15 +23,29 @@ export default {
       type: Object,
     },
   },
+  methods: {
+    clickChoice(choice) {
+      this.$emit("next-quest", choice);
+    },
+  },
 };
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  width: 100%;
+  margin-top: 9rem;
+}
+
+.question {
+  width: 70%;
+}
 
 .choice-section {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 30%;
   padding: 1rem 0rem;
   background-color: white;
 }
@@ -51,6 +67,10 @@ export default {
   .choice-section {
     position: fixed;
     bottom: 0px;
+    width: 100%;
+  }
+  .question {
+    width: 100%;
   }
 }
 </style>
