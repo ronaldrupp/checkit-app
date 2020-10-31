@@ -8,19 +8,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      userName: "Tess Tosterone",
-    };
-  },
-  created() {
-    this.setUser();
-  },
-  methods: {
-    setUser() {
-      this.$store.dispatch("setUser", this.userName);
-    },
-  },
 };
 </script>
 <style>
@@ -29,10 +16,16 @@ export default {
 :root {
   --primary-color: #30a1f2;
   --background-color: white;
+  --input-background-color: #ededed;
+  --input-placeholder-color: #7b7b7b;
   --border-radius: 10px;
 }
-
+html {
+  height: -webkit-fill-available;
+}
 body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   margin: 0px;
   padding: 0px;
 }

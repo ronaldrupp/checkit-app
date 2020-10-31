@@ -5,11 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    user: window.localStorage.getItem("user"),
   },
   mutations: {
     setUser(state, value) {
       this.state.user = value;
+      window.localStorage.setItem("user", value);
     },
   },
   actions: {
