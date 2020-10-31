@@ -7,7 +7,10 @@
       <router-link to="/foo" style="font-size: 0.8rem; align-self: flex-end	"
         >Forgot Password</router-link
       >
-      <button @click="handleLogin" class="login-btn">Log in</button>
+      <button @click="handleLogin" class="login-btn" :disabled="isLoading">
+        <p v-if="!isLoading">Log in</p>
+        <p v-else>Loading</p>
+        </button>
       <router-link to="/register">Create an account</router-link>
       <button @click="handleGoogle" class="google-btn">
         Continue with Google
@@ -24,14 +27,17 @@ export default {
     return {
       email: "",
       password: "",
+      isLoading: false
     };
   },
   methods: {
     async handleLogin() {
-      let res = await axios.post(`${process.env.VUE_APP_API_URL}/login`, {
-        email: this.email,
-        password: this.password,
+      this.isLoading = true;
+      let res = await axios.post(`${process.env.VUE_APP_API_URL}/user/token`, {
+        Email: this.email,
+        Password: this.password,
       });
+      this.isLoading = false;
       this.$store.dispatch("setUser", res.data);
       this.$router.push("/");
     },
@@ -48,8 +54,12 @@ export default {
 .google-btn {
   margin-top: 2rem;
 }
+button:disabled,
+button[disabled]{
+  opacity: 0.5;
+}
 .login-btn {
-  margin-top: 1.5rem;
+  margin: 1.5rem 0rem 0.5rem 0rem;
 }
 .container {
   background-color: var(--primary-color);
@@ -70,16 +80,17 @@ export default {
   padding: 2rem;
   background-color: var(--background-color);
   border-radius: var(--border-radius);
-  width: 250px;
+  width: 400px;
 }
 input {
   border-radius: var(--border-radius);
-  height: 1.5rem;
+  height: 2.5rem;
   margin-bottom: 0.5rem;
   background-color: var(--input-background-color);
   border: none;
   padding: 0.5rem;
   width: 100%;
+  font-family: 'Jost';
 }
 input::placeholder {
   color: var(--input-placeholder-color);
@@ -92,5 +103,12 @@ button {
   color: white;
   font-weight: 800;
   width: 100%;
+}
+@media (max-width: 768px){
+  .box{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
 }
 </style>

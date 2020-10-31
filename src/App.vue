@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <h1>Vuex: {{ $store.state.user }}</h1>
-    <input type="text" v-model="userName" @keyup="setUser"/> -->
     <router-view />
   </div>
 </template>
@@ -18,13 +16,16 @@ export default {
   --background-color: white;
   --input-background-color: #ededed;
   --input-placeholder-color: #7b7b7b;
-  --border-radius: 10px;
+  --border-radius: 20px;
 }
 html {
   height: -webkit-fill-available;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 body {
-  min-height: 100vh;
   min-height: -webkit-fill-available;
   margin: 0px;
   padding: 0px;
@@ -32,12 +33,29 @@ body {
 h1 {
   margin: 0;
 }
+a{
+  text-decoration: none;
+  color: var(--primary-color);
+}
 #app {
   font-family: "Jost", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+input {
+  border-radius: var(--border-radius);
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--input-background-color);
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  font-family: 'Jost';
+}
+input::placeholder {
+  color: var(--input-placeholder-color);
+}
 /* #nav {
   padding: 30px;
 }
