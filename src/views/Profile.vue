@@ -3,7 +3,7 @@
     <button
       @click="
         $store.dispatch('logout');
-        this.$router.replace('/login');
+        $router.replace('/login');
       "
     >
       Logout
