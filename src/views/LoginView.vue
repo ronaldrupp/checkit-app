@@ -71,8 +71,8 @@ button[disabled]{
   align-items: center;
 }
 .logo {
-  width: 50%;
-  margin: 2rem 0rem;
+  width: 30%;
+  margin: 4rem 0rem;
 }
 .box {
   display: flex;
@@ -109,6 +109,7 @@ button {
   .box{
     width: 100%;
     height: 100%;
+    justify-content: center;
     border-radius: 0px;
   }
 }

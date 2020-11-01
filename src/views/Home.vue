@@ -1,5 +1,5 @@
 <template>
-  <div class="home"></div>
+  <div class="home">HOME</div>
 </template>
 
 <script>
@@ -13,8 +13,5 @@ export default {
 
 <style>
 .home{
-  background-color: grey;
-  width: 100%;
-  height: 100%;
 }
 </style>

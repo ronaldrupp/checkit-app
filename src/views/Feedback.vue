@@ -55,6 +55,12 @@ export default {
             question: "Magst du Corona?",
             answers: ["ja", "naja", "lästig"],
           },
+          {
+            id: 2,
+            survey_id: 10,
+            question: "Hast du gewusst, dass der Kurz sein Studium abgebrochen hat?",
+            answers: ["ja", "naja", "schaut aus wie Sarazar"],
+          },
         ],
         creator: {
           name: "Anna Jakobsen",
@@ -87,6 +93,6 @@ export default {
 
 <style scoped>
 .feedback {
-  
+  margin: 1rem;
 }
 </style>

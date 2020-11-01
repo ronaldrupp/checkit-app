@@ -47,6 +47,7 @@ export default {
   width: 30%;
   padding: 1rem 0rem;
   background-color: white;
+  margin-bottom: 4rem;
 }
 .choice {
   width: 100%;
@@ -66,7 +67,7 @@ export default {
   .choice-section {
     position: fixed;
     bottom: 0px;
-    width: 100%;
+    width: 90%;
   }
   .question {
     width: 100%;

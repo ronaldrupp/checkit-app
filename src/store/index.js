@@ -12,10 +12,17 @@ export default new Vuex.Store({
       this.state.user = value;
       window.localStorage.setItem("user", value);
     },
+    setLogout() {
+      this.state.user = undefined;
+      window.localStorage.removeItem("user");
+    },
   },
   actions: {
     setUser(context, value) {
       context.commit("setUser", value);
+    },
+    logout(context) {
+      context.commit("setLogout");
     },
   },
   modules: {},

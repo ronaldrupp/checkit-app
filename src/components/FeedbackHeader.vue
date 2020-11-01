@@ -5,8 +5,8 @@
         <div
           class="progress-bar"
           :class="{
-            completed: questionIndex >= index,
-            'not-completed': questionIndex <= index,
+            'completed': questionIndex >= index,
+            'not-completed': questionIndex < index,
           }"
           v-for="(quest, index) in dataFromAPI.questions"
           :key="quest.id"
@@ -62,7 +62,8 @@ export default {
   background-color: var(--primary-color);
 }
 .not-completed {
-  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
+  opacity: 0.5;
 }
 .profile-img {
   width: 2.5rem;

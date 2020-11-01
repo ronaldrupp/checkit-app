@@ -1,22 +1,22 @@
 <template>
-  <div class="container-desktop">
-    <router-link to="/">
+  <div class="container">
+    <router-link to="/" class="logo-link">
       <img src="@/assets/logo_blue.svg" class="logo" />
     </router-link>
-    <router-link to="/" class="nav-container">
-      <div class="nav-item">
+    <div class="nav-container">
+      <router-link to="/" class="nav-item">
         <img src="@/assets/logo_blue.svg" class="icon" />
         <p class="nav-title">My Feedbacks</p>
-      </div>
+      </router-link>
       <router-link to="/my-questions-and-answers" class="nav-item">
         <img src="@/assets/logo_blue.svg" class="icon" />
         <p class="nav-title">My Questions & Answers</p>
       </router-link>
       <router-link to="/profile" class="nav-item">
         <img src="@/assets/logo_blue.svg" class="icon" />
-        <p class="nav-title">{{$store.state.user.userName}}</p>
+        <p class="nav-title">{{ $store.state.user.userName }}</p>
       </router-link>
-    </router-link>
+    </div>
   </div>
 </template>
 
@@ -25,12 +25,11 @@ export default {};
 </script>
 
 <style scoped>
-.container-desktop {
+.container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  top: 0;
-  left: 0;
+
   z-index: 99;
   -webkit-user-select: none;
   align-items: flex-start;
@@ -44,6 +43,7 @@ export default {};
   width: 25px;
 }
 .nav-container {
+  display: flex;
   margin-top: 2rem;
 }
 .nav-item {
@@ -65,14 +65,30 @@ export default {};
   font-weight: 600;
 }
 @media (max-width: 768px) {
-  .container-desktop {
+  .container {
+    position: fixed;
+    flex-direction: row;
+    bottom: 0px;
+    height: 4rem;
+    align-items: center;
+    background-color: var(--background-color);
+    width: inherit;
+    max-width: inherit;
+    box-shadow: 0px 2px 33px 5px #EAEAEA;
+  }
+  .nav-container {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0px;
+  }
+  .logo-link {
     display: none;
   }
-  
 }
-@media (max-width: 1240px){
-    .nav-title{
-      display: none;
+@media (max-width: 1240px) {
+  .nav-title {
+    display: none;
   }
 }
 </style>
