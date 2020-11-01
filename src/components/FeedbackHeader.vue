@@ -39,14 +39,9 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 768px;
-  margin: 0px auto;
+  
 }
 .header {
-  position: fixed;
-  width: 100%;
-  max-width: 768px;
-  top: 0px;
   background-color: var(--background-color);
 }
 .progress-container {

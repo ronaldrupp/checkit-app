@@ -46,8 +46,19 @@ export default {
         Password: this.password,
         Username: this.username,
       });
-      this.$store.dispatch("setUser", res.data);
-      this.$router.push("/");
+      if (res.data == `User Registered with username ${this.username}`) {
+        let res = await axios.post(
+          `${process.env.VUE_APP_API_URL}/user/token`,
+          {
+            Email: this.email,
+            Password: this.password,
+          }
+        );
+        if (res.data.isAuthenticated) {
+          this.$store.dispatch("setUser", res.data);
+          this.$router.push("/");
+        }
+      }
     },
   },
 };

@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <router-view />
+    <NavBar v-if="$store.state.user" />
+    <router-view class="routerView"/>
   </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar'
 export default {
+  components: {
+    NavBar,
+  },
 };
 </script>
 <style>
@@ -41,8 +46,12 @@ a{
   font-family: "Jost", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  font-size: 16px;
 }
-
+.routerView{
+  flex-grow: 1;
+}
 input {
   border-radius: var(--border-radius);
   height: 2.5rem;

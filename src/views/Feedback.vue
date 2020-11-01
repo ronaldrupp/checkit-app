@@ -87,7 +87,6 @@ export default {
 
 <style scoped>
 .feedback {
-  max-width: 768px;
-  margin: 0px auto;
+  
 }
 </style>

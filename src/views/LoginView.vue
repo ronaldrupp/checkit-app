@@ -43,7 +43,8 @@ export default {
     },
     async handleGoogle() {
       const googleUser = await this.$gAuth.signIn();
-      this.$store.dispatch("setUser", googleUser.tt);
+      console.log(googleUser)
+      this.$store.dispatch("setUser", googleUser.tt.Ad);
       this.$router.push("/");
     },
   },

@@ -4,8 +4,8 @@ import store from "../store/index";
 import Home from "../views/Home.vue";
 import Feedback from "../views/Feedback.vue";
 import LoginView from "../views/LoginView.vue";
-import RegisterView from "../views/RegisterView.vue"
-
+import RegisterView from "../views/RegisterView.vue";
+import NotFound from "../views/404.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,6 +28,10 @@ const routes = [
     path: "/feedback/:id",
     name: "Feedback",
     component: Feedback,
+  },
+  {
+    path: "*",
+    component: NotFound,
   },
 ];
 
