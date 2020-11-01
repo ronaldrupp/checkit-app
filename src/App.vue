@@ -1,15 +1,20 @@
 <template>
   <div id="app">
-    <NavBar v-if="$store.state.user" />
-    <router-view class="routerView"/>
+    <NavBar v-if="showNav && $store.state.user" />
+    <router-view class="routerView" />
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
+import NavBar from "@/components/NavBar";
 export default {
   components: {
     NavBar,
+  },
+  computed: {
+    showNav() {
+      return !(["Login", "Register", "Feedback"].indexOf(this.$route.name) > -1);
+    },
   },
 };
 </script>
@@ -18,7 +23,15 @@ export default {
 
 :root {
   --primary-color: #30a1f2;
+  --secondary-color: black;
+  --linear-gradient: linear-gradient(
+    349deg,
+    rgba(132, 0, 255, 1) 0%,
+    rgba(72, 72, 255, 1) 47%,
+    rgba(0, 212, 255, 1) 100%
+  );
   --background-color: white;
+  --alert-color: rgb(255, 100, 100);
   --input-background-color: #ededed;
   --input-placeholder-color: #7b7b7b;
   --border-radius: 20px;
@@ -26,21 +39,30 @@ export default {
 html {
   height: -webkit-fill-available;
   box-sizing: border-box;
+  height: 100%;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 body {
   min-height: -webkit-fill-available;
   margin: 0px;
   padding: 0px;
+  height: 100%;
+}
+button {
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
 }
 h1 {
   margin: 0;
 }
-a{
+a {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 #app {
   font-family: "Jost", sans-serif;
@@ -51,7 +73,11 @@ a{
   width: 100%;
   height: 100%;
 }
-.routerView{
+button:disabled,
+button[disabled] {
+  opacity: 0.5;
+}
+.routerView {
   flex-grow: 1;
 }
 input {
@@ -62,7 +88,7 @@ input {
   border: none;
   padding: 0.5rem;
   width: 100%;
-  font-family: 'Jost';
+  font-family: "Jost";
 }
 input::placeholder {
   color: var(--input-placeholder-color);

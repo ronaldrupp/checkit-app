@@ -5,23 +5,38 @@
     </router-link>
     <div class="nav-container">
       <router-link to="/" class="nav-item">
-        <img src="@/assets/logo_blue.svg" class="icon" />
-        <p class="nav-title">My Feedbacks</p>
+        <message-circle-icon
+          size="2x"
+          class="custom-class"
+        ></message-circle-icon>
+        <p class="nav-title">Feedbacks</p>
       </router-link>
       <router-link to="/my-questions-and-answers" class="nav-item">
-        <img src="@/assets/logo_blue.svg" class="icon" />
-        <p class="nav-title">My Questions & Answers</p>
+        <list-icon size="2x" class="custom-class"></list-icon>
+        <p class="nav-title">Templates</p>
       </router-link>
       <router-link to="/profile" class="nav-item">
-        <img src="@/assets/logo_blue.svg" class="icon" />
-        <p class="nav-title">{{ $store.state.user.userName }}</p>
+        <div class="profile-img">
+          <img
+            src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
+            class="icon"
+          />
+        </div>
+        <p class="nav-title" v-if="$store.state.user">{{ $store.state.user.userName }}</p>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { MessageCircleIcon, ListIcon } from "vue-feather-icons";
+
+export default {
+  components: {
+    MessageCircleIcon,
+    ListIcon,
+  },
+};
 </script>
 
 <style scoped>
@@ -39,18 +54,26 @@ export default {};
   width: 30px;
   margin: 0.5rem 1rem;
 }
+.profile-img {
+  width: 2rem;
+  height: 2rem;
+}
 .icon {
-  width: 25px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5rem;
 }
 .nav-container {
   display: flex;
+  flex-direction: column;
   margin-top: 2rem;
 }
 .nav-item {
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  border-radius: 50px;
+  border-radius: 5rem;
   transition: 0.2s;
   margin: 1rem 0rem;
   color: black;
@@ -69,12 +92,12 @@ export default {};
     position: fixed;
     flex-direction: row;
     bottom: 0px;
-    height: 4rem;
+    height: 3.5rem;
     align-items: center;
     background-color: var(--background-color);
     width: inherit;
     max-width: inherit;
-    box-shadow: 0px 2px 33px 5px #EAEAEA;
+    box-shadow: 0px 2px 33px 5px #eaeaea;
   }
   .nav-container {
     width: 100%;
@@ -82,11 +105,14 @@ export default {};
     justify-content: space-evenly;
     margin: 0px;
   }
+  .nav-item {
+    padding: 0.5rem;
+  }
   .logo-link {
     display: none;
   }
 }
-@media (max-width: 1240px) {
+@media (max-width: 800px) {
   .nav-title {
     display: none;
   }

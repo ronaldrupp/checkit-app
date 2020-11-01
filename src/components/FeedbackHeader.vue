@@ -54,16 +54,17 @@ export default {
   flex-grow: 1;
   border-radius: 1rem;
   margin-right: 0.2rem;
+  transition: .2s;
 }
 .progress-bar:last-child {
   margin: 0px;
 }
 .completed {
-  background-color: var(--primary-color);
+  background: var(--linear-gradient);
 }
 .not-completed {
-  background-color: var(--primary-color);
-  opacity: 0.5;
+  background: var(--linear-gradient);
+  opacity: 0.3;
 }
 .profile-img {
   width: 2.5rem;

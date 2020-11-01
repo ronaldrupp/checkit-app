@@ -13,6 +13,7 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-confetti": "^2.2.1",
+    "vue-feather-icons": "^5.1.0",
     "vue-google-oauth2": "^1.5.5",
     "vue-lottie": "^0.2.1",
     "vue-meta": "^2.4.0",

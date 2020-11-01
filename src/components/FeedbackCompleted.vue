@@ -12,7 +12,7 @@
       </div>
       <div class="feedback-powered">
         <p>Feedback powered by</p>
-        <img src="" />
+        <img class="logo" src="@/assets/logo_black.svg" />
       </div>
     </div>
   </div>
@@ -46,14 +46,21 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  font-size: 10rem;
+}
 .container {
-  background-color: var(--primary-color);
+  background-color: var(--background-color);
   position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.logo{
+  width: 25px;
+  margin: 0rem auto;
 }
 .feedback-powered {
   display: flex;

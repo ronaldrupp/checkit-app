@@ -52,11 +52,10 @@ export default {
 .choice {
   width: 100%;
   height: 2rem;
-  border: 2px solid #30a1f2;
+
   margin-bottom: 0.5rem;
   background-color: transparent;
   border-radius: 20px;
-  color: #30a1f2;
 }
 
 .choice:last-child {

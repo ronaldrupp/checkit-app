@@ -1,116 +1,108 @@
 <template>
   <div class="container">
-    <form class="box">
-      <img class="logo" src="@/assets/logo.png" />
-      <input type="email" placeholder="E-Mail" v-model="email" />
-      <input type="password" placeholder="Passwort" v-model="password" />
-      <router-link to="/foo" style="font-size: 0.8rem; align-self: flex-end	"
-        >Forgot Password</router-link
+    <header class="header">
+      <img class="logo" src="@/assets/logo_white.svg" />
+      <a href="https://check-it.at" target="_blank" class="link-btn"
+        >DA-Seite</a
       >
-      <button @click="handleLogin" class="login-btn" :disabled="isLoading">
-        <p v-if="!isLoading">Log in</p>
-        <p v-else>Loading</p>
-        </button>
-      <router-link to="/register">Create an account</router-link>
-      <button @click.prevent="handleGoogle" class="google-btn">
-        Continue with Google
-      </button>
-    </form>
+    </header>
+
+    <div class="left-section">
+      <h1 class="title">Verbessere die Qualität deines Unterrichts</h1>
+      <p class="subtitle">
+        Eine Diplomarbeit von Josef Tungl, Pascal Rengelshausen, Tom Kalchmann
+        und Ronald Rupp
+      </p>
+    </div>
+    <div class="right-section">
+      <LoginForm v-if="mode == 'login'" @change-mode="mode = 'register'"/>
+      <RegisterForm v-else />
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
+import RegisterForm from "./../components/RegisterForm";
+import LoginForm from "./../components/LoginForm";
 export default {
   data() {
     return {
-      email: "",
-      password: "",
-      isLoading: false
-    };
+      mode: 'login'
+    }
   },
-  methods: {
-    async handleLogin() {
-      this.isLoading = true;
-      let res = await axios.post(`${process.env.VUE_APP_API_URL}/user/token`, {
-        Email: this.email,
-        Password: this.password,
-      });
-      this.isLoading = false;
-      this.$store.dispatch("setUser", res.data);
-      this.$router.replace("/");
-    },
-    async handleGoogle() {
-      const googleUser = await this.$gAuth.signIn();
-      console.log(googleUser)
-      this.$store.dispatch("setUser", googleUser.tt.Ad);
-      this.$router.push("/");
-    },
+  components: {
+    RegisterForm,
+    LoginForm,
   },
+  
 };
 </script>
 
 <style scoped>
-.google-btn {
-  margin-top: 2rem;
+.title {
+  font-size: 2.5rem;
+  color: var(--background-color);
+  margin-right: 1.5rem;
+  max-width: 75%;
+  text-transform: uppercase;
 }
-button:disabled,
-button[disabled]{
-  opacity: 0.5;
+.subtitle {
+  max-width: 70%;
+  margin: 10rem 1.5rem 0rem 0rem;
+  color: var(--background-color);
 }
-.login-btn {
-  margin: 1.5rem 0rem 0.5rem 0rem;
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.link-btn {
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+}
+.left-section {
+  width: 50%;
+  height: 100%;
+  background: var(--linear-gradient);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+}
+.right-section {
+  width: 50%;
+  
+  background: var(--background-color);
 }
 .container {
-  background-color: var(--primary-color);
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .logo {
-  width: 30%;
-  margin: 4rem 0rem;
+  width: 2rem;
 }
-.box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  background-color: var(--background-color);
-  border-radius: var(--border-radius);
-  width: 400px;
-}
-input {
-  border-radius: var(--border-radius);
-  height: 2.5rem;
-  margin-bottom: 0.5rem;
-  background-color: var(--input-background-color);
-  border: none;
-  padding: 0.5rem;
-  width: 100%;
-  font-family: 'Jost';
-}
-input::placeholder {
-  color: var(--input-placeholder-color);
-}
-button {
-  border: none;
-  background-color: var(--primary-color);
-  height: 2.5rem;
-  border-radius: 20px;
-  color: white;
-  font-weight: 800;
-  width: 100%;
-}
-@media (max-width: 768px){
-  .box{
+@media (max-width: 768px) {
+  .box {
     width: 100%;
     height: 100%;
     justify-content: center;
     border-radius: 0px;
+  }
+  .left-section {
+    display: none;
+  }
+  .right-section {
+    width: 100%;
   }
 }
 </style>
