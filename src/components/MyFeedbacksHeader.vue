@@ -1,10 +1,14 @@
 <template>
   <div class="header">
     <h3 class="title">My Feedbacks</h3>
-    <button class="feedbackbtn">
-      <PlusIcon class="icon" v-if="bIcon" stroke-width="3"></PlusIcon>
-      <span v-else class="btntext"> Create new feedback </span>
-    </button>
+    <!-- <button class="feedbackbtn">
+        <PlusIcon class="icon" v-if="bIcon" stroke-width="3"></PlusIcon>
+        <span v-else class="btntext"> Create new feedback </span>
+    </button> -->
+    <router-link class="feedbackbtn" to="/foo" tag="button">
+        <PlusIcon class="icon" v-if="bIcon" stroke-width="3"></PlusIcon>
+        <span v-else class="btntext"> Create new feedback </span>  
+    </router-link>
   </div>
 </template>
 
@@ -22,7 +26,6 @@ export default {
   methods: {
     showIcon() {
       if (window.innerWidth <= 768) {
-        console.log("Test");
         this.bIcon = true;
       } else this.bIcon = false;
     },
@@ -36,7 +39,7 @@ export default {
 <style scoped>
 .header {
   display: flex;
-  width: 85%;
+  width: 100%;
 }
 .title {
   margin-left: 5vw;
@@ -53,6 +56,7 @@ export default {
   align-self: center;
   width: 12vw;
   margin-left: auto;
+  margin-right: 5vw;
 }
 .btntext {
   align-self: center;
