@@ -1,18 +1,20 @@
 <template>
   <div>
-    <router-link class="router-a" to="/feedback">
-      <div class="assignment-item">
-        <div class="left-sec">
+    <router-link :to="`/feedback/${myfeedbacks.id}`">
+      <div
+        class="border-b hover:bg-gray-200 divide-gray-500 flex items-center justify-between px-2 py-4 border-solid"
+      >
+        <div class="flex">
           <div>
-            <h5 class="cardheader">
-              {{myfeedbacks.title}}
-            </h5>
-            <p>{{myfeedbacks.date}}</p>
+            <p class="">
+              {{ myfeedbacks.title }}
+            </p>
+            <p>{{ myfeedbacks.date }}</p>
           </div>
         </div>
-        <div class="users">
+        <div class="flex">
           <UsersIcon />
-          <p class="nmbr">{{myfeedbacks.attendees}}</p>
+          <p class="ml-1">{{ myfeedbacks.attendees }}</p>
         </div>
       </div>
     </router-link>
@@ -27,7 +29,7 @@ export default {
   },
   props: {
     myfeedbacks: {
-      type: Array 
+      type: Array,
     },
   },
 };
@@ -64,12 +66,7 @@ export default {
   display: contents !important;
 }
 .users {
-    display: flex;
-    align-items: center;
-}
-.nmbr {
-  font-size: 14px !important;
-  font-weight: 500;
-  margin-left: .25vw !important;
+  display: flex;
+  align-items: center;
 }
 </style>

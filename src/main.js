@@ -6,6 +6,7 @@ import store from "./store";
 import VueConfetti from "vue-confetti";
 import VueMeta from "vue-meta";
 import GAuth from "vue-google-oauth2";
+import "./assets/styles/index.css";
 
 const gauthOption = {
   clientId:

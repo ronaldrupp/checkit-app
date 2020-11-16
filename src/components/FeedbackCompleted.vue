@@ -1,20 +1,18 @@
 <template>
-  <div class="container">
-    <div class="box">
-      <h1>🥳</h1>
-      <h3>Danke fürs Mitmachen</h3>
-      <div class="creator">
+  <div class="flex w-full h-full flex-col justify-center items-center">
+      <h1 class="text-6xl my-12">🥳</h1>
+      <h3 class="text-xl font-bold">Danke fürs Mitmachen</h3>
+      <div class="flex mt-6">
         <img
           class="profile-img"
-          src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
+          :src="creator.photo_url"
         />
         <p>{{creator.name}}</p>
       </div>
-      <div class="feedback-powered">
+      <div class="flex items-center flex-col mt-12">
         <p>Feedback powered by</p>
-        <img class="logo" src="@/assets/logo_black.svg" />
+        <img class="w-10 mt-6" src="@/assets/logo_black.svg" />
       </div>
-    </div>
   </div>
 </template>
 
@@ -46,18 +44,6 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  font-size: 10rem;
-}
-.container {
-  background-color: var(--background-color);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .logo{
   width: 25px;
   margin: 0rem auto;

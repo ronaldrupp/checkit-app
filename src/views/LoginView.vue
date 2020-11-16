@@ -1,15 +1,15 @@
 <template>
-  <div class="container">
+  <div class="w-full flex items-center jusitfy-center">
     <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
-      <a href="https://check-it.at" target="_blank" class="link-btn"
+      <a href="https://check-it.at" target="_blank" class="bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
         >DA-Seite</a
       >
     </header>
 
-    <div class="left-section">
-      <h1 class="title">Verbessere die Qualität deines Unterrichts</h1>
-      <p class="subtitle">
+    <div class="left-section pr-3">
+      <h1 class="font-bold text-5xl text-white uppercase">Verbessere die Qualität deines Unterrichts</h1>
+      <p class="text-white mt-12">
         Eine Diplomarbeit von Josef Tungl, Pascal Rengelshausen, Tom Kalchmann
         und Ronald Rupp
       </p>
@@ -81,12 +81,6 @@ export default {
   width: 50%;
   
   background: var(--background-color);
-}
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .logo {
   width: 2rem;

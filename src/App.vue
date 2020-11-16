@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar v-if="showNav && $store.state.user" />
-    <router-view class="routerView" />
+    <router-view class="flex-grow" />
   </div>
 </template>
 
@@ -72,13 +72,6 @@ a {
   font-size: 16px;
   width: 100%;
   height: 100%;
-}
-button:disabled,
-button[disabled] {
-  opacity: 0.5;
-}
-.routerView {
-  flex-grow: 1;
 }
 input {
   border-radius: var(--border-radius);

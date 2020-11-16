@@ -1,13 +1,13 @@
 <template>
-  <div class="header">
-    <h3 class="title">My Feedbacks</h3>
-    <!-- <button class="feedbackbtn">
-        <PlusIcon class="icon" v-if="bIcon" stroke-width="3"></PlusIcon>
-        <span v-else class="btntext"> Create new feedback </span>
-    </button> -->
-    <router-link class="feedbackbtn" to="/foo" tag="button">
-        <PlusIcon class="icon" v-if="bIcon" stroke-width="3"></PlusIcon>
-        <span v-else class="btntext"> Create new feedback </span>  
+  <div class="w-full flex items-center justify-between p-2 border-b">
+    <h3 class="font-bold text-xl">My Feedbacks</h3>
+    <router-link
+      class="border-none bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
+      to="/foo"
+      tag="button"
+    >
+      <PlusIcon class="md:hidden block" stroke-width="3"></PlusIcon>
+      <span class="hidden md:block"> Create new feedback </span>
     </router-link>
   </div>
 </template>
@@ -19,51 +19,10 @@ export default {
     PlusIcon,
   },
   data() {
-    return {
-      bIcon: false,
-    };
-  },
-  methods: {
-    showIcon() {
-      if (window.innerWidth <= 768) {
-        this.bIcon = true;
-      } else this.bIcon = false;
-    },
-  },
-  mounted() {
-    this.showIcon();
+    return {};
   },
 };
 </script>
 
 <style scoped>
-.header {
-  display: flex;
-  width: 100%;
-}
-.title {
-  margin-left: 5vw;
-}
-.feedbackbtn {
-  display: flex;
-  border: none;
-  background-color: var(--primary-color);
-  height: 4vh;
-  border-radius: 20px;
-  color: white;
-  font-size: 14px;
-  font-weight: 800;
-  align-self: center;
-  width: 12vw;
-  margin-left: auto;
-  margin-right: 5vw;
-}
-.btntext {
-  align-self: center;
-  margin: auto;
-}
-.icon {
-  align-self: center;
-  margin: auto;
-}
 </style>

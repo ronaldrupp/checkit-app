@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
-    <div class="question">
-      <h1 style="max-width: 70%;">{{ question.question }}</h1>
+  <div class="flex mt-10">
+    <div class="w-full px-2">
+      <h1 class="w-75 text-2xl">{{ question.question }}</h1>
     </div>
-    <div class="choice-section">
+    <div class="flex flex-col fixed bottom-0 w-full items-center">
       <button
         v-for="choice of question.answers"
         :key="choice.id"
         @click="clickChoice(choice)"
-        class="choice"
+        class="w-11/12 rounded-full my-1 h-9"
       >
         {{ choice }}
       </button>
@@ -31,45 +31,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  display: flex;
-  margin-top: 9rem;
-}
-
-.question {
-  width: 70%;
-}
-
-.choice-section {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  padding: 1rem 0rem;
-  background-color: white;
-  margin-bottom: 4rem;
-}
-.choice {
-  width: 100%;
-  height: 2rem;
-
-  margin-bottom: 0.5rem;
-  background-color: transparent;
-  border-radius: 20px;
-}
-
-.choice:last-child {
-  margin-bottom: 0px;
-}
-
-@media (max-width: 768px) {
-  .choice-section {
-    position: fixed;
-    bottom: 0px;
-    width: 90%;
-  }
-  .question {
-    width: 100%;
-  }
-}
-</style>
+<style scoped></style>

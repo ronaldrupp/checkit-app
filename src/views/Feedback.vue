@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="feedback"
+      class=""
       v-if="dataFromAPI.questions.length - 1 >= questionIndex"
     >
       <FeedbackHeader
@@ -12,7 +12,6 @@
         v-if="questionIndex <= dataFromAPI.questions.length"
         :question="dataFromAPI.questions[questionIndex]"
         @next-quest="handleIncoming"
-        style=""
       />
     </div>
     <FeedbackCompleted v-else :creator="dataFromAPI.creator" />
@@ -64,6 +63,7 @@ export default {
         ],
         creator: {
           name: "Anna Jakobsen",
+          photo_url: "https://www.myspass.de/myspass/media/images/videos/10/7910_640x360.jpg"
         },
       },
     };
@@ -92,7 +92,4 @@ export default {
 </script>
 
 <style scoped>
-.feedback {
-  margin: 1rem;
-}
 </style>

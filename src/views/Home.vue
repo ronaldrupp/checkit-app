@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <MyFeedbacksHeader class="header" />
+  <div>
+    <MyFeedbacksHeader />
     <MyFeedbacksCard v-for="feedback of myfeedbacks" :key="feedback.id" :myfeedbacks="feedback"/>
   </div>
 </template>
@@ -55,10 +55,5 @@ export default {
 </script>
 
 <style>
-.home {
-}
-.header {
-  margin-bottom: 8vh;
-}
 
 </style>
