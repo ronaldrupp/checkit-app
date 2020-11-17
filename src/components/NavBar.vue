@@ -9,7 +9,7 @@
 
       <router-link
         to="/"
-        class="duration-100 flex items-center px-4 py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
+        class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
       >
         <message-circle-icon
           size="2x"
@@ -20,7 +20,7 @@
 
       <router-link
         to="/my-questions-and-answers"
-        class="duration-100 flex items-center px-4 py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
+        class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
       >
         <list-icon size="2x" class="custom-class"></list-icon>
         <p class="hidden lg:block lg:ml-3 text-xl">Templates</p>
@@ -28,7 +28,7 @@
     </div>
     <router-link
       to="/profile"
-      class="duration-100 flex items-center px-4 py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
+      class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
     >
       <div class="profile-img">
         <img
