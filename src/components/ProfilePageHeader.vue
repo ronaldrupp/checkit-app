@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div>
     <div class="flex items-center ml-12 mt-12">
       <img
         class="object-cover rounded-full w-24 h-24"

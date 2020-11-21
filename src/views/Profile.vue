@@ -1,6 +1,7 @@
 <template>
-  <div class="flex items-start">
-    <ProfilePageHeader/>
+  <div class="flex flex-col">
+    <ProfilePageHeader />
+    <ProfileSettings class="mt-12" />
     <!-- <button
       @click="
         $store.dispatch('logout');
@@ -13,10 +14,12 @@
 </template>
 
 <script>
-import ProfilePageHeader from "../components/ProfilePageHeader"
+import ProfilePageHeader from "../components/ProfilePageHeader";
+import ProfileSettings from "../components/ProfileSettings";
 export default {
   components: {
     ProfilePageHeader,
+    ProfileSettings
   },
 };
 </script>
