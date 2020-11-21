@@ -1,13 +1,13 @@
 <template>
   <div class="flex w-full h-full flex-col justify-center items-center">
       <h1 class="text-6xl my-12">🥳</h1>
-      <h3 class="text-xl font-bold">Danke fürs Mitmachen</h3>
+      <h3 class="text-xl font-bold text-center">{{dataFromAPI.completedMessage}}</h3>
       <div class="flex mt-6">
         <img
           class="profile-img"
-          :src="creator.photo_url"
+          :src="dataFromAPI.creator.photo_url"
         />
-        <p>{{creator.name}}</p>
+        <p>{{dataFromAPI.creator.name}}</p>
       </div>
       <div class="flex items-center flex-col mt-12">
         <p>Feedback powered by</p>
@@ -22,7 +22,7 @@ export default {
     this.letItRain();
   },
   props: {
-      creator: {
+      dataFromAPI: {
           type: Object
       },
   },

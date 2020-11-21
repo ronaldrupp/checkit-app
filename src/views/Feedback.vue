@@ -14,7 +14,7 @@
         @next-quest="handleIncoming"
       />
     </div>
-    <FeedbackCompleted v-else :creator="dataFromAPI.creator" />
+    <FeedbackCompleted v-else :dataFromAPI="dataFromAPI" />
   </div>
 </template>
 
@@ -65,6 +65,7 @@ export default {
           name: "Anna Jakobsen",
           photo_url: "https://www.myspass.de/myspass/media/images/videos/10/7910_640x360.jpg"
         },
+        completedMessage: "Danke fürs Mitmachen, liebe Klasse."
       },
     };
   },

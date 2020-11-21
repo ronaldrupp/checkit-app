@@ -73,23 +73,7 @@ a {
   width: 100%;
   height: 100%;
 }
-input {
-  border-radius: var(--border-radius);
-  height: 2.5rem;
-  margin-bottom: 0.5rem;
-  background-color: var(--input-background-color);
-  border: none;
-  padding: 0.5rem;
-  width: 100%;
-  font-family: "Jost";
-}
-input::placeholder {
-  color: var(--input-placeholder-color);
-}
-/* #nav {
-  padding: 30px;
-}
-
+/*
 #nav a {
   font-weight: bold;
   color: #2c3e50;
