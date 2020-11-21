@@ -1,18 +1,24 @@
 <template>
-  <div class="container">
-    <button
+  <div class="flex items-start">
+    <ProfilePageHeader/>
+    <!-- <button
       @click="
         $store.dispatch('logout');
         $router.replace('/login');
       "
     >
       Logout
-    </button>
+    </button> -->
   </div>
 </template>
 
 <script>
-export default {};
+import ProfilePageHeader from "../components/ProfilePageHeader"
+export default {
+  components: {
+    ProfilePageHeader,
+  },
+};
 </script>
 
 <style scoped>
