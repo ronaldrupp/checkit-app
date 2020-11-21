@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex items-center justify-between p-2 border-b">
-    <h3 class="font-bold text-xl">My Feedbacks</h3>
+    <h3 class="font-bold text-xl">{{title}}</h3>
     <router-link
       class="border-none bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
       to="/foo"
@@ -17,6 +17,11 @@ import { PlusIcon } from "vue-feather-icons";
 export default {
   components: {
     PlusIcon,
+  },
+  props: {
+    title: {
+      type: String
+    },
   },
   data() {
     return {};

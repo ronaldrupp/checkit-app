@@ -17,7 +17,13 @@
         ></message-circle-icon>
         <p class="hidden lg:block lg:ml-3 text-xl">Feedbacks</p>
       </router-link>
-
+      <router-link
+        to="/class"
+        class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
+      >
+        <list-icon size="2x" class="custom-class"></list-icon>
+        <p class="hidden lg:block lg:ml-3 text-xl">Classes</p>
+      </router-link>
       <router-link
         to="/my-questions-and-answers"
         class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"

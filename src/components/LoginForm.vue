@@ -62,6 +62,9 @@ export default {
   },
   methods: {
     async handleLogin() {
+      this.$store.dispatch("setUser", true);
+      this.$router.replace("/");
+      
       this.isLoading = true;
       let res = await axios.post(`${process.env.VUE_APP_API_URL}/user/token`, {
         Email: this.email,

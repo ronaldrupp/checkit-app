@@ -6,6 +6,8 @@ import Feedback from "../views/Feedback.vue";
 import LoginView from "../views/LoginView.vue";
 import Profile from "../views/Profile.vue";
 import NotFound from "../views/404.vue";
+import ClassView from "../views/ClassView.vue";
+import ClassComp from "../components/ClassComp.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +26,12 @@ const routes = [
     path: "/feedback/:id",
     name: "Feedback",
     component: Feedback,
+  },
+  {
+    path: "/class",
+    name: "Class",
+    component: ClassView,
+    children: [{ path: "/class/:class", component: ClassComp }],
   },
   {
     path: "/profile",
