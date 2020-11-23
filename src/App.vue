@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="dark:bg-gray-900 dark:text-white ">
     <NavBar v-if="showNav && $store.state.user" />
     <router-view class="flex-grow" />
   </div>
@@ -11,9 +11,14 @@ export default {
   components: {
     NavBar,
   },
+  created () {
+    console.log('%cCHECK-IT', 'background: cyan; color: white;font-size: 35px');
+  },
   computed: {
     showNav() {
-      return !(["Login", "Register", "Feedback"].indexOf(this.$route.name) > -1);
+      return !(
+        ["Login", "Register", "Feedback"].indexOf(this.$route.name) > -1
+      );
     },
   },
 };
@@ -22,43 +27,27 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;800&display=swap");
 
 :root {
-  --primary-color: #30a1f2;
-  --secondary-color: black;
   --linear-gradient: linear-gradient(
     349deg,
     rgba(132, 0, 255, 1) 0%,
     rgba(72, 72, 255, 1) 47%,
     rgba(0, 212, 255, 1) 100%
   );
-  --background-color: white;
-  --alert-color: rgb(255, 100, 100);
-  --input-background-color: #ededed;
-  --input-placeholder-color: #7b7b7b;
-  --border-radius: 20px;
 }
 html {
   height: -webkit-fill-available;
   box-sizing: border-box;
   height: 100%;
 }
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
 body {
   min-height: -webkit-fill-available;
+  overflow: auto;
   margin: 0px;
   padding: 0px;
+  width: 100%;
   height: 100%;
-}
-button {
-  background-color: var(--secondary-color);
-  border: 2px solid var(--secondary-color);
-  color: var(--secondary-color);
-}
-h1 {
-  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 a {
   text-decoration: none;
@@ -69,7 +58,6 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
-  font-size: 16px;
   width: 100%;
   height: 100%;
 }
@@ -77,9 +65,9 @@ a {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
-}
+}*/
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
+a.router-link-exact-active {
+  color: #0c8fed;
+}
 </style>

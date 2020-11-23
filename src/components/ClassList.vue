@@ -2,7 +2,7 @@
   <div class="flex md:h-full flex-col border-r-2 ">
     <!-- <Header title="My Classes" /> -->
     <div
-      class="w-full  text-center py-6 hover:bg-gray-200"
+      class="w-full  text-center py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
       v-for="klasse in classesList"
       :key="klasse.name"
     >

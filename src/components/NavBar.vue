@@ -1,49 +1,49 @@
 <template>
   <div
-    class="flex md:p-2 md:py-6  md:justify-between md:h-full md:static md:border-r-2 md:w-auto md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
+    class="flex  md:shadow-none md:p-2 md:py-6 dark:bg-gray-900 shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:w-auto md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
+    style="padding-bottom:env(safe-area-inset-bottom, 30px)"
   >
-    <div class="flex justify-center items-center md:flex-col lg:items-start">
-      <router-link to="/" class=" mb-5 hidden md:block md:w-8 ">
-        <img src="@/assets/logo_blue.svg" class="" />
-      </router-link>
+    <router-link
+      to="/"
+      class=" mb-5 hidden md:block md:w-8 lg:ml-4 rounded-full dark:hover:bg-gray-800"
+    >
+      <img src="@/assets/logo_blue.svg" class="" />
+    </router-link>
 
-      <router-link
-        to="/"
-        class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
-      >
-        <message-circle-icon
-          size="2x"
-          class="custom-class"
-        ></message-circle-icon>
-        <p class="hidden lg:block lg:ml-3 text-xl">Feedbacks</p>
-      </router-link>
-      <router-link
-        to="/class"
-        class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
-      >
-        <list-icon size="2x" class="custom-class"></list-icon>
-        <p class="hidden lg:block lg:ml-3 text-xl">Classes</p>
-      </router-link>
-      <router-link
-        to="/my-questions-and-answers"
-        class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
-      >
-        <list-icon size="2x" class="custom-class"></list-icon>
-        <p class="hidden lg:block lg:ml-3 text-xl">Templates</p>
-      </router-link>
-    </div>
+    <router-link
+      to="/"
+      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 dark:hover:bg-gray-800"
+    >
+      <message-circle-icon size="2x" class="custom-class"></message-circle-icon>
+      <p class="hidden lg:block lg:ml-3 text-xl">Feedbacks</p>
+    </router-link>
+    <router-link
+      to="/class"
+      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
+    >
+      <list-icon size="2x" class="custom-class"></list-icon>
+      <p class="hidden lg:block lg:ml-3 text-xl">Classes</p>
+    </router-link>
+    <router-link
+      to="/my-questions-and-answers"
+      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
+    >
+      <list-icon size="2x" class="custom-class"></list-icon>
+      <p class="hidden lg:block lg:ml-3 text-xl">Templates</p>
+    </router-link>
+
     <router-link
       to="/profile"
-      class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-blue-500 hover:text-white"
+      class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-gray-200 dark:hover:bg-gray-800"
     >
       <div class="profile-img">
         <img
-          src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
+          :src="$store.state.user.hK"
           class="icon"
         />
       </div>
       <p class="hidden lg:block lg:ml-3 text-xl" v-if="$store.state.user">
-        {{ $store.state.user.userName }}
+        {{ $store.state.user.Ad }}
       </p>
     </router-link>
   </div>

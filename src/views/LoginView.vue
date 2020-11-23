@@ -2,15 +2,15 @@
   <div class="w-full flex items-center jusitfy-center">
     <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
-      <a href="https://check-it.at" target="_blank" class="bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
+      <a href="https://check-it.at" target="_blank" class="btn-primary bg-black text-white hover:bg-opacity-75"
         >DA-Seite</a
       >
     </header>
 
     <div class="left-section pr-3">
       <h1 class="font-bold text-5xl text-white uppercase">Verbessere die Qualität deines Unterrichts</h1>
-      <p class="text-white mt-12">
-        Eine Diplomarbeit von Josef Tungl, Pascal Rengelshausen, Tom Kalchmann
+      <p class="text-white mt-20">
+        Eine Diplomarbeit von <br>Josef Tungl, Pascal Rengelshausen, <br>Tom Kalchmann
         und Ronald Rupp
       </p>
     </div>

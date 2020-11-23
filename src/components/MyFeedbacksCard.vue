@@ -1,20 +1,21 @@
 <template>
   <div>
-    <router-link :to="`/feedback/${myfeedbacks.id}`">
+    <router-link :to="`/feedback/${feedback.id}`">
       <div
-        class="border-b hover:bg-gray-200 divide-gray-500 flex items-center justify-between px-2 py-4 border-solid"
+        class="border-b hover:bg-gray-100 dark:hover:bg-gray-800 md:dark:border-gray-700 flex items-center justify-between px-4 py-8 border-solid"
       >
         <div class="flex">
           <div>
+            <!-- <p class="border">{{ feedback.grade }}</p> -->
             <p class="">
-              {{ myfeedbacks.title }}
+              {{ feedback.title }}
             </p>
-            <p>{{ myfeedbacks.date }}</p>
+            <p>{{ feedback.date }}</p>
           </div>
         </div>
         <div class="flex">
           <UsersIcon />
-          <p class="ml-1">{{ myfeedbacks.attendees }}</p>
+          <p class="ml-1">{{ feedback.attendees }}</p>
         </div>
       </div>
     </router-link>
@@ -28,8 +29,8 @@ export default {
     UsersIcon,
   },
   props: {
-    myfeedbacks: {
-      type: Array,
+    feedback: {
+      type: Object,
     },
   },
 };

@@ -19,7 +19,7 @@
             class="w-5 h-5 rounded-full object-cover"
             :src="dataFromAPI.creator.photo_url"
           />
-          <p class="mx-2 text-base text-gray-800">{{dataFromAPI.creator.name}}</p>
+          <p class="mx-2 text-base">{{dataFromAPI.creator.name}}</p>
         </div>
       </div>
     </div>

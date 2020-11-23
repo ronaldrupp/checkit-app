@@ -1,35 +1,27 @@
 <template>
-  <div class="container">
-    <button
-      @click="
-        $store.dispatch('logout');
-        $router.replace('/login');
-      "
-    >
-      Logout
-    </button>
+  <div>
+    <Header
+      title="Profile"
+      BtnTitle="Logout"
+      :BtnMethod="logout"
+    />
   </div>
 </template>
 
 <script>
-export default {};
+import Header from "./../components/Header";
+
+export default {
+  components: {
+    Header,
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.replace("/login");
+    },
+  },
+};
 </script>
 
-<style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-}
-button {
-  border: none;
-  background-color: var(--primary-color);
-  height: 2.5rem;
-  border-radius: 20px;
-  color: white;
-  font-weight: 800;
-  width: 90%;
-}
-</style>
+<style scoped></style>

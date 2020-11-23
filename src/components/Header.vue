@@ -1,26 +1,29 @@
 <template>
-  <div class="w-full flex items-center justify-between p-2 border-b">
-    <h3 class="font-bold text-xl">{{title}}</h3>
-    <router-link
+  <div
+    class="w-full flex top-0 items-center sticky bg-white dark:bg-gray-900 justify-between p-2 border-b md:dark:border-gray-800"
+  >
+    <h3 class="font-bold text-xl">{{ title }}</h3>
+    <button
       class="border-none bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
-      to="/foo"
-      tag="button"
+      @click="BtnMethod"
     >
-      <PlusIcon class="md:hidden block" stroke-width="3"></PlusIcon>
-      <span class="hidden md:block"> Create new feedback </span>
-    </router-link>
+      <span> {{ BtnTitle }} </span>
+    </button>
   </div>
 </template>
 
 <script>
-import { PlusIcon } from "vue-feather-icons";
 export default {
-  components: {
-    PlusIcon,
-  },
+  components: {},
   props: {
     title: {
-      type: String
+      type: String,
+    },
+    BtnMethod: {
+      type: Function,
+    },
+    BtnTitle: {
+      type: String,
     },
   },
   data() {
@@ -29,5 +32,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

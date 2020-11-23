@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col items-center">
     <h1 class="font-bold text-3xl my-12">Login</h1>
-    <form class="flex flex-col w-5/6">
+    <p>Melde Dich mit deinem Google Account an.</p>
+    <!-- <form class="flex flex-col w-5/6">
       <p v-if="messageFromAPI" class="error">{{ messageFromAPI.message }}</p>
       <input
         class="px-4 rounded-full h-12"
@@ -37,14 +38,14 @@
         @click.prevent="$emit('change-mode', '')"
       >
         Create an account
-      </button>
+      </button> -->
       <button
-        class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
+        class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-20"
         @click.prevent="handleGoogle"
       >
         Continue with Google
       </button>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -62,9 +63,6 @@ export default {
   },
   methods: {
     async handleLogin() {
-      this.$store.dispatch("setUser", true);
-      this.$router.replace("/");
-      
       this.isLoading = true;
       let res = await axios.post(`${process.env.VUE_APP_API_URL}/user/token`, {
         Email: this.email,
@@ -78,8 +76,7 @@ export default {
     },
     async handleGoogle() {
       const googleUser = await this.$gAuth.signIn();
-      console.log(googleUser);
-      this.$store.dispatch("setUser", googleUser.tt.Ad);
+      this.$store.dispatch("setUser", googleUser.getBasicProfile());
       this.$router.push("/");
     },
   },
