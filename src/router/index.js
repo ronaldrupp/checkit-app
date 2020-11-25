@@ -8,6 +8,7 @@ import Profile from "../views/Profile.vue";
 import NotFound from "../views/404.vue";
 import ClassView from "../views/ClassView.vue";
 import ClassComp from "../components/ClassComp.vue";
+import Impressum from "../views/Impressum";
 
 Vue.use(VueRouter);
 
@@ -37,6 +38,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/impressum",
+    name: "Impressum",
+    component: Impressum,
   },
   {
     path: "*",
