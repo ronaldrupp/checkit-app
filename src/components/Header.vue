@@ -4,6 +4,7 @@
   >
     <h3 class="font-bold text-xl">{{ title }}</h3>
     <button
+      v-if="BtnMethod"
       class="border-none bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
       @click="BtnMethod"
     >

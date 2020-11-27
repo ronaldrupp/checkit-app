@@ -24,23 +24,26 @@
       <list-icon size="2x" class="custom-class"></list-icon>
       <p class="hidden lg:block lg:ml-3 text-xl">Classes</p>
     </router-link>
-    <router-link
+    <!-- <router-link
       to="/my-questions-and-answers"
       class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
     >
       <list-icon size="2x" class="custom-class"></list-icon>
       <p class="hidden lg:block lg:ml-3 text-xl">Templates</p>
+    </router-link> -->
+    <router-link
+      to="/create"
+      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
+    >
+      <plus-icon size="2x" class="custom-class"></plus-icon>
+      <p class="hidden lg:block lg:ml-3 text-xl">Create Feedback</p>
     </router-link>
-
     <router-link
       to="/profile"
       class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-gray-200 dark:hover:bg-gray-800"
     >
       <div class="profile-img">
-        <img
-          :src="$store.state.user.hK"
-          class="icon"
-        />
+        <img :src="$store.state.user.hK" class="icon" />
       </div>
       <p class="hidden lg:block lg:ml-3 text-xl" v-if="$store.state.user">
         {{ $store.state.user.Ad }}
@@ -50,12 +53,13 @@
 </template>
 
 <script>
-import { MessageCircleIcon, ListIcon } from "vue-feather-icons";
+import { MessageCircleIcon, ListIcon, PlusIcon } from "vue-feather-icons";
 // import NavItem from "./NavItem";
 export default {
   components: {
     MessageCircleIcon,
     ListIcon,
+    PlusIcon,
     // NavItem,
   },
 };

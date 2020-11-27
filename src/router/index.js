@@ -8,6 +8,7 @@ import Profile from "../views/Profile.vue";
 import NotFound from "../views/404.vue";
 import ClassView from "../views/ClassView.vue";
 import ClassComp from "../components/ClassComp.vue";
+import CreateFeedbackView from "../views/CreateFeedbackView.vue"
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,11 @@ const routes = [
     name: "Class",
     component: ClassView,
     children: [{ path: "/class/:class", component: ClassComp }],
+  },
+  {
+    path: "/create",
+    name: "CreateFeedback",
+    component: CreateFeedbackView,
   },
   {
     path: "/profile",

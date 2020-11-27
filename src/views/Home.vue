@@ -87,7 +87,7 @@ export default {
   methods: {
     //nicht schön, aber direkt gehts nicht
     navigateToCreateFeedback() {
-      this.$router.push({ path: 'home' });
+      this.$router.push({ path: '/create' });
     }
   },
 };
