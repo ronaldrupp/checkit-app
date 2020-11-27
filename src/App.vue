@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="dark:bg-gray-900 dark:text-white ">
+  <div id="app" class="dark:bg-gray-900 dark:text-white overflow-hidden">
     <NavBar v-if="showNav && $store.state.user" />
     <router-view class="flex-grow" />
   </div>
@@ -67,7 +67,7 @@ a {
   color: #2c3e50;
 }*/
 
-a.router-link-exact-active {
+a.router-link-active, a.router-link-exact-active {
   color: #0c8fed;
 }
 </style>

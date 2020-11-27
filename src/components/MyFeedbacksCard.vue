@@ -2,20 +2,20 @@
   <div>
     <router-link :to="`/feedback/${feedback.id}`">
       <div
-        class="border-b hover:bg-gray-100 dark:hover:bg-gray-800 md:dark:border-gray-700 flex items-center justify-between px-4 py-8 border-solid"
+        class="border-b hover:bg-gray-100 min-w-0 flex dark:hover:bg-gray-800 md:dark:border-gray-700  items-center justify-between px-4 py-8 border-solid"
       >
-        <div class="flex">
-          <div>
+        <div class="flex min-w-0 ">
+          <div class="flex flex-col min-w-0 ">
             <!-- <p class="border">{{ feedback.grade }}</p> -->
-            <p class="">
+            <p class="truncate">
               {{ feedback.title }}
             </p>
-            <p>{{ feedback.date }}</p>
+            <p class="truncate">{{ feedback.date }}</p>
           </div>
         </div>
         <div class="flex">
           <UsersIcon />
-          <p class="ml-1">{{ feedback.attendees }}</p>
+          <p class="ml-1 ">{{ feedback.attendees }}</p>
         </div>
       </div>
     </router-link>

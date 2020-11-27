@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="overflow-y-scroll">
     <Header
       title="Impressum"
-      BtnTitle="Logout"
-      :BtnMethod="logout"
     />
       <div class="impressum-text styling">
           <p>

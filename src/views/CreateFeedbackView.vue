@@ -2,11 +2,11 @@
   <div class="flex flex-col">
     <Header title="Create Feedback" />
     <div class="flex flex-grow justify-center items-center">
-      <div class="flex w-2/5 h-2/5 bg-white m-6">
-        <router-link class="flex-grow" to="/create/swipe"></router-link>
+      <div class="flex w-2/5 h-2/5 bg-gray-400 dark:bg-white m-6">
+        <router-link class="flex-grow" to="/create/swipe">TINDER SWIPE</router-link>
       </div>
-      <div class="flex w-2/5 h-2/5 bg-white m-6">
-        <router-link class="flex-grow" to="/create/classic"></router-link>
+      <div class="flex w-2/5 h-2/5 bg-gray-400 dark:bg-white m-6">
+        <router-link class="flex-grow" to="/create/classic">CLASSIC Q-A</router-link>
       </div>
     </div>
   </div>

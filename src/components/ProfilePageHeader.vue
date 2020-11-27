@@ -3,11 +3,11 @@
     <div class="flex items-center ml-12 mt-12">
       <img
         class="object-cover rounded-full w-24 h-24"
-        src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
+        :src="$store.state.user.hK"
       />
       <div class="flex flex-col justify-center ml-5">
-        <h1 class="text-2xl font-bold">Elon Musk</h1>
-        <h5 class="text-base">emailme@test.com</h5>
+        <h1 class="text-2xl font-bold">{{$store.state.user.Ad}}</h1>
+        <h5 class="text-base">{{$store.state.user.cu}}</h5>
       </div>
     </div>
   </div>

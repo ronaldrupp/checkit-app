@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex ">
     <ClassList style="width:200px" />
     <router-view class="flex-grow"/>
   </div>

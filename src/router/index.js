@@ -8,16 +8,18 @@ import Profile from "../views/Profile.vue";
 import NotFound from "../views/404.vue";
 import ClassView from "../views/ClassView.vue";
 import ClassComp from "../components/ClassComp.vue";
-import CreateFeedbackView from "../views/CreateFeedbackView.vue"
+import CreateFeedbackView from "../views/CreateFeedbackView.vue";
 import Impressum from "../views/Impressum";
 
 Vue.use(VueRouter);
 
 const routes = [
+  { path: "/", redirect: "/class" },
   {
-    path: "/",
-    name: "Home",
-    component: Home,
+    path: "/class",
+    name: "Class",
+    component: ClassView,
+    children: [{ path: "/class/:class", component: ClassComp }],
   },
   {
     path: "/login",
@@ -30,10 +32,9 @@ const routes = [
     component: Feedback,
   },
   {
-    path: "/class",
-    name: "Class",
-    component: ClassView,
-    children: [{ path: "/class/:class", component: ClassComp }],
+    path: "/feedbacks",
+    name: "Feedbacks",
+    component: Home,
   },
   {
     path: "/create",
