@@ -1,15 +1,7 @@
 <template>
   <div class="flex flex-col">
     <ProfilePageHeader />
-    <ProfileSettings class="mt-12" />
-    <!-- <button
-      @click="
-        $store.dispatch('logout');
-        $router.replace('/login');
-      "
-    >
-      Logout
-    </button> -->
+    <ProfileSettings class="ml-4 mt-12 lg:w-1/3" />
   </div>
 </template>
 
@@ -25,20 +17,5 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-}
-button {
-  border: none;
-  background-color: var(--primary-color);
-  height: 2.5rem;
-  border-radius: 20px;
-  color: white;
-  font-weight: 800;
-  width: 90%;
-}
+
 </style>
