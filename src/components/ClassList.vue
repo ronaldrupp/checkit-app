@@ -1,6 +1,6 @@
 <template>
-  <div class="flex md:h-full flex-col border-r md:dark:border-gray-700">
-    <Header title="My Class" BtnTitle="+" :BtnMethod="addNewClass" />
+  <div class="flex w-full md:w-48 md:h-full flex-col md:border-r md:dark:border-gray-700">
+    <Header title="My Class" BtnTitle="+" :BtnMethod="addNewClass"><plus-icon /></Header>
     <div
       class="w-full  text-center py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
       v-for="klasse in classesList"
@@ -15,14 +15,16 @@
 
 <script>
 import Header from "./Header";
+import {PlusIcon} from 'vue-feather-icons'
 export default {
   components: {
     Header,
+    PlusIcon
   },
   data() {
     return {
       classesList: [
-        { name: "1bhitm" },
+        { name: "Medientechnik Marketing 4BHITM" },
         { name: "2bhitm" },
         { name: "3bhitm" },
         { name: "4bhitm" },

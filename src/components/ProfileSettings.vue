@@ -1,14 +1,14 @@
 <template>
   <div>
     <router-link to="/testurlinfo">
-      <div class="flex items-center justify-between mt-12">
+      <div class="flex items-center justify-between mt-12 hover:bg-gray-100 min-w-0  dark:hover:bg-gray-800">
         <div class="flex items-center">
           <div class="flex">
             <UserIcon size="2x" />
           </div>
           <div class="flex ml-4">
             <div>
-              <h1 class="text-base font-bold">Edit profile information</h1>
+              <h1 class="text-base font-semibold">Edit profile information</h1>
               <p class="text-sm">Description</p>
             </div>
           </div>
@@ -19,12 +19,12 @@
       </div>
     </router-link>
     <router-link to="/testurlsettings">
-      <div class="flex items-center justify-between mt-10">
+      <div class="flex items-center justify-between mt-10 hover:bg-gray-100 min-w-0  dark:hover:bg-gray-800">
         <div class="flex">
           <SettingsIcon size="2x" />
           <div class="flex ml-4">
             <div>
-              <h1 class="text-base font-bold">App Settings</h1>
+              <h1 class="text-base font-semibold">App Settings</h1>
               <p class="text-sm">Description</p>
             </div>
           </div>

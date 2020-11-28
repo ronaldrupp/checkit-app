@@ -1,7 +1,7 @@
 <template>
   <div class="flex ">
-    <ClassList style="width:200px" />
-    <router-view class="flex-grow"/>
+    <ClassList class="" />
+    <router-view class="flex-1"/>
   </div>
 </template>
 

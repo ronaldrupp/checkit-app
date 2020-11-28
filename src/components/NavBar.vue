@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex overflow-y-scroll md:shadow-none md:p-2 md:py-6 dark:bg-gray-900 shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:w-auto md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
+    class="flex overflow-y-scroll lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 dark:bg-gray-900 shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
     style="padding-bottom:env(safe-area-inset-bottom, 30px)"
   >
     <router-link

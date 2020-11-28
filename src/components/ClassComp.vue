@@ -1,18 +1,21 @@
 <template>
   <div class="overflow-y-scroll">
     <Header
+    back="true"
       :title="`${$route.params.class}`"
-      BtnTitle="Options"
       :BtnMethod="
         () => {
-          console.log('sd');
+          alert('you clicked');
         }
       "
-    />
+      ><MoreHorizontalIcon
+    /></Header>
     <div class="mt-12">
-      <h1 class="text-5xl font-bold ml-6 truncate">{{ $route.params.class }}</h1>
+      <h1 class="text-3xl lg:text-4xl font-bold ml-6">
+        {{ $route.params.class }}
+      </h1>
       <div class="flex ml-6 mt-4 overflow-x-scroll">
-        <div class="-mr-3  ">
+        <div class="-mr-3">
           <img
             class="object-cover rounded-full w-12 h-12"
             src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
@@ -63,10 +66,13 @@
 <script>
 import Header from "./Header";
 import MyFeedbacksCard from "./MyFeedbacksCard";
+import { MoreHorizontalIcon } from "vue-feather-icons";
+
 export default {
   components: {
     Header,
     MyFeedbacksCard,
+    MoreHorizontalIcon,
   },
   data() {
     return {

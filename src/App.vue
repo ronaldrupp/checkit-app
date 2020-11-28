@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="dark:bg-gray-900 dark:text-white overflow-hidden">
     <NavBar v-if="showNav && $store.state.user" />
-    <router-view class="flex-grow" />
+    <router-view class="flex-1" />
   </div>
 </template>
 
