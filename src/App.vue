@@ -1,5 +1,8 @@
 <template>
-  <div id="app" class="dark:bg-gray-900 dark:text-white overflow-hidden">
+  <div
+    id="app"
+    class="dark:bg-black dark:text-white overflow-hidden outline-none"
+  >
     <NavBar v-if="showNav && $store.state.user" />
     <router-view class="flex-1" />
   </div>
@@ -8,11 +11,15 @@
 <script>
 import NavBar from "@/components/NavBar";
 export default {
+  metaInfo: {
+    // all titles will be injected into this template
+    titleTemplate: "%s | Check-It",
+  },
   components: {
     NavBar,
   },
-  created () {
-    console.log('%cCHECK-IT', 'background: cyan; color: white;font-size: 35px');
+  created() {
+    console.log("%cCHECK-IT", "background: cyan; color: white;font-size: 35px");
   },
   computed: {
     showNav() {
@@ -48,6 +55,8 @@ body {
   height: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  overflow-y: scroll;
+  overscroll-behavior-y: none;
 }
 a {
   text-decoration: none;
@@ -58,7 +67,6 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
-  width: 100%;
   height: 100%;
 }
 /*
@@ -67,7 +75,8 @@ a {
   color: #2c3e50;
 }*/
 
-a.router-link-active, a.router-link-exact-active {
+a.router-link-active,
+a.router-link-exact-active {
   color: #0c8fed;
 }
 </style>

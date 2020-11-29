@@ -4,7 +4,9 @@
       title="My Feedback"
       BtnTitle="Create Feedback"
       :BtnMethod="navigateToCreateFeedback"
-    />
+      ><MoreHorizontalIcon
+    /></Header>
+
     <MyFeedbacksCard
       v-for="feedback of myfeedbacks"
       :key="feedback.id"
@@ -15,13 +17,16 @@
 
 <script>
 // @ is an alias to /src
+import { MoreHorizontalIcon } from "vue-feather-icons";
 import Header from "@/components/Header.vue";
 import MyFeedbacksCard from "@/components/MyFeedbacksCard.vue";
+
 export default {
   name: "Home",
   components: {
     Header,
     MyFeedbacksCard,
+    MoreHorizontalIcon,
   },
   data() {
     return {
@@ -87,8 +92,8 @@ export default {
   methods: {
     //nicht schön, aber direkt gehts nicht
     navigateToCreateFeedback() {
-      this.$router.push({ path: '/create' });
-    }
+      this.$router.push({ path: "/create" });
+    },
   },
 };
 </script>

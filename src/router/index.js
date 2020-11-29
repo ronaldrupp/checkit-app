@@ -9,62 +9,23 @@ import NotFound from "../views/404.vue";
 import ClassView from "../views/ClassView.vue";
 import ClassComp from "../components/ClassComp.vue";
 import CreateFeedbackView from "../views/CreateFeedbackView.vue";
-import Impressum from "../views/Impressum";
+import FeedbackDetail from "../views/FeedbackDetail";
 
 Vue.use(VueRouter);
 
-const routesDesktop = [
+const routes = [
   { path: "/", redirect: "/class" },
   {
     path: "/class",
     name: "Class",
     component: ClassView,
-    children: [{ path: "/class/:class", component: ClassComp }],
-  },
-  {
-    path: "/login",
-    name: "LoginView",
-    component: LoginView,
-  },
-  {
-    path: "/feedback/:id",
-    name: "Feedback",
-    component: Feedback,
-  },
-  {
-    path: "/feedbacks",
-    name: "Feedbacks",
-    component: Home,
-  },
-  {
-    path: "/create",
-    name: "CreateFeedback",
-    component: CreateFeedbackView,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: Profile,
-  },
-  {
-    path: "/impressum",
-    name: "Impressum",
-    component: Impressum,
-  },
-  {
-    path: "*",
-    component: NotFound,
-  },
-];
-
-const routesMobile = [
-  { path: "/", redirect: "/class" },
-  {
-    path: "/class",
-    name: "Class",
-    component: ClassView,
+    // children: [
+    //   { path: "/class/:class", component: ClassComp },
+    //   { path: "/:class/:feedback", component: FeedbackDetail },
+    // ],
   },
   { path: "/class/:class", component: ClassComp },
+  { path: "/class/:class/:feedback", component: FeedbackDetail },
   {
     path: "/login",
     name: "LoginView",
@@ -91,9 +52,10 @@ const routesMobile = [
     component: Profile,
   },
   {
-    path: "/impressum",
-    name: "Impressum",
-    component: Impressum,
+    path: "/imprint",
+    name: "Imprint",
+    component: () =>
+      import(/* webpackChunkName: "imprint" */ "../views/Impressum.vue"),
   },
   {
     path: "*",
@@ -104,7 +66,7 @@ const routesMobile = [
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: getRoute(),
+  routes: routes,
   scrollBehavior(to) {
     if (to.hash) {
       return {
@@ -115,19 +77,8 @@ const router = new VueRouter({
   },
 });
 
-function getRoute() {
-  let windowWidth = window.innerWidth;
-  window.addEventListener("resize", () => windowWidth = window.innerWidth);
-  if (windowWidth >= 768) return routesDesktop;
-  else return routesMobile;
-}
-
 router.beforeEach((to, from, next) => {
-  if (
-    to.name !== "LoginView" &&
-    !store.state.user
-  )
-    next({ name: "LoginView" });
+  if (to.name !== "LoginView" && !store.state.user) next({ name: "LoginView" });
   else next();
 });
 

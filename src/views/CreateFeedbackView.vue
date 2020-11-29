@@ -18,6 +18,11 @@ export default {
   components: {
     Header,
   },
+  metaInfo() {
+    return {
+      title: 'Create Feedback',
+    };
+  },
 };
 </script>
 

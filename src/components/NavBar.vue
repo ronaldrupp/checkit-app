@@ -1,24 +1,24 @@
 <template>
   <div
-    class="flex overflow-y-scroll lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 dark:bg-gray-900 shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
-    style="padding-bottom:env(safe-area-inset-bottom, 30px)"
+    class="flex overflow-y-scroll lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 dark:bg-black shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-12 fixed flex-row bottom-0 w-full justify-evenly"
+    style="padding-bottom:env(safe-area-inset-bottom);"
   >
     <router-link
       to="/class"
-      class=" mb-5 hidden md:block md:w-8 lg:ml-4 rounded-full dark:hover:bg-gray-800"
+      class=" mb-5 hidden md:block md:w-8 lg:ml-4 md:rounded-full dark:hover:bg-gray-800 flex-grow md:flex-grow-0"
     >
       <img src="@/assets/logo_blue.svg" class="" />
     </router-link>
     <router-link
       to="/class"
-      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
+      class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
     >
       <grid-icon size="2x" class="custom-class"></grid-icon>
       <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Class</p>
     </router-link>
     <router-link
       to="/feedbacks"
-      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 dark:hover:bg-gray-800"
+      class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 dark:hover:bg-gray-800"
     >
       <message-circle-icon size="2x" class="custom-class"></message-circle-icon>
       <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Recent Feedbacks</p>
@@ -33,14 +33,14 @@
     </router-link> -->
     <router-link
       to="/create"
-      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
+      class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
     >
       <plus-icon size="2x" class="custom-class"></plus-icon>
       <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Create Feedback</p>
     </router-link>
     <router-link
       to="/profile"
-      class="duration-100 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-gray-200 dark:hover:bg-gray-800"
+      class="md:flex-grow-0 justify-center duration-100 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-gray-200 dark:hover:bg-gray-800"
     >
       <div class="profile-img">
         <img :src="$store.state.user.hK" class="icon" />

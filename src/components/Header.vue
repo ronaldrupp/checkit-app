@@ -1,18 +1,18 @@
 <template>
   <div
-    class="w-full flex top-0 items-center sticky bg-white bg-opacity-50 dark:bg-gray-900 justify-between p-2 md:border-b md:dark:border-gray-800"
-    style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px)"
+    class="w-full flex top-0 items-center sticky bg-white bg-opacity-50 dark:bg-black justify-between p-2 border-b dark:border-gray-800"
+    style="backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <div class="flex items-center min-w-0">
       <button
         v-if="back"
-        class="md:hidden border-none hover:bg-opacity-75 py-2 px-2 rounded-full  dark:hover:bg-gray-800 hover:bg-gray-200"
+        class="text-blue-500 mr-2 border-none hover:bg-opacity-75 py-2 px-2 rounded-full  dark:hover:bg-gray-800 hover:bg-gray-200"
         @click="$router.go(-1)"
       >
         <span class=""
           ><chevron-left-icon
             size="1.5x"
-            class="custom-class"
+            class=""
           ></chevron-left-icon
         ></span>
       </button>
@@ -20,7 +20,7 @@
     </div>
     <button
       v-if="BtnMethod"
-      class="border-none hover:bg-opacity-75 py-2 px-2 rounded-full  dark:hover:bg-gray-800 hover:bg-gray-200"
+      class="text-blue-500 border-none hover:bg-opacity-75 py-2 px-2 rounded-full  dark:hover:bg-gray-800 hover:bg-gray-200"
       @click="BtnMethod"
     >
       <span class=""><slot></slot></span>

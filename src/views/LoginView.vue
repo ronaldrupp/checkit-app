@@ -30,6 +30,11 @@ export default {
       mode: 'login'
     }
   },
+  metaInfo() {
+    return {
+      title: 'Login',
+    };
+  },
   components: {
     RegisterForm,
     LoginForm,

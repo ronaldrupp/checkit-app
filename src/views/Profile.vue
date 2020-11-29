@@ -1,7 +1,9 @@
 <template>
   <div>
-    <Header :title="`${$store.state.user.Ad}`" :BtnMethod="logout"><LogOutIcon /></Header>
-    <div class="flex flex-col">
+    <Header :title="`${$store.state.user.Ad}`" :BtnMethod="logout"
+      ><LogOutIcon
+    /></Header>
+    <div class="flex flex-col mt-16">
       <ProfilePageHeader />
       <ProfileSettings class="ml-4 mt-12 lg:w-1/3" />
     </div>
@@ -20,6 +22,11 @@ export default {
     ProfilePageHeader,
     ProfileSettings,
     LogOutIcon,
+  },
+  metaInfo() {
+    return {
+      title: "Profil",
+    };
   },
   methods: {
     logout() {

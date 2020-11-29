@@ -1,41 +1,43 @@
 <template>
-  <div class="flex w-full md:w-48 md:h-full flex-col md:border-r md:dark:border-gray-700">
-    <Header title="My Class" BtnTitle="+" :BtnMethod="addNewClass"><plus-icon /></Header>
-    <div
-      class="w-full  text-center py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
+  <div
+    class="flex w-full md:h-full flex-col md:border-r md:dark:border-gray-700"
+  >
+    <Header title="My Class" :BtnMethod="addNewClass"><plus-icon /></Header>
+
+    <router-link
+      :to="`/class/${klasse.name}`"
+      class="w-full px-2 py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
       v-for="klasse in classesList"
       :key="klasse.name"
     >
-      <router-link class="" :to="`/class/${klasse.name}`">
-        <p>{{ klasse.name }}</p>
-      </router-link>
-    </div>
+      <p class="font-semibold">{{ klasse.name }}</p>
+    </router-link>
   </div>
 </template>
 
 <script>
 import Header from "./Header";
-import {PlusIcon} from 'vue-feather-icons'
+import { PlusIcon } from "vue-feather-icons";
 export default {
   components: {
     Header,
-    PlusIcon
+    PlusIcon,
   },
   data() {
     return {
       classesList: [
-        { name: "Medientechnik Marketing 4BHITM" },
-        { name: "2bhitm" },
-        { name: "3bhitm" },
-        { name: "4bhitm" },
-        { name: "5bhitm" },
+        { name: "SEW 5BHITM" },
+        { name: "ITP 4BHITM" },
+        { name: "SEW 4BHITM" },
+        { name: "WEBT 4BHITM" },
+        { name: "WEBT 5BHITM" },
       ],
     };
   },
   methods: {
     addNewClass() {
-      alert("in progress...")
-    }
+      alert("in progress...");
+    },
   },
 };
 </script>
