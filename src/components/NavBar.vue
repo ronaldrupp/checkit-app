@@ -5,62 +5,40 @@
   >
     <router-link
       to="/class"
-      class=" mb-5 hidden md:block md:w-8 lg:ml-4 md:rounded-full dark:hover:bg-gray-800 flex-grow md:flex-grow-0"
+      class=" mb-5 hidden md:block md:w-8 lg:ml-4 md:rounded-lg dark:hover:bg-gray-800 flex-grow md:flex-grow-0"
     >
       <img src="@/assets/logo_blue.svg" class="" />
     </router-link>
-    <router-link
-      to="/class"
-      class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
-    >
+    <nav-item title="Class" redirectTo="/class">
       <grid-icon size="2x" class="custom-class"></grid-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Class</p>
-    </router-link>
-    <router-link
-      to="/feedbacks"
-      class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 dark:hover:bg-gray-800"
-    >
+    </nav-item>
+    <nav-item title="Recent Feedbacks" redirectTo="/feedbacks">
       <message-circle-icon size="2x" class="custom-class"></message-circle-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Recent Feedbacks</p>
-    </router-link>
-
-    <!-- <router-link
-      to="/my-questions-and-answers"
-      class="duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
-    >
-      <list-icon size="2x" class="custom-class"></list-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl">Templates</p>
-    </router-link> -->
-    <router-link
-      to="/create"
-      class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
-    >
+    </nav-item>
+    <nav-item title="Create Feedback" redirectTo="/create">
       <plus-icon size="2x" class="custom-class"></plus-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Create Feedback</p>
-    </router-link>
-    <router-link
-      to="/profile"
-      class="md:flex-grow-0 justify-center duration-100 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-gray-200 dark:hover:bg-gray-800"
-    >
-      <div class="profile-img">
-        <img :src="$store.state.user.hK" class="icon" />
-      </div>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold" v-if="$store.state.user">
-        {{ $store.state.user.Ad }}
-      </p>
-    </router-link>
+    </nav-item>
+    <nav-item :title="$store.state.user.Ad" redirectTo="/profile">
+      <user-icon size="2x" class="custom-class"></user-icon>
+    </nav-item>
   </div>
 </template>
 
 <script>
-import { MessageCircleIcon, GridIcon, PlusIcon } from "vue-feather-icons";
-// import NavItem from "./NavItem";
+import {
+  MessageCircleIcon,
+  UserIcon,
+  GridIcon,
+  PlusIcon,
+} from "vue-feather-icons";
+import NavItem from "./NavItem";
 export default {
   components: {
     MessageCircleIcon,
     GridIcon,
     PlusIcon,
-    // NavItem,
+    UserIcon,
+    NavItem,
   },
 };
 </script>

@@ -1,17 +1,18 @@
 <template>
   <div
-    class="flex w-full md:h-full flex-col md:border-r md:dark:border-gray-700"
+    class="flex w-full md:h-full  flex-col md:border-r md:dark:border-gray-700"
   >
     <Header title="My Class" :BtnMethod="addNewClass"><plus-icon /></Header>
-
-    <router-link
-      :to="`/class/${klasse.name}`"
-      class="w-full px-2 py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
-      v-for="klasse in classesList"
-      :key="klasse.name"
-    >
-      <p class="font-semibold">{{ klasse.name }}</p>
-    </router-link>
+    <div class="flex flex-col md:p-2">
+      <router-link
+        :to="`/class/${klasse.name}`"
+        class="w-full px-2 rounded-lg py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
+        v-for="klasse in classesList"
+        :key="klasse.name"
+      >
+        <p class="font-semibold">{{ klasse.name }}</p>
+      </router-link>
+    </div>
   </div>
 </template>
 
