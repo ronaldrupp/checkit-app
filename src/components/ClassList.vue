@@ -2,7 +2,7 @@
   <div
     class="flex w-full md:h-full flex-col md:border-r md:dark:border-gray-700"
   >
-    <Header title="My Class" :BtnMethod="addNewClass"><plus-icon /></Header>
+    <Header :title="this.$t('header.myClass')" :BtnMethod="addNewClass"><plus-icon /></Header>
 
     <router-link
       :to="`/class/${klasse.name}`"
@@ -38,6 +38,9 @@ export default {
     addNewClass() {
       alert("in progress...");
     },
+  },
+  created () {
+    console.log(navigator.language);
   },
 };
 </script>

@@ -8,8 +8,8 @@
           </div>
           <div class="flex ml-4">
             <div>
-              <h1 class="text-base font-semibold">Edit profile information</h1>
-              <p class="text-sm">Description</p>
+              <h1 class="text-base font-semibold">{{this.$t('profile.info')}}</h1>
+              <p class="text-sm">{{this.$t('profile.infoDescr')}}</p>
             </div>
           </div>
         </div>
@@ -24,8 +24,8 @@
           <SettingsIcon size="2x" />
           <div class="flex ml-4">
             <div>
-              <h1 class="text-base font-semibold">App Settings</h1>
-              <p class="text-sm">Description</p>
+              <h1 class="text-base font-semibold">{{this.$t('profile.settings')}}</h1>
+              <p class="text-sm">{{this.$t('profile.settingsDescr')}}</p>
             </div>
           </div>
         </div>

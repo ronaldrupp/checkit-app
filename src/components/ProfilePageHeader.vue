@@ -6,8 +6,8 @@
         :src="$store.state.user.hK"
       />
       <div class="flex flex-col justify-center ml-5">
-        <h1 class="md:text-2xl font-semibold">{{$store.state.user.Ad}}</h1>
-        <h5 class="text-base">{{$store.state.user.cu}}</h5>
+        <h1 class="md:text-2xl font-semibold">{{ $store.state.user.Ad }}</h1>
+        <h5 class="text-base">{{ $store.state.user.cu }}</h5>
       </div>
     </div>
   </div>

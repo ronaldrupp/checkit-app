@@ -14,14 +14,14 @@
       class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
     >
       <grid-icon size="2x" class="custom-class"></grid-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Class</p>
+      <p class="hidden lg:block lg:ml-3 text-xl font-semibold"> {{this.$t('navbar.class')}} </p>
     </router-link>
     <router-link
       to="/feedbacks"
       class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 dark:hover:bg-gray-800"
     >
       <message-circle-icon size="2x" class="custom-class"></message-circle-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Recent Feedbacks</p>
+      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">{{this.$t('navbar.recentFeedbacks')}}</p>
     </router-link>
 
     <!-- <router-link
@@ -36,7 +36,7 @@
       class="md:flex-grow-0 justify-center flex-grow duration-100 hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-2 md:rounded-full md:mt-4 hover:bg-grey-100 dark:hover:bg-gray-800 "
     >
       <plus-icon size="2x" class="custom-class"></plus-icon>
-      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">Create Feedback</p>
+      <p class="hidden lg:block lg:ml-3 text-xl font-semibold">{{this.$t('navbar.createFeedback')}}</p>
     </router-link>
     <router-link
       to="/profile"

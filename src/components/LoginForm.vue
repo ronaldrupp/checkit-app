@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center">
     <h1 class="font-bold text-3xl my-12">Login</h1>
-    <p>Melde Dich mit deinem Google Account an.</p>
+    <p>{{this.$t('login.logintxt')}}</p>
     <!-- <form class="flex flex-col w-5/6">
       <p v-if="messageFromAPI" class="error">{{ messageFromAPI.message }}</p>
       <input

@@ -2,20 +2,25 @@
   <div class="w-full flex items-center jusitfy-center">
     <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
-      <a href="https://check-it.at" target="_blank" class="btn-primary bg-black text-white hover:bg-opacity-75"
+      <a
+        href="https://check-it.at"
+        target="_blank"
+        class="btn-primary bg-black text-white hover:bg-opacity-75"
         >DA-Seite</a
       >
     </header>
 
     <div class="left-section pr-3">
-      <h1 class="font-bold text-5xl text-white uppercase">Verbessere die Qualität deines Unterrichts</h1>
+      <h1 class="font-bold text-5xl text-white uppercase">
+        {{ this.$t("login.slogan") }}
+      </h1>
       <p class="text-white mt-20">
-        Eine Diplomarbeit von <br>Josef Tungl, Pascal Rengelshausen, <br>Tom Kalchmann
-        und Ronald Rupp
+        {{ this.$t("login.subtxt") }} <br />Josef Tungl, Pascal Rengelshausen,
+        <br />Tom Kalchmann und Ronald Rupp
       </p>
     </div>
     <div class="right-section">
-      <LoginForm v-if="mode == 'login'" @change-mode="mode = 'register'"/>
+      <LoginForm v-if="mode == 'login'" @change-mode="mode = 'register'" />
       <RegisterForm v-else />
     </div>
   </div>
@@ -27,19 +32,18 @@ import LoginForm from "./../components/LoginForm";
 export default {
   data() {
     return {
-      mode: 'login'
-    }
+      mode: "login",
+    };
   },
   metaInfo() {
     return {
-      title: 'Login',
+      title: "Login",
     };
   },
   components: {
     RegisterForm,
     LoginForm,
   },
-  
 };
 </script>
 
@@ -84,7 +88,7 @@ export default {
 }
 .right-section {
   width: 50%;
-  
+
   background: var(--background-color);
 }
 .logo {

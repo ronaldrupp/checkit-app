@@ -7,6 +7,7 @@ import VueConfetti from "vue-confetti";
 import VueMeta from "vue-meta";
 import GAuth from "vue-google-oauth2";
 import "./tailwind.css";
+import {i18n} from './plugins/i18n.js'
 
 
 const gauthOption = {
@@ -22,6 +23,7 @@ Vue.use(VueMeta);
 Vue.config.productionTip = false;
 
 new Vue({
+  i18n,
   router,
   store,
   render: (h) => h(App),

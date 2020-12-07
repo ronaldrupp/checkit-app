@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-y-scroll">
     <Header
-      title="My Feedback"
+      :title="this.$t('header.myFeedback')"
       BtnTitle="Create Feedback"
       :BtnMethod="navigateToCreateFeedback"
       ><MoreHorizontalIcon
