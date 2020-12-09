@@ -2,7 +2,7 @@
   <div>
     <router-link :to="`/class/${feedback.grade}/${feedback.id}`">
       <div
-        class="border-t hover:bg-gray-100 min-w-0 flex dark:hover:bg-gray-800 dark:border-gray-800 items-center justify-between px-4 py-8 border-solid"
+        class="border-t active:scale-50 transition duration-100 transform hover:bg-gray-100 min-w-0 flex dark:hover:bg-gray-800 dark:border-gray-800 items-center justify-between px-4 py-8 border-solid"
       >
         <div class="flex min-w-0 ">
           <div class="flex flex-col min-w-0 ">

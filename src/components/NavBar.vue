@@ -1,7 +1,7 @@
 <template>
   <div
-    class="flex overflow-y-scroll lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 dark:bg-black shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-12 fixed flex-row bottom-0 w-full justify-evenly"
-    style="padding-bottom:env(safe-area-inset-bottom);"
+    class="flex overflow-hidden z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 dark:bg-black shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
+    style="padding-bottom:env(safe-area-inset-bottom);backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <router-link
       to="/class"
@@ -10,16 +10,19 @@
       <img src="@/assets/logo_blue.svg" class="" />
     </router-link>
     <nav-item title="Class" redirectTo="/class">
-      <grid-icon size="2x" class="custom-class"></grid-icon>
+      <grid-icon size="1.5x" class="custom-class"></grid-icon>
     </nav-item>
     <nav-item title="Recent Feedbacks" redirectTo="/feedbacks">
-      <message-circle-icon size="2x" class="custom-class"></message-circle-icon>
+      <message-circle-icon
+        size="1.5x"
+        class="custom-class"
+      ></message-circle-icon>
     </nav-item>
     <nav-item title="Create Feedback" redirectTo="/create">
-      <plus-icon size="2x" class="custom-class"></plus-icon>
+      <plus-icon size="1.5x" class="custom-class"></plus-icon>
     </nav-item>
     <nav-item :title="$store.state.user.Ad" redirectTo="/profile">
-      <user-icon size="2x" class="custom-class"></user-icon>
+      <user-icon size="1.5x" class="custom-class"></user-icon>
     </nav-item>
   </div>
 </template>

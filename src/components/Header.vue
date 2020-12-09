@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex top-0 items-center sticky bg-white bg-opacity-50 dark:bg-black justify-between p-2 border-b dark:border-gray-800"
+    class="z-100 w-full flex z-50 top-0 items-center sticky bg-white bg-opacity-50 dark:bg-black justify-between p-2 border-b dark:border-gray-800"
     style="backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <div class="flex items-center min-w-0">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center ml-4 md:ml-12 mt-12">
+    <div class="flex items-center my-12 pl-4">
       <img
         class="object-cover rounded-full w-16 h-16 md:w-24 md:h-24"
         :src="$store.state.user.hK"

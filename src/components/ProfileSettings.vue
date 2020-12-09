@@ -1,49 +1,30 @@
 <template>
-  <div>
-    <router-link to="/testurlinfo">
-      <div class="flex items-center justify-between mt-12 hover:bg-gray-100 min-w-0  dark:hover:bg-gray-800">
-        <div class="flex items-center">
-          <div class="flex">
-            <UserIcon size="2x" />
-          </div>
-          <div class="flex ml-4">
-            <div>
-              <h1 class="text-base font-semibold">Edit profile information</h1>
-              <p class="text-sm">Description</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex">
-          <ChevronRightIcon size="2x" />
-        </div>
-      </div>
-    </router-link>
-    <router-link to="/testurlsettings">
-      <div class="flex items-center justify-between mt-10 hover:bg-gray-100 min-w-0  dark:hover:bg-gray-800">
-        <div class="flex">
-          <SettingsIcon size="2x" />
-          <div class="flex ml-4">
-            <div>
-              <h1 class="text-base font-semibold">App Settings</h1>
-              <p class="text-sm">Description</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex">
-          <ChevronRightIcon size="2x" />
-        </div>
-      </div>
-    </router-link>
+  <div class="mt-12">
+    <profile-item
+      title="Edit profile information"
+      description="edit your profile information"
+      redirectTo="/profile/user"
+    >
+      <user-icon></user-icon>
+    </profile-item>
+    <profile-item
+      title="App Settings"
+      description="edit your app settings"
+      redirectTo="/profile/settings"
+    >
+      <settings-icon></settings-icon>
+    </profile-item>
   </div>
 </template>
 
 <script>
-import { UserIcon, ChevronRightIcon, SettingsIcon } from "vue-feather-icons";
+import { UserIcon, SettingsIcon } from "vue-feather-icons";
+import ProfileItem from "./ProfileItem.vue";
 export default {
   components: {
     UserIcon,
-    ChevronRightIcon,
     SettingsIcon,
+    ProfileItem,
   },
 };
 </script>

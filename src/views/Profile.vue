@@ -3,9 +3,9 @@
     <Header :title="`${$store.state.user.Ad}`" :BtnMethod="logout"
       ><LogOutIcon
     /></Header>
-    <div class="flex flex-col mt-16">
+    <div class="flex flex-col">
       <ProfilePageHeader />
-      <ProfileSettings class="ml-4 mt-12 lg:w-1/3" />
+      <ProfileSettings class="lg:w-1/3" />
     </div>
   </div>
 </template>
