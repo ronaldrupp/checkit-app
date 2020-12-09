@@ -8,9 +8,9 @@
         :dataFromAPI="dataFromAPI"
         :questionIndex="questionIndex"
       />
-      <FeedbackItem
+      <FeedbackItemTinder
         v-if="questionIndex <= dataFromAPI.questions.length"
-        :question="dataFromAPI.questions[questionIndex]"
+        :questions="dataFromAPI.questions"
         @next-quest="handleIncoming"
       />
     </div>
@@ -22,7 +22,7 @@
 import axios from "axios";
 
 import FeedbackHeader from "@/components/FeedbackHeader.vue";
-import FeedbackItem from "@/components/FeedbackItem.vue";
+import FeedbackItemTinder from "@/components/FeedbackItem_Tinder.vue";
 import FeedbackCompleted from "@/components/FeedbackCompleted.vue";
 
 export default {
@@ -41,6 +41,7 @@ export default {
             survey_id: 10,
             question: "Wie fandest du heute den Unterricht? ",
             answers: ["gut", "schlecht"],
+            Tinder: 1
           },
           {
             id: 15,
@@ -70,7 +71,7 @@ export default {
     };
   },
   components: {
-    FeedbackItem,
+    FeedbackItemTinder,
     FeedbackCompleted,
     FeedbackHeader,
   },

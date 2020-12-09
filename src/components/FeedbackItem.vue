@@ -19,7 +19,7 @@
 <script>
 export default {
   props: {
-    question: {
+    questions: {
       type: Object,
     },
   },
