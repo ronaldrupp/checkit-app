@@ -38,6 +38,9 @@ export default {
       alert("in progress...");
     },
   },
+  created () {
+    console.log(navigator.language);
+  },
 };
 </script>
 
