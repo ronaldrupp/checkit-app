@@ -1,15 +1,15 @@
 <template>
   <div class="mt-12">
     <profile-item
-      title="Edit profile information"
-      description="edit your profile information"
+      :title="$t('profile.info')"
+      :description="$t('profile.info')"
       redirectTo="/profile/user"
     >
       <user-icon></user-icon>
     </profile-item>
     <profile-item
-      title="App Settings"
-      description="edit your app settings"
+      :title="$t('profile.settings')"
+      :description="$t('profile.settingsDescr')"
       redirectTo="/profile/settings"
     >
       <settings-icon></settings-icon>

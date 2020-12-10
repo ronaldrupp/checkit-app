@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full md:h-full  flex-col md:dark:border-gray-700">
-    <Header title="My Class" :BtnMethod="addNewClass"><plus-icon /></Header>
+    <Header :title="$t('header.myClass')" :BtnMethod="addNewClass"><plus-icon /></Header>
     <div class="flex flex-col md:p-2">
       <router-link
         :to="`/class/${klasse.name}`"

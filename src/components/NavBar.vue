@@ -9,16 +9,16 @@
     >
       <img src="@/assets/logo_blue.svg" class="" />
     </router-link>
-    <nav-item title="Class" redirectTo="/class">
+    <nav-item :title="$t('navbar.class')" redirectTo="/class">
       <grid-icon size="1.5x" class="custom-class"></grid-icon>
     </nav-item>
-    <nav-item title="Recent Feedbacks" redirectTo="/feedbacks">
+    <nav-item :title="$t('navbar.recentFeedbacks')" redirectTo="/feedbacks">
       <message-circle-icon
         size="1.5x"
         class="custom-class"
       ></message-circle-icon>
     </nav-item>
-    <nav-item title="Create Feedback" redirectTo="/create">
+    <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create">
       <plus-icon size="1.5x" class="custom-class"></plus-icon>
     </nav-item>
     <nav-item :title="$store.state.user.Ad" redirectTo="/profile">
