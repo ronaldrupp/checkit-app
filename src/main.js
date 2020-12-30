@@ -9,7 +9,6 @@ import GAuth from "vue-google-oauth2";
 import "./tailwind.css";
 import {i18n} from './plugins/i18n.js'
 
-
 const gauthOption = {
   clientId:
     "10275853460-f457s1rj15u25f4lj0irtnt701187acv.apps.googleusercontent.com",

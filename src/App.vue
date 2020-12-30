@@ -24,7 +24,7 @@ export default {
   computed: {
     showNav() {
       return !(
-        ["Login", "Register", "Feedback"].indexOf(this.$route.name) > -1
+        ["Login", "Register", "Feedback", "ResAuth"].indexOf(this.$route.name) > -1
       );
     },
   },

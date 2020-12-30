@@ -1,8 +1,8 @@
 export default {
   login: {
     logintxt: "Log in with your Google Account",
-    slogan: 'IMPROVE THE QUALITY OF YOUR LESSONS',
-    subtxt: 'diploma project by ',
+    slogan: "IMPROVE THE QUALITY OF YOUR LESSONS",
+    subtxt: "diploma project by ",
   },
   navbar: {
     class: "Class",
@@ -19,5 +19,8 @@ export default {
     myClass: "My Class",
     myFeedback: "My Feedback",
     createFeedback: "Create Feedback",
+  },
+  resFromAPI: {
+    loading: "wird geladen...",
   },
 };

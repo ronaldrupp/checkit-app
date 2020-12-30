@@ -20,4 +20,7 @@ export default {
     myFeedback: "Meine Feedbacks",
     createFeedback: "Feedback erstellen",
   },
+  resFromAPI: {
+    loading: "wird geladen..."
+  }
 };

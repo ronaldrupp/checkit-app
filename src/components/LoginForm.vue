@@ -41,7 +41,7 @@
       </button> -->
       <button
         class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-20"
-        @click.prevent="handleGoogle"
+        @click.prevent="redirectToGoogle"
       >
         Continue with Google
       </button>
@@ -73,6 +73,9 @@ export default {
         this.$store.dispatch("setUser", res.data);
         this.$router.replace("/");
       } else this.messageFromAPI = res.data;
+    },
+    redirectToGoogle(){
+      document.location.href = `${process.env.VUE_APP_API_URL}/user/login`
     },
     async handleGoogle() {
       const googleUser = await this.$gAuth.signIn();
