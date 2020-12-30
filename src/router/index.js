@@ -10,6 +10,7 @@ import ClassView from "../views/ClassView.vue";
 import ClassComp from "../components/ClassComp.vue";
 import CreateFeedbackView from "../views/CreateFeedbackView.vue";
 import FeedbackDetail from "../views/FeedbackDetail";
+import CreateFeedbackClassic from '../views/CreateFeedbackClassic.vue';
 
 Vue.use(VueRouter);
 
@@ -50,6 +51,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/create/classic",
+    name: "classicfeedback",
+    component: CreateFeedbackClassic,
   },
   {
     path: "/imprint",
