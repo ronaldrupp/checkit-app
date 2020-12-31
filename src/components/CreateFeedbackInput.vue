@@ -7,15 +7,15 @@
         <XCircleIcon
           size="1.5x"
           class="custom-class cursor-pointer"
-          @click="delQuestion(QA)"
+          @click="delQuestion(questions)"
         />
       </div>
       <div class="flex flex-col mb-3 md:mb-0 w-full">
         <input
           class="bg-gray-200 dark:text-black rounded-md w-full md:w-2/3 p-1 placeholder-gray-500 placeholder-opacity-75"
           type="text"
-          :placeholder="`${QA.id}.${$t('create.question')}`"
-          v-model="QA.question"
+          :placeholder="`${questions.id}.${$t('create.question')}`"
+          v-model="questions.question"
         />
       </div>
       <div class="flex flex-col w-full md:w-max">
@@ -23,14 +23,14 @@
           class="bg-gray-200 dark:text-black rounded-md p-1 placeholder-gray-500 placeholder-opacity-75"
           type="text"
           :placeholder="$t('create.answer1')"
-          v-model="QA.answer1"
+          v-model="questions.answers[0]"
         />
         <p class="mx-6 my-1 self-center">{{$t('create.or')}}</p>
         <input
           class="bg-gray-200 dark:text-black rounded-md p-1 placeholder-gray-500 placeholder-opacity-75"
           type="text"
           :placeholder="$t('create.answer2')"
-          v-model="QA.answer2"
+          v-model="questions.answers[1]"
         />
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
     XCircleIcon,
   },
   props: {
-    QA: {
+    questions: {
       type: Object,
     },
   },

@@ -7,11 +7,11 @@
       >
         <PlusIcon
       /></Header>
-      <CreateFeedbackHeader />
+      <CreateFeedbackHeader :data="data" />
       <CreateFeedbackInput
-        v-for="arr of QA"
+        v-for="arr of data.questions"
         :key="arr.id"
-        :QA="arr"
+        :questions="arr"
         @delQuestion="delQuestion"
       />
       <div class="flex w-full justify-center">
@@ -19,7 +19,7 @@
           class="customButton w-40 my-1 hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-14 mb-20"
           @click="saveFeedback"
         >
-          {{$t('create.createBtn')}}
+          {{ $t("create.createBtn") }}
         </button>
       </div>
     </div>
@@ -40,8 +40,23 @@ export default {
   },
   data() {
     return {
-      QA: [{ id: 1, question: "", answer1: "", answer2: "" }],
       QuestionCount: 1,
+      data: {
+        id: 0,
+        creator_id: 0,
+        data_created: "2020-10-14T09:48:33.273509",
+        date_survey: "2020-10-14T09:48:33.273509",
+        questions: [
+          {
+            id: 1,
+            survey_id: 0,
+            question: "",
+            answers: ["", ""],
+          },
+        ],
+        name: "",
+        isMultipleChoice: false,
+      },
     };
   },
   metaInfo() {
@@ -54,20 +69,21 @@ export default {
       this.QuestionCount += 1;
       let newObj = {
         id: this.QuestionCount,
+        survey_id: 0,
         question: "",
-        answer1: "",
-        answer2: "",
+        answers: ["", ""],
       };
-      this.QA.push(newObj);
+      this.data.questions.push(newObj);
       console.log(this.QuestionCount);
-      console.log(this.QA);
+      console.log(this.data.questions);
     },
     saveFeedback() {
       alert("In Progress...");
     },
     delQuestion(question) {
-      this.QuestionCount -= 1;
-      this.QA = this.QA.filter((elm) => elm.id != question.id);
+      this.data.questions = this.data.questions.filter(
+        (elm) => elm.id != question.id
+      );
     },
   },
 };
