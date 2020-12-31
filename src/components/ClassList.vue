@@ -1,16 +1,19 @@
 <template>
   <div class="flex w-full md:h-full  flex-col md:dark:border-gray-700">
-    <Header :title="$t('header.myClass')" :BtnMethod="addNewClass"><plus-icon /></Header>
-    <div class="flex flex-col md:p-2">
+    <Header :title="$t('header.myClass')" :BtnMethod="addNewClass"
+      ><plus-icon
+    /></Header>
+    <div class="flex flex-col md:p-2" v-if="!($store.state.courses.length == 0)">
       <router-link
         :to="`/class/${klasse.name}`"
         class="w-full px-2 md:rounded-lg py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
-        v-for="klasse in classesList"
+        v-for="klasse in $store.state.courses"
         :key="klasse.name"
       >
         <p class="font-semibold">{{ klasse.name }}</p>
       </router-link>
     </div>
+    <p v-else>An error occured or you dont have any courses. Go inspect the console.</p>
   </div>
 </template>
 
@@ -38,8 +41,7 @@ export default {
       alert("in progress...");
     },
   },
-  created () {
-    console.log(navigator.language);
+  created() {
   },
 };
 </script>

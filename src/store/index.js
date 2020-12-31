@@ -1,11 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from 'axios';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     user: JSON.parse(window.localStorage.getItem("user")),
+    token: {},
+    courses: []
   },
   mutations: {
     setUser(state, value) {
@@ -16,6 +19,14 @@ export default new Vuex.Store({
     setLogout() {
       this.state.user = undefined;
       window.localStorage.removeItem("user");
+      window.localStorage.removeItem("token");
+    },
+    setCourses(value) {
+      this.state.courses = value
+    },
+    setToken(state, value) {
+      this.state.token = value;
+      window.localStorage.setItem("token", JSON.stringify(value));
     },
   },
   actions: {
@@ -25,6 +36,16 @@ export default new Vuex.Store({
     logout(context) {
       context.commit("setLogout");
     },
+    setToken(context, value) {
+      context.commit("setToken", value)
+    },
+    async getCourses(context) {
+      let res = await axios.get(
+        `${process.env.VUE_APP_API_URL}/Courses/registedcourses`,
+        {headers: { Authorization: `Bearer ${this.state.token.aT}` }}
+      );
+      context.commit("setCourses", res.data)
+    }
   },
   modules: {},
 });

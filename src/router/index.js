@@ -84,7 +84,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.name !== "LoginView" && to.name !== "ResAuth"  && !store.state.user)
-    next({ name: "Login" });
+    next({ name: "LoginView" });
   else next();
 });
 

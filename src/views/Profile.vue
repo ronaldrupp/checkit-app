@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :title="`${$store.state.user.Ad}`" :BtnMethod="logout"
+    <Header :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`" :BtnMethod="logout"
       ><LogOutIcon
     /></Header>
     <div class="flex flex-col">

@@ -14,6 +14,9 @@ export default {
   components: {
     ClassList,
   },
+  created () {
+    this.$store.dispatch('getCourses');
+  },
 };
 </script>
 
