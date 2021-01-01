@@ -10,6 +10,8 @@
 
 <script>
 import NavBar from "@/components/NavBar";
+import PackageJson from "./../package.json";
+
 export default {
   metaInfo: {
     // all titles will be injected into this template
@@ -17,6 +19,9 @@ export default {
   },
   components: {
     NavBar,
+  },
+  created () {
+    console.log("App Version "+PackageJson.version);
   },
   computed: {
     showNav() {

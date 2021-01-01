@@ -11,6 +11,8 @@ import {i18n} from './plugins/i18n.js'
 Vue.use(VueConfetti);
 Vue.use(VueMeta);
 
+
+
 Vue.config.productionTip = false;
 
 new Vue({
