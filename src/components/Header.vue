@@ -1,7 +1,6 @@
 <template>
   <div
-    class="z-100 w-full flex z-50 top-0 items-center sticky bg-white bg-opacity-50 dark:bg-black justify-between p-2 border-b dark:border-gray-800"
-    style="backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
+    class="bg-translucent w-full flex z-50 top-0 items-center sticky dark:bg-black bg-opacity-70 justify-between p-2 border-b dark:border-gray-800"
   >
     <div class="flex items-center min-w-0">
       <button
@@ -10,10 +9,7 @@
         @click="$router.go(-1)"
       >
         <span class=""
-          ><chevron-left-icon
-            size="1.5x"
-            class=""
-          ></chevron-left-icon
+          ><chevron-left-icon size="1.5x" class=""></chevron-left-icon
         ></span>
       </button>
       <h3 class="font-bold text-xl truncate">{{ title }}</h3>
@@ -52,4 +48,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.bg-translucent {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+}
+</style>

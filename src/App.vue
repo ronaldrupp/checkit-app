@@ -18,9 +18,6 @@ export default {
   components: {
     NavBar,
   },
-  created() {
-    console.log("%cCHECK-IT", "background: cyan; color: white;font-size: 35px");
-  },
   computed: {
     showNav() {
       return !(

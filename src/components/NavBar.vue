@@ -21,7 +21,7 @@
     <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create">
       <plus-icon size="1.5x" class="custom-class"></plus-icon>
     </nav-item>
-    <nav-item :title="$store.state.user.Ad" redirectTo="/profile">
+    <nav-item :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`" redirectTo="/profile">
       <user-icon size="1.5x" class="custom-class"></user-icon>
     </nav-item>
   </div>
