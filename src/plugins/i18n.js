@@ -4,7 +4,10 @@ import messages from '../translations';
 
 Vue.use(VueI18n);
 export const i18n = new VueI18n({
-  locale: navigator.languages,
+  locale: navigator.language,
   fallbackLocale: 'en',
   messages,
 });
+
+
+

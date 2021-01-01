@@ -23,4 +23,12 @@ export default {
   resFromAPI: {
     loading: "wird geladen...",
   },
+  create: {
+    titleFeedback: "Feedback title",
+    question: "Question",
+    answer1: "Answer option 1",
+    answer2: "Answer option 2",
+    or: "or",
+    createBtn: "Create"
+  },
 };
