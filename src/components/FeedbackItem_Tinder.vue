@@ -4,12 +4,12 @@
       <template>
         <div
           class="pic">
-          <p>{{this.queue[itemid].text}}</p>
+          <p class="questiontext">{{this.queue[itemid].text}}</p>
         </div>
       </template>
       <img class="like-pointer" slot="like" src="../assets/happy.svg">
-      <img class="nope-pointer" slot="nope" src="../assets/sad.svg">
       <img class="super-pointer" slot="maybe" src="../assets/neutral.svg">
+      <img class="nope-pointer" slot="nope" src="../assets/sad.svg">
     </Tinder>
     <div class="btns">
        <img src="../assets/sad.svg" @click="btndecide('nope')">
@@ -92,7 +92,7 @@ body {
 .like-pointer {
   position: absolute;
   z-index: 1;
-  top: 20px;
+  bottom: 5%;
   width: 64px;
   height: 64px;
 }
@@ -108,12 +108,12 @@ body {
 .super-pointer {
   position: absolute;
   z-index: 1;
-  bottom: 80px;
+  bottom: 5%;
   left: 0;
   right: 0;
   margin: auto;
-  width: 112px;
-  height: 78px;
+  width:64px;
+  height: 64px;
 }
 
 .pic {
@@ -121,6 +121,15 @@ body {
   height: 80%;
   background-size: cover;
   background-position: center;
+}
+
+.questiontext{
+  font-weight: bold;
+  font-size: 180%;
+  text-align: left;
+  padding-top: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 .btns {
