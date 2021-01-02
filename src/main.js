@@ -7,12 +7,9 @@ import VueConfetti from "vue-confetti";
 import VueMeta from "vue-meta";
 import "./tailwind.css";
 import {i18n} from './plugins/i18n.js'
-import vueScrollto from "vue-scrollto";
 
-Vue.use(vueScrollto);
 Vue.use(VueConfetti);
 Vue.use(VueMeta);
-
 
 
 Vue.config.productionTip = false;
