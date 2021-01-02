@@ -3,25 +3,30 @@
     <div class="flex flex-col">
       <Header
         :title="this.$t('header.createFeedback')"
-        :BtnMethod="addNewQuestion"
+        back
+        :BtnMethod="saveFeedback"
       >
-        <PlusIcon
-      /></Header>
-      <CreateFeedbackHeader :data="data" />
+        <!-- <PlusIcon
+      /> -->
+        <p>Posten</p></Header
+      >
+      <CreateFeedbackHeader :data="newSurvey" />
       <CreateFeedbackInput
-        v-for="arr of data.questions"
-        :key="arr.id"
+        v-for="arr of newSurvey.questions"
+        :key="arr.survey_id"
         :questions="arr"
+        @addChoice="addChoice"
         @delQuestion="delQuestion"
       />
-      <div class="flex w-full justify-center">
-        <button
-          class="customButton w-40 my-1 hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-14 mb-20"
-          @click="saveFeedback"
-        >
-          {{ $t("create.createBtn") }}
-        </button>
-      </div>
+    </div>
+    <div ref="addNewQuestionRef"></div>
+    <div class="flex w-full justify-center">
+      <button
+        class="customButton flex justify-center w-40 my-1 hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-14 mb-20"
+        @click="addNewQuestion"
+      >
+        <plus-icon></plus-icon>
+      </button>
     </div>
   </div>
 </template>
@@ -31,6 +36,8 @@ import Header from "@/components/Header.vue";
 import CreateFeedbackInput from "@/components/CreateFeedbackInput.vue";
 import CreateFeedbackHeader from "@/components/CreateFeedbackHeader.vue";
 import { PlusIcon } from "vue-feather-icons";
+import axios from 'axios';
+
 export default {
   components: {
     Header,
@@ -41,21 +48,22 @@ export default {
   data() {
     return {
       QuestionCount: 1,
-      data: {
-        id: 0,
+      newSurvey: {
         creator_id: 0,
-        data_created: "2020-10-14T09:48:33.273509",
+        data_created: new Date(),
         date_survey: "2020-10-14T09:48:33.273509",
         questions: [
           {
-            id: 1,
             survey_id: 0,
             question: "",
-            answers: ["", ""],
+            answers: [
+              { id: 0, choice: "" },
+              { id: 1, choice: "" },
+            ],
           },
         ],
         name: "",
-        isMultipleChoice: false,
+        isMultipleChoice: true,
       },
     };
   },
@@ -66,23 +74,34 @@ export default {
   },
   methods: {
     addNewQuestion() {
-      this.QuestionCount += 1;
-      let newObj = {
-        id: this.QuestionCount,
-        survey_id: 0,
+      this.newSurvey.questions.push({
+        survey_id: this.newSurvey.questions.length,
         question: "",
-        answers: ["", ""],
-      };
-      this.data.questions.push(newObj);
-      console.log(this.QuestionCount);
-      console.log(this.data.questions);
+        answers: [
+          { id: 0, choice: "Choice1" },
+          { id: 1, choice: "Choice2" },
+        ],
+      });
+      setTimeout(
+        () =>
+          this.$refs.addNewQuestionRef.scrollIntoView({ behavior: "smooth" }),
+        10
+      );
     },
     saveFeedback() {
-      alert("In Progress...");
+      let res = axios.post(`${process.env.VUE_APP_API_URL}/Survey`)
+      console.log(res)
+    },
+    addChoice(value) {
+      console.log(value.survey_id);
+      this.newSurvey.questions[value.survey_id].answers.push({
+        id: this.newSurvey.questions[value.survey_id].answers.length,
+        choice: "",
+      });
     },
     delQuestion(question) {
-      this.data.questions = this.data.questions.filter(
-        (elm) => elm.id != question.id
+      this.newSurvey.questions = this.newSurvey.questions.filter(
+        (elm) => elm.survey_id != question.survey_id
       );
     },
   },

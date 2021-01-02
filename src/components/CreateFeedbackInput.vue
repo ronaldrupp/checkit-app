@@ -1,40 +1,31 @@
 <template>
-  <div class="flex flex-col">
     <div
-      class="flex md:flex-row flex-col justify-between md:items-center border-b active:scale-50 transition duration-100 transform hover:bg-gray-100 min-w-0 flex dark:hover:bg-gray-800 dark:border-gray-800 px-4 py-8 border-solid"
+      class="flex flex-col border rounded-md m-5 p-5 justify-between md:items-start border-b transition duration-100 dark:border-gray-800 "
     >
-      <div class="md:mr-3 md:mb-0 mb-2">
+      <div class="flex w-full justify-end">
         <XCircleIcon
-          size="1.5x"
-          class="custom-class cursor-pointer"
+          size="1.25x"
+          class="text-gray-600 cursor-pointer"
           @click="delQuestion(questions)"
         />
       </div>
-      <div class="flex flex-col mb-3 md:mb-0 w-full">
         <input
-          class="bg-gray-200 dark:text-black rounded-md w-full md:w-2/3 p-1 placeholder-gray-500 placeholder-opacity-75"
+          class="dark:text-white text-lg outline-none dark:bg-black rounded-md w-full p-1 my-4 dark:placeholder-white placeholder-gray-700 placeholder-opacity-75"
           type="text"
-          :placeholder="`${questions.id}.${$t('create.question')}`"
+          :placeholder="`${$t('create.question')}`"
           v-model="questions.question"
         />
-      </div>
-      <div class="flex flex-col w-full md:w-max">
+      <div class="flex flex-col w-full">
         <input
-          class="bg-gray-200 dark:text-black rounded-md p-1 placeholder-gray-500 placeholder-opacity-75"
+          class="border my-2 w-full outline-none dark:text-white dark:bg-black rounded-md p-3 placeholder-gray-800 placeholder-opacity-75 dark:placeholder-white"
           type="text"
-          :placeholder="$t('create.answer1')"
-          v-model="questions.answers[0]"
+          v-for="answer in questions.answers" :key="answer.id"
+          :placeholder="`${$t('create.answer')}`"
+          v-model="answer.choice"
         />
-        <p class="mx-6 my-1 self-center">{{$t('create.or')}}</p>
-        <input
-          class="bg-gray-200 dark:text-black rounded-md p-1 placeholder-gray-500 placeholder-opacity-75"
-          type="text"
-          :placeholder="$t('create.answer2')"
-          v-model="questions.answers[1]"
-        />
+        <button class="border my-2 p-3 rounded-md" @click="$emit('addChoice', questions)">ADD CHOICE</button>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

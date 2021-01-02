@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full flex items-center jusitfy-center">
-    <header class="header">
+  <div class="w-full h-full flex items-center justify-center loginContainer">
+    <!-- <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
       <a
         href="https://check-it.at"
@@ -22,13 +22,26 @@
     <div class="right-section">
       <LoginForm v-if="mode == 'login'" @change-mode="mode = 'register'" />
       <RegisterForm v-else />
+    </div> -->
+    <div
+      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-900 w-96 rounded-md"
+    >
+      <img class="w-12 my-12" src="@/assets/logo_black.svg" />
+      <h1 class="font-bold text-3xl my-4">Login</h1>
+      <p class="text-center">{{ this.$t("login.logintxt") }}</p>
+      <button
+        class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-md mt-20"
+        @click.prevent="redirectToGoogle"
+      >
+        Continue with Google
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import RegisterForm from "./../components/RegisterForm";
-import LoginForm from "./../components/LoginForm";
+// import RegisterForm from "./../components/RegisterForm";
+// import LoginForm from "./../components/LoginForm";
 export default {
   data() {
     return {
@@ -40,14 +53,22 @@ export default {
       title: "Login",
     };
   },
+  methods: {
+    redirectToGoogle() {
+      document.location.href = `${process.env.VUE_APP_API_URL}/user/login`;
+    },
+  },
   components: {
-    RegisterForm,
-    LoginForm,
+    // RegisterForm,
+    // LoginForm,
   },
 };
 </script>
 
 <style scoped>
+.loginContainer {
+  background: var(--linear-gradient);
+}
 .title {
   font-size: 2.5rem;
   color: var(--background-color);

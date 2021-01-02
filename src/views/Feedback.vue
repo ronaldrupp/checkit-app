@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div
+  <div class="overflow-y-scroll" style="scroll-snap-type: y mandatory;	">
+    <!-- <div
       class=""
       v-if="dataFromAPI.questions.length - 1 >= questionIndex"
     >
@@ -14,16 +14,41 @@
         @next-quest="handleIncoming"
       />
     </div>
-    <FeedbackCompleted v-else :dataFromAPI="dataFromAPI" />
+    <FeedbackCompleted v-else :dataFromAPI="dataFromAPI" /> -->
+    <div
+      class="min-h-screen flex flex-col justify-center items-center"
+      style="scroll-snap-align: start;"
+    >
+      <p>{{ dataFromAPI.name }}</p>
+    </div>
+    <div
+      v-for="question in dataFromAPI.questions"
+      :key="question.id"
+      style="scroll-snap-align: start;"
+      class="h-screen relative"
+    >
+      <p class="text-2xl">{{ question.question }}</p>
+      <div
+        class="flex flex-col justify-center items-center absolute bottom-0 mb-6 rounded-md w-full"
+      >
+        <button
+          v-for="answer in question.answers"
+          :key="answer"
+          class="w-full mt-4 p-2 dark:bg-gray-900"
+        >
+          {{ answer }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 
-import FeedbackHeader from "@/components/FeedbackHeader.vue";
-import FeedbackItem from "@/components/FeedbackItem.vue";
-import FeedbackCompleted from "@/components/FeedbackCompleted.vue";
+// import FeedbackHeader from "@/components/FeedbackHeader.vue";
+// import FeedbackItem from "@/components/FeedbackItem.vue";
+// import FeedbackCompleted from "@/components/FeedbackCompleted.vue";
 
 export default {
   data() {
@@ -31,6 +56,7 @@ export default {
       questionIndex: 0,
       answers: [],
       dataFromAPI: {
+        name: "WEBT",
         id: 10,
         creator_id: 1,
         date_created: "2020-10-14T09:48:33.273509",
@@ -57,22 +83,24 @@ export default {
           {
             id: 2,
             survey_id: 10,
-            question: "Hast du gewusst, dass der Kurz sein Studium abgebrochen hat?",
+            question:
+              "Hast du gewusst, dass der Kurz sein Studium abgebrochen hat?",
             answers: ["ja", "naja", "schaut aus wie Sarazar"],
           },
         ],
         creator: {
           name: "Anna Jakobsen",
-          photo_url: "https://www.myspass.de/myspass/media/images/videos/10/7910_640x360.jpg"
+          photo_url:
+            "https://www.myspass.de/myspass/media/images/videos/10/7910_640x360.jpg",
         },
-        completedMessage: "Danke fürs Mitmachen, liebe Klasse."
+        completedMessage: "Danke fürs Mitmachen, liebe Klasse.",
       },
     };
   },
   components: {
-    FeedbackItem,
-    FeedbackCompleted,
-    FeedbackHeader,
+    // FeedbackItem,
+    // FeedbackCompleted,
+    // FeedbackHeader,
   },
   created() {
     this.getFeedback();
@@ -92,5 +120,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

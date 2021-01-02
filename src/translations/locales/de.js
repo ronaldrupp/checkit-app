@@ -25,9 +25,8 @@ export default {
   },
   create: {
     titleFeedback: "Titel des Feedbacks",
-    question: "Frage",
-    answer1: "Antwortmöglichkeit 1",
-    answer2: "Antwortmöglichkeit 2",
+    question: "Stelle eine Frage...",
+    answer: "Choice",
     or: "oder",
     createBtn: "Erstellen"
   }

@@ -3,7 +3,7 @@
     <Header :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`" :BtnMethod="logout"
       ><LogOutIcon
     /></Header>
-    <div class="flex flex-col">
+    <div class="flex flex-col p-5">
       <ProfilePageHeader />
       <ProfileSettings class="lg:w-1/3" />
     </div>

@@ -25,10 +25,9 @@ export default {
   },
   create: {
     titleFeedback: "Feedback title",
-    question: "Question",
+    question: "Ask a question...",
     answer1: "Answer option 1",
     answer2: "Answer option 2",
-    or: "or",
     createBtn: "Create"
   },
 };
