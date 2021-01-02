@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-y-scroll" style="scroll-snap-type: y mandatory;	">
+  <div class="overflow-y-scroll" style="scroll-snap-type: y mandatory;">
     <!-- <div
       class=""
       v-if="dataFromAPI.questions.length - 1 >= questionIndex"
@@ -16,28 +16,62 @@
     </div>
     <FeedbackCompleted v-else :dataFromAPI="dataFromAPI" /> -->
     <div
-      class="min-h-screen flex flex-col justify-center items-center"
+      class="viewSection min-h-screen relative flex flex-col justify-center items-center"
       style="scroll-snap-align: start;"
     >
-      <p>{{ dataFromAPI.name }}</p>
+      <div class="flex flex-col items-center">
+        <img
+          class="w-28 h-28 rounded-full object-cover mb-6"
+          :src="dataFromAPI.creator.photo_url"
+        />
+        <p class="mx-2 text-base">{{ dataFromAPI.creator.name }}</p>
+      </div>
+      <h3 class="font-bold text-lg mt-28">WEBT: Unterricht vom 15.10.2020</h3>
+      <chevrons-down-icon
+        class="chevrons-down absolute bottom-0 mb-12" size="2x"
+      ></chevrons-down-icon>
     </div>
     <div
       v-for="question in dataFromAPI.questions"
       :key="question.id"
       style="scroll-snap-align: start;"
-      class="h-screen relative"
+      class="h-screen relative viewSection"
     >
-      <p class="text-2xl">{{ question.question }}</p>
+      <p class="p-5 pt-12 text-3xl font-bold">{{ question.question }}</p>
       <div
-        class="flex flex-col justify-center items-center absolute bottom-0 mb-6 rounded-md w-full"
+        class="flex p-5 flex-col justify-center items-center absolute bottom-0 mb-6 rounded-md w-full"
       >
         <button
           v-for="answer in question.answers"
           :key="answer"
-          class="w-full mt-4 p-2 dark:bg-gray-900"
+          class="outline-none w-full mt-4 p-4 rounded-md dark:bg-gray-900 bg-gray-200"
         >
           {{ answer }}
         </button>
+      </div>
+    </div>
+    <div
+      class="min-h-screen relative flex flex-col justify-center items-center"
+      style="scroll-snap-align: start;"
+    >
+      <div class="flex w-full h-full flex-col justify-center items-center">
+        <h1 class="text-6xl my-12">🥳</h1>
+        <h3 class="text-xl font-bold text-center">
+          {{ dataFromAPI.completedMessage }}
+        </h3>
+        <div class="flex items-center mt-6">
+          <img
+            class="rounded-full w-12 h-12 object-cover"
+            :src="dataFromAPI.creator.photo_url"
+          />
+          <p class="ml-2">{{ dataFromAPI.creator.name }}</p>
+        </div>
+        <div class="flex items-center flex-col mt-20">
+          <p>Feedback powered by</p>
+          <a href="https://noname.jetzt">
+            <svg class="w-8 mt-6" src="@/assets/logo_black.svg" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -45,6 +79,7 @@
 
 <script>
 import axios from "axios";
+import { ChevronsDownIcon } from "vue-feather-icons";
 
 // import FeedbackHeader from "@/components/FeedbackHeader.vue";
 // import FeedbackItem from "@/components/FeedbackItem.vue";
@@ -68,7 +103,7 @@ export default {
             survey_id: 10,
             question: "Wie fandest du heute den Unterricht? ",
             answers: ["gut", "schlecht"],
-            Tinder: 1
+            Tinder: 1,
           },
           {
             id: 15,
@@ -104,6 +139,7 @@ export default {
     // FeedbackCompleted,
     // FeedbackHeader,
     // FeedbackItemTinder
+    ChevronsDownIcon,
   },
   created() {
     this.getFeedback();
@@ -123,4 +159,25 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.viewSection{
+  max-width: 450px;
+  margin: 0px auto;
+}
+
+.chevrons-down {
+  animation: updown 2s infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+</style>

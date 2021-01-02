@@ -1,6 +1,6 @@
 <template>
-  <div class="overflow-y-scroll">
-    <div class="flex flex-col">
+  <div class="overflow-y-scroll pb-20">
+    <div class="flex flex-col ">
       <Header
         :title="this.$t('header.createFeedback')"
         back
@@ -19,15 +19,15 @@
         @delQuestion="delQuestion"
       />
     </div>
-    <div ref="addNewQuestionRef"></div>
     <div class="flex w-full justify-center">
       <button
-        class="customButton flex justify-center w-40 my-1 hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-14 mb-20"
+        class="outline-none border my-2 p-3 rounded-md"
         @click="addNewQuestion"
       >
         <plus-icon></plus-icon>
       </button>
     </div>
+    <div ref="addNewQuestionRef"></div>
   </div>
 </template>
 
@@ -36,7 +36,7 @@ import Header from "@/components/Header.vue";
 import CreateFeedbackInput from "@/components/CreateFeedbackInput.vue";
 import CreateFeedbackHeader from "@/components/CreateFeedbackHeader.vue";
 import { PlusIcon } from "vue-feather-icons";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   components: {
@@ -78,8 +78,8 @@ export default {
         survey_id: this.newSurvey.questions.length,
         question: "",
         answers: [
-          { id: 0, choice: "Choice1" },
-          { id: 1, choice: "Choice2" },
+          { id: 0, choice: "" },
+          { id: 1, choice: "" },
         ],
       });
       setTimeout(
@@ -89,8 +89,8 @@ export default {
       );
     },
     saveFeedback() {
-      let res = axios.post(`${process.env.VUE_APP_API_URL}/Survey`)
-      console.log(res)
+      let res = axios.post(`${process.env.VUE_APP_API_URL}/Survey`);
+      console.log(res);
     },
     addChoice(value) {
       console.log(value.survey_id);
