@@ -8,10 +8,12 @@ import VueMeta from "vue-meta";
 import "./tailwind.css";
 import {i18n} from './plugins/i18n.js'
 
+import { polyfill } from "seamless-scroll-polyfill";
+
+polyfill();
+
 Vue.use(VueConfetti);
 Vue.use(VueMeta);
-
-
 Vue.config.productionTip = false;
 
 new Vue({

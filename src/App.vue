@@ -20,21 +20,20 @@ export default {
   components: {
     NavBar,
   },
-  created () {
-    console.log("App Version "+PackageJson.version);
+  created() {
+    console.log("App Version " + PackageJson.version);
   },
   computed: {
     showNav() {
       return !(
-        ["Login", "Register", "Feedback", "ResAuth"].indexOf(this.$route.name) > -1
+        ["Login", "Register", "Feedback", "ResAuth"].indexOf(this.$route.name) >
+        -1
       );
     },
   },
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;800&display=swap");
-
 :root {
   --linear-gradient: linear-gradient(
     349deg,
@@ -44,21 +43,18 @@ export default {
   );
 }
 html {
-  height: -webkit-fill-available;
-  box-sizing: border-box;
+  width: 100%;
   height: 100%;
+  scroll-behavior: smooth;
 }
 body {
-  min-height: -webkit-fill-available;
-  overflow: auto;
-  margin: 0px;
-  padding: 0px;
+  /* min-height: 100%;
+  min-height: -webkit-fill-available; */
   width: 100%;
   height: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  overflow-y: scroll;
-  overscroll-behavior-y: none;
+  overflow: hidden;
 }
 a {
   text-decoration: none;
@@ -69,6 +65,8 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
+  overflow: hidden;
+  width: 100%;
   height: 100%;
 }
 /*
