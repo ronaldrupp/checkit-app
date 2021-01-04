@@ -88,8 +88,13 @@ export default {
         10
       );
     },
-    saveFeedback() {
-      let res = axios.post(`${process.env.VUE_APP_API_URL}/Survey`);
+    async saveFeedback() {
+      let res = await axios.post(
+        `${process.env.VUE_APP_API_URL}/Survey`,
+        this.newSurvey,
+        { headers: { Authorization: `Bearer ${this.$store.state.token.aT}` } }
+      );
+      console.log(this.newSurvey)
       console.log(res);
     },
     addChoice(value) {
