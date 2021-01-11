@@ -3,7 +3,7 @@
     <Header :title="this.$t('header.createFeedback')" />
     <div class="flex flex-col md:flex-row md:justify-center md:items-center flex-grow p-4">
       <div
-        class="border flex w-full h-2/5 md:w-2/5  bg-gray-400 dark:bg-black rounded-md mt-10 md:mr-10"
+        class=" flex w-full h-64 md:w-2/5 bg-gray-200 dark:bg-gray-800 rounded-md mt-10 md:mr-10"
       >
         <router-link
           class="w-full h-full flex justify-center items-center"
@@ -12,7 +12,7 @@
         >
       </div>
       <div
-        class="border flex w-full h-2/5 md:w-2/5 bg-gray-400 dark:bg-black rounded-md mt-10"
+        class=" flex w-full h-64 md:w-2/5 bg-gray-200 dark:bg-gray-800 rounded-md mt-10"
       >
         <router-link
           class="w-full h-full flex justify-center items-center"

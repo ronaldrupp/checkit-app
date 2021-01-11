@@ -2,50 +2,12 @@
   <div class="flex flex-col items-center">
     <h1 class="font-bold text-3xl my-12">Login</h1>
     <p>{{this.$t('login.logintxt')}}</p>
-    <!-- <form class="flex flex-col w-5/6">
-      <p v-if="messageFromAPI" class="error">{{ messageFromAPI.message }}</p>
-      <input
-        class="px-4 rounded-full h-12"
-        type="email"
-        placeholder="E-Mail"
-        v-model="email"
-      />
-      <input
-        class="mt-4 px-4 rounded-full h-12"
-        type="password"
-        placeholder="Passwort"
-        v-model="password"
-      />
-      <router-link
-        to="/login/forgotpassword"
-        class="self-end mt-3 text-sm"
-        >Forgot Password</router-link
-      >
-      <div class="flex flex-col mt-5">
-        <button
-          @click="handleLogin"
-          class="w-full my-6 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
-          :disabled="isLoading"
-        >
-          <p v-if="!isLoading">Log in</p>
-          <p v-else>Loading</p>
-        </button>
-      </div>
-    </form>
-    <div class="flex flex-col mt-5 w-5/6">
-      <button
-        class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full"
-        @click.prevent="$emit('change-mode', '')"
-      >
-        Create an account
-      </button> -->
       <button
         class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-full mt-20"
         @click.prevent="redirectToGoogle"
       >
         Continue with Google
       </button>
-    <!-- </div> -->
   </div>
 </template>
 

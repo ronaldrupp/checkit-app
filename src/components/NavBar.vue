@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex overflow-hidden z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 dark:bg-black shadow-lg bg-white md:justify-start md:h-screen md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
+    class="flex overflow-hidden z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 shadow-lg md:justify-start md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
     style="padding-bottom:env(safe-area-inset-bottom);backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <router-link
@@ -12,24 +12,27 @@
     <nav-item :title="$t('navbar.class')" redirectTo="/class">
       <grid-icon size="1.5x" class="custom-class"></grid-icon>
     </nav-item>
-    <nav-item :title="$t('navbar.recentFeedbacks')" redirectTo="/feedbacks">
+    <!-- <nav-item :title="$t('navbar.recentFeedbacks')" redirectTo="/feedbacks">
       <message-circle-icon
         size="1.5x"
         class="custom-class"
       ></message-circle-icon>
+    </nav-item> -->
+    <nav-item
+      :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`"
+      redirectTo="/profile"
+    >
+      <user-icon size="1.5x" class="custom-class"></user-icon>
     </nav-item>
     <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create">
       <plus-icon size="1.5x" class="custom-class"></plus-icon>
-    </nav-item>
-    <nav-item :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`" redirectTo="/profile">
-      <user-icon size="1.5x" class="custom-class"></user-icon>
     </nav-item>
   </div>
 </template>
 
 <script>
 import {
-  MessageCircleIcon,
+  // MessageCircleIcon,
   UserIcon,
   GridIcon,
   PlusIcon,
@@ -37,7 +40,7 @@ import {
 import NavItem from "./NavItem";
 export default {
   components: {
-    MessageCircleIcon,
+    // MessageCircleIcon,
     GridIcon,
     PlusIcon,
     UserIcon,

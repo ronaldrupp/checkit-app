@@ -54,7 +54,7 @@
           {{ answer }}
         </button> -->
         <label
-          class="radio bg-gray-200 dark:bg-gray-900 mt-4 w-full flex"
+          class="radio bg-gray-200 dark:bg-gray-800 mt-4 w-full flex"
           v-for="answerObj in questionObj.answers"
           :key="answerObj.id"
           @click="scrollToNextQuestion(index)"

@@ -94,15 +94,16 @@ export default {
         this.newSurvey,
         { headers: { Authorization: `Bearer ${this.$store.state.token.aT}` } }
       );
-      console.log(this.newSurvey)
+      console.log(this.newSurvey);
       console.log(res);
     },
     addChoice(value) {
-      console.log(value.survey_id);
-      this.newSurvey.questions[value.survey_id].answers.push({
-        id: this.newSurvey.questions[value.survey_id].answers.length,
-        choice: "",
-      });
+      if (this.newSurvey.questions[value.survey_id].answers.length < 4) {
+        this.newSurvey.questions[value.survey_id].answers.push({
+          id: this.newSurvey.questions[value.survey_id].answers.length,
+          choice: "",
+        });
+      }
     },
     delQuestion(question) {
       this.newSurvey.questions = this.newSurvey.questions.filter(

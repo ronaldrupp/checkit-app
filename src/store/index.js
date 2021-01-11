@@ -39,10 +39,12 @@ export default new Vuex.Store({
       context.commit("setToken", value)
     },
     async getCourses(context) {
+      console.log(this.state.token)
       let res = await axios.get(
-        `${process.env.VUE_APP_API_URL}/Courses/registedcourses`,
+        `${process.env.VUE_APP_API_URL}/Courses/registedcourses/${this.state.token.userId}`,
         {headers: { Authorization: `Bearer ${this.state.token.aT}` }}
       );
+      console.log(res)
       context.commit("setCourses", res.data)
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex items-center justify-center loginContainer">
+  <div class="w-full h-full flex items-center justify-center dark:bg-gray-900 bg-gray-100">
     <!-- <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
       <a
@@ -24,13 +24,13 @@
       <RegisterForm v-else />
     </div> -->
     <div
-      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-900 w-96 rounded-md"
+      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 rounded-md"
     >
       <img class="w-12 my-12" src="@/assets/logo_black.svg" />
       <h1 class="font-bold text-3xl my-4">Login</h1>
       <p class="text-center">{{ this.$t("login.logintxt") }}</p>
       <button
-        class="w-100 my-1 bg-black hover:bg-opacity-75 text-white py-2 px-4 rounded-md mt-20"
+        class="w-full my-1 bg-black hover:bg-opacity-50 text-white py-4 px-4 rounded-md mt-20"
         @click.prevent="redirectToGoogle"
       >
         Continue with Google
@@ -67,66 +67,6 @@ export default {
 
 <style scoped>
 .loginContainer {
-  background: var(--linear-gradient);
-}
-.title {
-  font-size: 2.5rem;
-  color: var(--background-color);
-  margin-right: 1.5rem;
-  max-width: 75%;
-  text-transform: uppercase;
-}
-.subtitle {
-  max-width: 70%;
-  margin: 10rem 1.5rem 0rem 0rem;
-  color: var(--background-color);
-}
-.header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 4rem;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.link-btn {
-  background-color: var(--secondary-color);
-  color: var(--background-color);
-  border-radius: var(--border-radius);
-  padding: 0.5rem 1rem;
-}
-.left-section {
-  width: 50%;
-  height: 100%;
-  background: var(--linear-gradient);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  text-align: right;
-}
-.right-section {
-  width: 50%;
-
-  background: var(--background-color);
-}
-.logo {
-  width: 2rem;
-}
-@media (max-width: 768px) {
-  .box {
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    border-radius: 0px;
-  }
-  .left-section {
-    display: none;
-  }
-  .right-section {
-    width: 100%;
-  }
+  /* background: var(--linear-gradient); */
 }
 </style>

@@ -1,8 +1,8 @@
 export default {
   login: {
-      logintxt: 'Melde Dich mit deinem Google Account an.',
-      slogan: 'VERBESSERE DIE QUALITÄT DEINES UNTERRICHTS',
-      subtxt: 'Eine Diplomarbeit von ',
+    logintxt: "Melde Dich mit deinem Google Account an.",
+    slogan: "VERBESSERE DIE QUALITÄT DEINES UNTERRICHTS",
+    subtxt: "Eine Diplomarbeit von ",
   },
   navbar: {
     class: "Klasse",
@@ -21,13 +21,13 @@ export default {
     createFeedback: "Feedback erstellen",
   },
   resFromAPI: {
-    loading: "wird geladen..."
+    loading: "wird geladen...",
   },
   create: {
     titleFeedback: "Titel des Feedbacks",
     question: "Stelle eine Frage...",
-    answer: "Choice",
-    or: "oder",
-    createBtn: "Erstellen"
-  }
+    choice: "Antwortmöglichkeit",
+    createBtn: "Erstellen",
+    addChoice: "noch eine Antwortmöglichkeit hinzufügen",
+  },
 };
