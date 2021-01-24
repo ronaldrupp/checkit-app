@@ -7,15 +7,15 @@
         <div class="flex min-w-0 ">
           <div class="flex flex-col min-w-0 ">
             <!-- <p class="border">{{ feedback.grade }}</p> -->
-            <p class="truncate">
-              {{ feedback.title }}
-            </p>
-            <p class="truncate">{{ feedback.date }}</p>
+            <h2 class="text-base font-semibold truncate">
+              {{ feedback.name }}
+            </h2>
+            <p class="truncate text-sm">{{ feedback.createdAt | formatDate }}</p>
           </div>
         </div>
-        <div class="flex">
-          <UsersIcon />
-          <p class="ml-1 ">{{ feedback.attendees }}</p>
+        <div class="flex items-center">
+          <UsersIcon size="1x"/>
+          <p class="ml-2 ">{{ feedback.answers.length }}</p>
         </div>
       </div>
     </router-link>
@@ -23,6 +23,9 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
+import 'dayjs/locale/de'
+import 'dayjs/locale/en'
 import { UsersIcon } from "vue-feather-icons";
 export default {
   components: {
@@ -33,6 +36,11 @@ export default {
       type: Object,
     },
   },
+  filters: {
+    formatDate: function(value) {
+      return dayjs(value).locale(navigator.language).format("dd DD. MMMM YYYY HH:mm");
+    }
+  }
 };
 </script>
 

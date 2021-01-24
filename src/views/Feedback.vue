@@ -22,19 +22,23 @@
       <div class="flex flex-col items-center">
         <img
           class="w-28 h-28 rounded-full object-cover mb-6"
-          src="https://secure.static.tumblr.com/2025952054881ee732125c9a591923b1/x0nppqd/wOhn8tpv4/tumblr_static_tumblr_static__640.jpg"
+          :src="`https:${dataFromAPI.teacherPhotoUrl}`"
         />
-        <p class="mx-2 text-base ">mrs puff</p>
+        <p class="mx-2 text-base ">{{ dataFromAPI.teacherName }}</p>
       </div>
-      <h3 class="font-bold text-lg mt-28">WEBT: Unterricht vom 15.10.2020</h3>
+      <h3 class="font-bold text-lg mt-28">{{ dataFromAPI.name }}</h3>
+      <p v-if="dataFromAPI.error" class="absolute bottom-0 mb-12">
+        You have already answered this survey.
+      </p>
       <chevrons-down-icon
+        v-else
         @click="$refs.questionRef[0].scrollIntoView({ behavior: 'smooth' })"
         class="chevrons-down absolute bottom-0 mb-12 cursor-pointer"
         size="2x"
       ></chevrons-down-icon>
     </div>
     <div
-      v-for="(questionObj, index) in dataFromAPI"
+      v-for="(questionObj, index) in dataFromAPI.questions"
       :key="questionObj.id"
       class="relative viewSection"
       :ref="`questionRef`"
@@ -61,20 +65,20 @@
         >
           <input
             type="radio"
-            :name="answerObj.answer"
+            :name="answerObj.choice"
             :value="{
-              id: questionObj.survey_id,
-              user_id: 19,
-              question_id: questionObj.id,
-              answer_id: answerObj.id,
+              question: questionObj.question,
+              answer: answerObj.choice,
             }"
             v-model="answeredSurvey[index]"
           />
-          <span class="dark:text-white">{{ answerObj.answer }}</span>
+          <span class="dark:text-white">{{ answerObj.choice }}</span>
         </label>
         <div class="flex w-full justify-start py-3 dark:text-gray-400">
-          <alert-circle-icon size="1.25x"></alert-circle-icon>
-          <p class=" ml-2 text-sm">Deine Antwort ist anonym</p>
+          <shield-icon size="1.25x"></shield-icon>
+          <p class=" ml-2 text-sm">
+            {{ dataFromAPI.teacherName }} kann deine Antwort nicht sehen
+          </p>
         </div>
       </div>
     </div>
@@ -90,16 +94,18 @@
         <div class="flex items-center mt-6">
           <img
             class="rounded-full w-12 h-12 object-cover"
-            src="https://secure.static.tumblr.com/2025952054881ee732125c9a591923b1/x0nppqd/wOhn8tpv4/tumblr_static_tumblr_static__640.jpg"
+            :src="`https:${dataFromAPI.teacherPhotoUrl}`"
           />
-          <p class="ml-2">mrs puff</p>
+          <p class="ml-2">{{ dataFromAPI.teacherName }}</p>
         </div>
-        <div class="flex items-center flex-col mt-20">
-          <p>Feedback powered by</p>
-          <a href="https://noname.jetzt">
-            <svg class="w-8 mt-6" src="@/assets/logo_black.svg" />
-          </a>
-        </div>
+        <button
+          v-if="!disableBtn"
+          @click="postAnsweredSurvey"
+          :disabled="disableBtn"
+          class="mt-20 px-20 py-2 rounded-md bg-gray-800"
+        >
+          Submit
+        </button>
       </div>
     </div>
   </div>
@@ -107,7 +113,7 @@
 
 <script>
 import axios from "axios";
-import { ChevronsDownIcon, AlertCircleIcon } from "vue-feather-icons";
+import { ChevronsDownIcon, ShieldIcon } from "vue-feather-icons";
 
 // import FeedbackHeader from "@/components/FeedbackHeader.vue";
 // import FeedbackItem from "@/components/FeedbackItem.vue";
@@ -118,64 +124,9 @@ export default {
   data() {
     return {
       questionIndex: 0,
-      answers: [],
-      dataFromAPI: [
-        {
-          id: 0,
-          survey_id: 43,
-          question: "Wie hat dir heute mein Unterricht gefallen?",
-          answers: [
-            {
-              id: 0,
-              answer: "gut",
-            },
-            {
-              id: 1,
-              answer: "hätte besser sein können",
-            },
-            {
-              id: 2,
-              answer: "hat mir überhaupt nicht gefallen",
-            },
-          ],
-        },
-        {
-          id: 2,
-          survey_id: 43,
-          question: "Hast du das heutige Thema verstanden?",
-          answers: [
-            {
-              id: 0,
-              answer: "ja",
-            },
-            {
-              id: 1,
-              answer: "geht so",
-            },
-            {
-              id: 2,
-              answer: "überhaupt nicht",
-            },
-          ],
-        },
-        {
-          id: 3,
-          survey_id: 43,
-          question:
-            "Soll wir das heutige Thema in der nächsten Stunde wiederholen?",
-          answers: [
-            {
-              id: 0,
-              answer: "ja",
-            },
-            {
-              id: 1,
-              answer: "nein",
-            },
-          ],
-        },
-      ],
+      dataFromAPI: {},
       answeredSurvey: [],
+      disableBtn: false,
     };
   },
   components: {
@@ -184,7 +135,7 @@ export default {
     // FeedbackHeader,
     // FeedbackItemTinder
     ChevronsDownIcon,
-    AlertCircleIcon,
+    ShieldIcon,
   },
   created() {
     this.getFeedback();
@@ -192,16 +143,21 @@ export default {
   methods: {
     async getFeedback() {
       let res = await axios.get(
-        `${process.env.VUE_APP_API_URL}/survey/${this.$route.params.id}`
+        `${process.env.VUE_APP_API_URL}/survey/${this.$route.params.courseId}/${this.$route.params.surveyId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
       );
-      console.log(res);
+      this.dataFromAPI = res.data;
     },
     handleIncoming(value) {
       this.answers.push(value);
       this.questionIndex++;
     },
     scrollToNextQuestion(index) {
-      if (this.dataFromAPI.length != index + 1) {
+      if (this.dataFromAPI.questions.length != index + 1) {
         this.$refs.questionRef[index + 1].scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -213,7 +169,6 @@ export default {
           block: "start",
           inline: "nearest",
         });
-        this.letItRain();
       }
     },
     letItRain() {
@@ -226,15 +181,23 @@ export default {
           },
         ],
       });
-      setTimeout(() => this.$confetti.stop(), 2500);
+      setTimeout(() => {
+        this.$confetti.stop();
+      }, 2500);
     },
     async postAnsweredSurvey() {
-      let res = axios.post(
-        `${process.env.VUE_APP_API_URL}/Survey/${this.answeredSurvey.id}/answer`,
-        { headers: { Authorization: `Bearer ${this.state.token.aT}` } },
-        this.answeredSurvey
+      let res = await axios.post(
+        `${process.env.VUE_APP_API_URL}/answerSurvey`,
+        { surveyId: this.$route.params.surveyId, answers: this.answeredSurvey },
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
       );
       console.log(res);
+      this.letItRain();
+      this.disableBtn = true;
     },
   },
 };

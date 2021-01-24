@@ -10,9 +10,32 @@
       /> -->
         <p>Posten</p></Header
       >
-      <CreateFeedbackHeader :data="newSurvey" />
+      <div class="flex items-center px-4 py-8">
+        <div class="flex flex-col w-full">
+          <input
+            class="bg-transparent w-full outline-none dark:text-white dark:placeholder-white text-3xl font-bold rounded-md p-1 placeholder-gray-800 placeholder-opacity-75"
+            type="text"
+            :placeholder="$t('create.titleFeedback')"
+            v-model="name"
+          />
+        </div>
+      </div>
+      <button
+        @click="
+          getCourses();
+          showCoursesDialog = true;
+        "
+      >
+        {{ selectedCourse.name ? selectedCourse.name : "Klasse auswählen" }}
+      </button>
+      <selectCourseDialog
+        v-if="showCoursesDialog"
+        :gClassroomCourses="courses"
+        @closeDialog="showCoursesDialog = false"
+        @selected-course="setSelectedCourse"
+      />
       <CreateFeedbackInput
-        v-for="arr of newSurvey.questions"
+        v-for="arr of questions"
         :key="arr.survey_id"
         :questions="arr"
         @addChoice="addChoice"
@@ -33,8 +56,8 @@
 
 <script>
 import Header from "@/components/Header.vue";
+import selectCourseDialog from "@/components/selectCourseDialog.vue";
 import CreateFeedbackInput from "@/components/CreateFeedbackInput.vue";
-import CreateFeedbackHeader from "@/components/CreateFeedbackHeader.vue";
 import { PlusIcon } from "vue-feather-icons";
 import axios from "axios";
 
@@ -43,28 +66,26 @@ export default {
     Header,
     CreateFeedbackInput,
     PlusIcon,
-    CreateFeedbackHeader,
+    selectCourseDialog,
   },
   data() {
     return {
       QuestionCount: 1,
-      newSurvey: {
-        creator_id: 0,
-        data_created: new Date(),
-        date_survey: "2020-10-14T09:48:33.273509",
-        questions: [
-          {
-            survey_id: 0,
-            question: "",
-            answers: [
-              { id: 0, choice: "" },
-              { id: 1, choice: "" },
-            ],
-          },
-        ],
-        name: "",
-        isMultipleChoice: true,
-      },
+      showCoursesDialog: false,
+      courses: [],
+      selectedCourse: {},
+      name: "",
+      questions: [
+        {
+          survey_id: 0,
+          question: "",
+          answers: [
+            { id: 0, choice: "" },
+            { id: 1, choice: "" },
+          ],
+        },
+      ],
+      description: "s",
     };
   },
   metaInfo() {
@@ -74,8 +95,8 @@ export default {
   },
   methods: {
     addNewQuestion() {
-      this.newSurvey.questions.push({
-        survey_id: this.newSurvey.questions.length,
+      this.questions.push({
+        survey_id: this.questions.length,
         question: "",
         answers: [
           { id: 0, choice: "" },
@@ -88,25 +109,48 @@ export default {
         10
       );
     },
+    setSelectedCourse(value) {
+      this.selectedCourse = value;
+    },
+    async getCourses() {
+      let res = await axios.get(`${process.env.VUE_APP_API_URL}/courses`, {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+        },
+      });
+      this.courses = res.data;
+    },
     async saveFeedback() {
       let res = await axios.post(
-        `${process.env.VUE_APP_API_URL}/Survey`,
-        this.newSurvey,
-        { headers: { Authorization: `Bearer ${this.$store.state.token.aT}` } }
+        `${process.env.VUE_APP_API_URL}/survey`,
+        {
+          name: this.name,
+          description: this.description,
+          createdAt: new Date(),
+          isMultipleChoice: true,
+          questions: this.questions,
+          teacherId: this.$store.state.user._id,
+          courseId: this.selectedCourse._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
       );
-      console.log(this.newSurvey);
-      console.log(res);
+      this.$router.push({path: `/class/${this.selectedCourse._id}`})
+      console.log(res.data);
     },
     addChoice(value) {
-      if (this.newSurvey.questions[value.survey_id].answers.length < 4) {
-        this.newSurvey.questions[value.survey_id].answers.push({
-          id: this.newSurvey.questions[value.survey_id].answers.length,
+      if (this.questions[value.survey_id].answers.length < 4) {
+        this.questions[value.survey_id].answers.push({
+          id: this.questions[value.survey_id].answers.length,
           choice: "",
         });
       }
     },
     delQuestion(question) {
-      this.newSurvey.questions = this.newSurvey.questions.filter(
+      this.questions = this.questions.filter(
         (elm) => elm.survey_id != question.survey_id
       );
     },

@@ -10,8 +10,8 @@ import ClassView from "../views/ClassView.vue";
 import ClassComp from "../components/ClassComp.vue";
 import CreateFeedbackView from "../views/CreateFeedbackView.vue";
 import FeedbackDetail from "../views/FeedbackDetail";
-import resFromAPI from "../views/resFromAPI.vue"
-import CreateFeedbackClassic from '../views/CreateFeedbackClassic.vue';
+import resFromAPI from "../views/resFromAPI.vue";
+import CreateFeedbackClassic from "../views/CreateFeedbackClassic.vue";
 
 Vue.use(VueRouter);
 
@@ -26,8 +26,8 @@ const routes = [
     //   { path: "/:class/:feedback", component: FeedbackDetail },
     // ],
   },
-  { path: "/class/:class", component: ClassComp },
-  { path: "/class/:class/:feedback", component: FeedbackDetail },
+  { path: "/class/:courseId", component: ClassComp },
+  { path: "/class/:courseId/:feedback", component: FeedbackDetail },
   {
     path: "/resAuth",
     name: "ResAuth",
@@ -39,7 +39,7 @@ const routes = [
     component: LoginView,
   },
   {
-    path: "/feedback/:id",
+    path: "/feedback/:courseId/:surveyId",
     name: "Feedback",
     component: Feedback,
   },
@@ -93,7 +93,6 @@ router.beforeEach((to, from, next) => {
   if (
     to.name !== "LoginView" &&
     to.name !== "ResAuth" &&
-    to.name !== "Feedback"  &&
     !store.state.user
   )
     next({ name: "LoginView" });

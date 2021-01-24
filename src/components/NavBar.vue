@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex overflow-hidden z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 shadow-lg md:justify-start md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-16 fixed flex-row bottom-0 w-full justify-evenly"
+    class="flex overflow-hidden z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 shadow-lg md:justify-start md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-12 fixed flex-row bottom-0 w-full justify-evenly"
     style="padding-bottom:env(safe-area-inset-bottom);backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <router-link
@@ -19,12 +19,12 @@
       ></message-circle-icon>
     </nav-item> -->
     <nav-item
-      :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`"
+      :title="`${$store.state.user.name}`"
       redirectTo="/profile"
     >
       <user-icon size="1.5x" class="custom-class"></user-icon>
     </nav-item>
-    <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create">
+    <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create" v-if="isTeacher">
       <plus-icon size="1.5x" class="custom-class"></plus-icon>
     </nav-item>
   </div>
@@ -45,6 +45,12 @@ export default {
     PlusIcon,
     UserIcon,
     NavItem,
+  },
+  computed: {
+    isTeacher() {
+      if (this.$store.state.user.isTeacher) return true;
+      else return false;
+    },
   },
 };
 </script>

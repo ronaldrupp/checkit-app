@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Header :title="`${$store.state.user.firstName} ${$store.state.user.lastName}`" :BtnMethod="logout"
+    <Header :title="`${$store.state.user.name}`" :BtnMethod="logout"
       ><LogOutIcon
     /></Header>
-    <div class="flex flex-col p-5">
+    <div class="flex flex-col p-2">
       <ProfilePageHeader />
       <ProfileSettings class="lg:w-1/3" />
     </div>

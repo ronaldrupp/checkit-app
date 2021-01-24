@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full h-full flex items-center justify-center dark:bg-gray-900 bg-gray-100">
+  <div
+    class="w-full h-full flex items-center justify-center bg-white md:dark:bg-gray-900 md:bg-gray-100 dark:bg-gray-800"
+  >
     <!-- <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
       <a
@@ -31,21 +33,25 @@
       <p class="text-center">{{ this.$t("login.logintxt") }}</p>
       <button
         class="w-full my-1 bg-black hover:bg-opacity-50 text-white py-4 px-4 rounded-md mt-20"
-        @click.prevent="redirectToGoogle"
+        ref="signinBtn"
+        disabled="!isInit"
+        @click="handleGoogle"
       >
-        Continue with Google
+        <span v-if="isInit">Continue with Google</span>
+        <span v-else>Loading...</span>
       </button>
     </div>
   </div>
 </template>
 
 <script>
-// import RegisterForm from "./../components/RegisterForm";
-// import LoginForm from "./../components/LoginForm";
+import axios from "axios";
+
 export default {
   data() {
     return {
       mode: "login",
+      isInit: false,
     };
   },
   metaInfo() {
@@ -53,20 +59,28 @@ export default {
       title: "Login",
     };
   },
+  created() {
+    let that = this;
+    let checkGauthLoad = setInterval(function () {
+      that.isInit = that.$gAuth.isInit;
+      if (that.isInit) clearInterval(checkGauthLoad);
+    }, 1000);
+  },
   methods: {
     redirectToGoogle() {
       document.location.href = `${process.env.VUE_APP_API_URL}/user/login`;
     },
-  },
-  components: {
-    // RegisterForm,
-    // LoginForm,
+    async handleGoogle() {
+      const authCode = await this.$gAuth.getAuthCode();
+      const res = await axios.post(
+        `${process.env.VUE_APP_API_URL}/google/token`,
+        { authCode: authCode, redirect_uri: "postmessage" }
+      );
+      console.log(res.data);
+      this.$store.dispatch("setToken", res.data);
+      this.$store.dispatch("setUser", res.data.user);
+      this.$router.push("/");
+    },
   },
 };
 </script>
-
-<style scoped>
-.loginContainer {
-  /* background: var(--linear-gradient); */
-}
-</style>

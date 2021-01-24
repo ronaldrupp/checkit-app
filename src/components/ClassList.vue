@@ -1,47 +1,102 @@
 <template>
   <div class="flex w-full md:h-full  flex-col md:dark:border-gray-700">
-    <Header :title="$t('header.myClass')" :BtnMethod="addNewClass"
+    <Header :title="$t('header.myClass')" :BtnMethod="isTeacher"
       ><plus-icon
     /></Header>
-    <div class="flex flex-col md:p-2" v-if="!($store.state.courses.length == 0)">
+    <GClassroomCoursesDialog
+      v-if="showGCoursesDialog"
+      :gClassroomCourses="gClassroomCourses"
+      @closeDialog="closeDialog"
+    />
+    <div class="flex flex-col md:p-2" v-if="!(courses.length == 0)">
       <router-link
-        :to="`/class/${klasse.name}`"
-        class="w-full px-2 md:rounded-lg py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
-        v-for="klasse in $store.state.courses"
-        :key="klasse.name"
+        :to="`/class/${course._id}`"
+        class="w-full px-3 border-b dark:border-gray-600 py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
+        v-for="course in courses"
+        :key="course._id"
       >
-        <p class="font-semibold">{{ klasse.name }}</p>
+        <h1 class="text-base md:text-2xl lg:text-3xl font-bold">{{ course.name }}</h1>
+        <div class="flex mt-4 overflow-x-scroll">
+          <div class="flex">
+            <div class="border-r pr-4 dark:border-gray-600">
+              <img
+                class="object-cover rounded-full w-6 h-6"
+                :src="`https:${course.teacherPhotoUrl}`"
+              />
+            </div>
+          </div>
+          <div class="flex ml-4 ">
+            <div
+              class="-mr-1"
+              v-for="student in course.students"
+              :key="student.userId"
+            >
+              <img
+                class="object-cover rounded-full w-6 h-6"
+                :src="`https:${student.profile.photoUrl}`"
+              />
+            </div>
+          </div>
+        </div>
       </router-link>
     </div>
-    <p v-else>An error occured or you dont have any courses. Go inspect the console.</p>
+    <p v-else-if="courses.length == 0">You don't have any courses</p>
+    <p v-else>
+      An error occured. Go inspect the console.
+    </p>
   </div>
 </template>
 
 <script>
 import Header from "./Header";
+import GClassroomCoursesDialog from "./GClassroomCoursesDialog";
+import axios from "axios";
 import { PlusIcon } from "vue-feather-icons";
 export default {
   components: {
     Header,
     PlusIcon,
+    GClassroomCoursesDialog,
   },
   data() {
     return {
-      classesList: [
-        { name: "SEW 5BHITM" },
-        { name: "ITP 4BHITM" },
-        { name: "SEW 4BHITM" },
-        { name: "WEBT 4BHITM" },
-        { name: "WEBT 5BHITM" },
-      ],
+      showGCoursesDialog: false,
+      gClassroomCourses: [],
+      courses: [],
     };
   },
   methods: {
-    addNewClass() {
-      alert("in progress...");
+    async addNewClass() {
+      let res = await axios.get(`${process.env.VUE_APP_API_URL}/allCourses`, {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+        },
+      });
+      console.log(res.data);
+      this.showGCoursesDialog = true;
+      this.gClassroomCourses = res.data;
+    },
+    closeDialog() {
+      this.showGCoursesDialog = false;
+      this.getCourses();
+    },
+    async getCourses() {
+      let res = await axios.get(`${process.env.VUE_APP_API_URL}/courses`, {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+        },
+      });
+      this.courses = res.data;
     },
   },
   created() {
+    this.getCourses();
+  },
+  computed: {
+    isTeacher() {
+      if (this.$store.state.user.isTeacher) return this.addNewClass;
+      else return undefined;
+    },
   },
 };
 </script>

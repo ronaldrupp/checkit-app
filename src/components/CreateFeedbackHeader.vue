@@ -5,7 +5,7 @@
         class="bg-transparent w-full outline-none dark:text-white dark:placeholder-white text-3xl font-bold rounded-md p-1 placeholder-gray-800 placeholder-opacity-75"
         type="text"
         :placeholder="$t('create.titleFeedback')"
-        v-model="data.name"
+        v-model="name"
       />
     </div>
   </div>
@@ -15,7 +15,7 @@
 export default {
 props: {
   data: {
-    type: Object,
+    type: String,
   },
 },
 };

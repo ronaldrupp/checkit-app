@@ -2,7 +2,7 @@
   <div class="overflow-y-scroll">
     <Header
       :back="true"
-      :title="`${$route.params.class}`"
+      :title="course.name"
       :BtnMethod="
         () => {
           alert('you clicked');
@@ -11,62 +11,39 @@
       ><MoreHorizontalIcon
     /></Header>
     <div class="mt-12">
-      <h1 class="text-3xl lg:text-4xl font-bold ml-6">
-        {{ $route.params.class }}
+      <h1 class="text-base md:text-2xl lg:text-3xl ml-6 font-bold">
+        {{ course.name }}
       </h1>
-      <div class="flex mt-4 ml-6 overflow-x-scroll">
+      <h2 class="text-sm md:text-lg lg:text-xl ml-6 my-2">
+        {{ course.descriptionHeading }}
+      </h2>
+      <div class="flex ml-6 overflow-x-scroll my-12">
         <div class="flex   ">
           <div class="border-r pr-4">
             <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
+              class="object-cover rounded-full w-8 h-8 md:w-12 md:h-12"
+              :src="`https:${course.teacherPhotoUrl}`"
             />
           </div>
         </div>
         <div class="flex ml-4 ">
-          <div class="-mr-3">
+          <div
+            class="-mr-3"
+            v-for="student in course.students"
+            :key="student.userId"
+          >
             <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
-            />
-          </div>
-          <div class="-mr-3">
-            <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
-            />
-          </div>
-          <div class="-mr-3">
-            <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
-            />
-          </div>
-          <div class="-mr-3">
-            <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
-            />
-          </div>
-          <div class="-mr-3">
-            <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
-            />
-          </div>
-          <div class="-mr-3">
-            <img
-              class="object-cover rounded-full w-12 h-12"
-              src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_54895638.jpg?quality=90&strip=all"
+              class="object-cover rounded-full w-8 h-8 md:w-12 md:h-12"
+              :src="`https:${student.profile.photoUrl}`"
             />
           </div>
         </div>
       </div>
-      <div class="mt-12">
+      <div class="">
         <my-feedbacks-card
-          v-for="feedback of myfeedbacks"
-          :key="feedback.id"
-          :feedback="feedback"
+          v-for="survey of myfeedbacks"
+          :key="survey._id"
+          :feedback="survey"
         />
       </div>
     </div>
@@ -77,6 +54,7 @@
 import Header from "./Header";
 import MyFeedbacksCard from "./MyFeedbacksCard";
 import { MoreHorizontalIcon } from "vue-feather-icons";
+import axios from "axios";
 
 export default {
   components: {
@@ -86,80 +64,42 @@ export default {
   },
   metaInfo() {
     return {
-      title: this.$route.params.class,
+      title: this.course.name,
     };
   },
   data() {
     return {
-      myfeedbacks: [
-        {
-          id: 1,
-          grade: "4BHITM",
-          title: "4BHITM - WEBT: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 2,
-          grade: "4BHITM",
-          title: "4BHITM - WEBT: Feedback zur vorletzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 3,
-          grade: "4BHITM",
-          title: "4BHITM - SEW: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 4,
-          grade: "4BHITM",
-          title: "4BHITM - SEW: Feedback zur vorletzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 5,
-          grade: "4BHITM",
-          title: "4CHITM - WEBT: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 123,
-          grade: "4BHITM",
-          title: "4CHITM - WEBT: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 235,
-          grade: "4BHITM",
-          title: "4CHITM - WEBT: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 325,
-          grade: "4BHITM",
-          title: "4CHITM - WEBT: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-        {
-          id: 12,
-          grade: "4BHITM",
-          title: "4CHITM - WEBT: Feedback zur letzten Stunde",
-          date: "10 Oct 2020 - 03:32",
-          attendees: 42,
-        },
-      ],
+      myfeedbacks: [],
+      course: {},
     };
   },
+  created() {
+    this.getCourse();
+  },
   methods: {
-    name() {},
+    async getSurveys() {
+      let res = await axios.get(
+        `${process.env.VUE_APP_API_URL}/surveys/${this.course._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
+      );
+      this.myfeedbacks = res.data.reverse();
+    },
+    async getCourse() {
+      let res = await axios.get(
+        `${process.env.VUE_APP_API_URL}/course/${this.$route.params.courseId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
+      );
+      this.course = res.data[0];
+      this.getSurveys();
+    },
   },
 };
 </script>
