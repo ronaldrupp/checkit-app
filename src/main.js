@@ -9,7 +9,8 @@ import "./tailwind.css";
 import { i18n } from "./plugins/i18n.js";
 import GAuth from "vue-google-oauth2";
 import { polyfill } from "seamless-scroll-polyfill";
-
+import {SharedElementRouteGuard, SharedElementDirective} from 'v-shared-element'
+import VuePageTransition from "vue-page-transition";
 polyfill();
 
 const gauthOption = {
@@ -20,6 +21,10 @@ const gauthOption = {
   prompt: "select_account",
 };
 
+router.beforeEach(SharedElementRouteGuard);
+
+Vue.use(VuePageTransition);
+Vue.use(SharedElementDirective)
 Vue.use(GAuth, gauthOption);
 Vue.use(VueConfetti);
 Vue.use(VueMeta);

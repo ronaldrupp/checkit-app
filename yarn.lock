@@ -5023,6 +5023,13 @@ ignore@^4.0.3, ignore@^4.0.6:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
+illusory@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/illusory/-/illusory-2.0.3.tgz#97015d60438f6ca594fb1437cdac25b89377fb9f"
+  integrity sha512-UKGUKGy2JjgqVtJkii4QY6VwJTa0bNKA0r3YehWip9DcK/Q0z190Vx7yDDDd4tPWqZ+j9zsZQ0iVSmYKCUgxwg==
+  dependencies:
+    rematrix "^0.7.0"
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -7893,6 +7900,11 @@ relateurl@0.2.x:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
+rematrix@^0.7.0:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/rematrix/-/rematrix-0.7.1.tgz#d82436e9435eef0033e3ddf56846f4ec9304f501"
+  integrity sha512-hpzF+IZWKGSFyWDAIOI2agTlWU+ebFDwmZmG8kBl0LJSxDTnTZdcNyVnh2CMpyBfTH7OJTtf4dosNdH25elR2w==
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -9463,6 +9475,13 @@ uuidv4@3.0.1:
   dependencies:
     uuid "3.3.2"
 
+v-shared-element@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/v-shared-element/-/v-shared-element-3.0.3.tgz#c3d131bc94dd1c96fd482c1433a0d1fad5059f2c"
+  integrity sha512-KHeOIObg+jz7fL1EdqV3zLi4V7B1T3dyogu0PkeJmWIY2RpuHD6VEmn4KeNg64AhuYjmBBxCiV9+TNF6eiQvSA==
+  dependencies:
+    illusory "^2.0.3"
+
 v8-compile-cache@^2.0.3:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.1.1.tgz#54bc3cdd43317bca91e35dcaf305b1a7237de745"
@@ -9577,6 +9596,11 @@ vue-meta@^2.4.0:
   integrity sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==
   dependencies:
     deepmerge "^4.2.2"
+
+vue-page-transition@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vue-page-transition/-/vue-page-transition-0.2.2.tgz#a7c607ccc8dc67e7c05e66a5a9d54bd27d252d56"
+  integrity sha512-qOx+llJ28XX0VwJNJ4GVaeNBPRmPMZac2QQgrIHVUhpXyJx2CQ2XvoQOpGD1ge7QMY3PjZ6fwTbdBwZkA3I9qA==
 
 vue-router@^3.2.0:
   version "3.4.6"

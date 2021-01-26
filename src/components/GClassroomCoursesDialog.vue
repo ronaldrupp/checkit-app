@@ -53,7 +53,7 @@ export default {
   methods: {
     async addGClassroomCourseToCheckit(gCourse) {
       let res = await axios.post(
-        "http://localhost:3000/course",
+        `${process.env.VUE_APP_API_URL}/course`,
         {
           name: gCourse.name,
           descriptionHeading: gCourse.descriptionHeading,

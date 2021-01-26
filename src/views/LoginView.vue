@@ -34,7 +34,6 @@
       <button
         class="w-full my-1 bg-black hover:bg-opacity-50 text-white py-4 px-4 rounded-md mt-20"
         ref="signinBtn"
-        disabled="!isInit"
         @click="handleGoogle"
       >
         <span v-if="isInit">Continue with Google</span>

@@ -8,14 +8,16 @@
       :gClassroomCourses="gClassroomCourses"
       @closeDialog="closeDialog"
     />
-    <div class="flex flex-col md:p-2" v-if="!(courses.length == 0)">
+    <div class="flex flex-col" v-if="!(courses.length == 0)">
       <router-link
         :to="`/class/${course._id}`"
         class="w-full px-3 border-b dark:border-gray-600 py-6 hover:bg-gray-100 dark:hover:bg-gray-800"
         v-for="course in courses"
         :key="course._id"
       >
-        <h1 class="text-base md:text-2xl lg:text-3xl font-bold">{{ course.name }}</h1>
+        <h1 class="text-base md:text-2xl lg:text-3xl font-bold">
+          {{ course.name }}
+        </h1>
         <div class="flex mt-4 overflow-x-scroll">
           <div class="flex">
             <div class="border-r pr-4 dark:border-gray-600">
@@ -51,8 +53,10 @@
 import Header from "./Header";
 import GClassroomCoursesDialog from "./GClassroomCoursesDialog";
 import axios from "axios";
+import { sharedElementMixin } from "v-shared-element";
 import { PlusIcon } from "vue-feather-icons";
 export default {
+  mixins: [sharedElementMixin],
   components: {
     Header,
     PlusIcon,
@@ -67,13 +71,13 @@ export default {
   },
   methods: {
     async addNewClass() {
+      this.showGCoursesDialog = true;
       let res = await axios.get(`${process.env.VUE_APP_API_URL}/allCourses`, {
         headers: {
           Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
         },
       });
       console.log(res.data);
-      this.showGCoursesDialog = true;
       this.gClassroomCourses = res.data;
     },
     closeDialog() {

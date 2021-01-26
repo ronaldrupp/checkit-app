@@ -11,7 +11,9 @@
       ><MoreHorizontalIcon
     /></Header>
     <div class="mt-12">
-      <h1 class="text-base md:text-2xl lg:text-3xl ml-6 font-bold">
+      <h1
+        class="text-base md:text-2xl lg:text-3xl ml-6 font-bold"
+      >
         {{ course.name }}
       </h1>
       <h2 class="text-sm md:text-lg lg:text-xl ml-6 my-2">
@@ -55,8 +57,10 @@ import Header from "./Header";
 import MyFeedbacksCard from "./MyFeedbacksCard";
 import { MoreHorizontalIcon } from "vue-feather-icons";
 import axios from "axios";
+import { sharedElementMixin } from "v-shared-element";
 
 export default {
+  mixins: [sharedElementMixin],
   components: {
     Header,
     MyFeedbacksCard,
@@ -104,4 +108,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
