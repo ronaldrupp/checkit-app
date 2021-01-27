@@ -109,6 +109,11 @@ export default {
 </script>
 
 <style scoped>
+
+.overflow-x-scroll{
+  overflow-x: hidden;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }

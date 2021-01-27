@@ -105,4 +105,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.overflow-x-scroll{
+  overflow-x: hiddenv;
+}
+
+
+</style>
