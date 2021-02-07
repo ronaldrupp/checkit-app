@@ -3,10 +3,17 @@ import { Pie } from "vue-chartjs";
 export default {
   data() {
     return {
+      dataBorderColor: [
+        "rgba(78, 149, 255, 1)",
+        "rgba(113, 191, 245, 0.96)",
+        "rgba(19, 76, 117, 46)",
+        "rgba(31, 126, 194, 76)",
+      ],
       dataColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(75, 192, 192, 1)",
+        "rgba(38, 159, 245, 0.96)",
+        "rgba(113, 191, 245, 0.96)",
+        "rgba(19, 76, 117, 46)",
+        "rgba(31, 126, 194, 76)",
       ],
     };
   },
@@ -39,12 +46,8 @@ export default {
         datasets: [
           {
             data: this.getPeoplePerRes(),
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-            ],
-            borderColor: this.dataColor,
+            backgroundColor: this.dataColor,
+            borderColor: this.dataBorderColor,
             borderWidth: 1,
           },
         ],

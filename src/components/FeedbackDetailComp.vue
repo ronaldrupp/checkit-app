@@ -5,7 +5,7 @@
       :key="idx"
       class="flex flex-col border rounded-md m-5 p-5 border-b transition duration-100 dark:border-gray-800 "
     >
-      <p class="text-xl mb-4">{{ result.question }}</p>
+      <p class="text-lg font-semibold mb-4">{{ result.question }}</p>
       <div class="flex flex-wrap items-center justify-around">
         <Charts :result="result" class="md:w-min w-full self-center" />
         <div>
@@ -31,11 +31,6 @@ export default {
   },
   data() {
     return {
-      dataColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(75, 192, 192, 1)",
-      ],
       dataFromAPI: [
         {
           question: "Wie fandest du den heutigen Unterricht?",
@@ -74,6 +69,31 @@ export default {
               option: "Unverständlich",
               percent: 0.32,
               count: 6,
+            },
+          ],
+        },
+        {
+          question: "Die Stunde heute war in Summe:",
+          answer: [
+            {
+              option: "Fad",
+              percent: 0.41,
+              count: 10,
+            },
+            {
+              option: "Ok",
+              percent: 0.12,
+              count: 3,
+            },
+            {
+              option: "Interessant",
+              percent: 0.37,
+              count: 9,
+            },
+            {
+              option: "Episch",
+              percent: 0.1,
+              count: 3,
             },
           ],
         },
