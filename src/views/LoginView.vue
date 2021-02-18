@@ -26,7 +26,7 @@
       <RegisterForm v-else />
     </div> -->
     <div
-      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 border rounded-md"
+      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 border dark:border-gray-800 rounded-md"
     >
       <img class="w-12 my-12" src="@/assets/logo_black.svg" />
       <h1 class="font-bold text-3xl my-4">Login</h1>

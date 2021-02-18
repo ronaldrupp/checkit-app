@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex overflow-hidden z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 shadow-lg md:justify-start md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-12 fixed flex-row bottom-0 w-full justify-evenly"
+    class="flex z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 shadow-lg md:justify-start md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-12 fixed flex-row bottom-0 w-full justify-evenly"
     style="padding-bottom:env(safe-area-inset-bottom);backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <router-link
@@ -10,22 +10,40 @@
       <img src="@/assets/logo_blue.svg" class="" />
     </router-link>
     <nav-item :title="$t('navbar.class')" redirectTo="/class">
-      <grid-icon size="1.5x" class="custom-class"></grid-icon>
-    </nav-item>
-    <nav-item :title="$t('navbar.savedFeedbacks')" redirectTo="/savedfeedbacks">
-      <edit-3-icon
-        size="1.5x"
-        class="custom-class"
-      ></edit-3-icon>
-    </nav-item>
-    <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create" v-if="isTeacher">
-      <plus-icon size="1.5x" class="custom-class"></plus-icon>
+      <template v-slot:icon>
+        <grid-icon size="1.5x" class="custom-class"></grid-icon>
+      </template>
     </nav-item>
     <nav-item
-      :title="`${$store.state.user.name}`"
-      redirectTo="/profile"
+      :title="$t('navbar.savedFeedbacks')"
+      redirectTo="/savedfeedbacks"
+      v-if="isTeacher"
     >
-      <user-icon size="1.5x" class="custom-class"></user-icon>
+      <template v-slot:icon>
+        <edit-3-icon size="1.5x" class="custom-class"></edit-3-icon>
+      </template>
+    </nav-item>
+
+    <button
+      @click="showActions = !showActions"
+      v-if="isTeacher"
+      class="md:flex-grow-0 relative w-full transition ease-in-out active:scale-50 md:w-full justify-center md:justify-start flex-grow duration-100 md:hover:bg-gray-200 flex items-center p-2 lg:px-4 lg:py-3 rounded-full lg:rounded-lg md:mt-4 hover:bg-grey-100 md:dark:hover:bg-gray-800 "
+    >
+      <plus-icon size="1.5x" class="custom-class"></plus-icon>
+      <p
+        class="hidden lg:block lg:ml-3 text-l font-semibold overflow-hidden truncate"
+      >
+        {{ $t("navbar.createFeedback") }}
+      </p>
+      <div class="bottom-0 absolute md:top-0 z-40 left-0 bg-white dark:bg-gray-800 flex flex-col" v-if="showActions">
+        <router-link to="/create/swipe" class="p-4 md:hover:bg-gray-200">SWIPE</router-link>
+        <router-link to="/create/classic" class="p-4 md:hover:bg-gray-200">CLASSIC</router-link>
+      </div>
+    </button>
+    <nav-item :title="`${$store.state.user.name}`" redirectTo="/profile">
+      <template v-slot:icon>
+        <user-icon size="1.5x" class="custom-class"></user-icon>
+      </template>
     </nav-item>
   </div>
 </template>
@@ -36,7 +54,7 @@ import {
   UserIcon,
   GridIcon,
   PlusIcon,
-  Edit3Icon
+  Edit3Icon,
 } from "vue-feather-icons";
 import NavItem from "./NavItem";
 export default {
@@ -46,7 +64,12 @@ export default {
     PlusIcon,
     UserIcon,
     NavItem,
-    Edit3Icon
+    Edit3Icon,
+  },
+  data() {
+    return {
+      showActions: false,
+    };
   },
   computed: {
     isTeacher() {

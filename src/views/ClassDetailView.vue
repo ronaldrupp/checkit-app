@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="">
+      <div class="border-t dark:border-gray-800">
         <my-feedbacks-card
           :navigateTo="`/class/${course._id}/${feedback._id}`"
           v-for="feedback of feedbacks"
