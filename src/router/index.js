@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store/index";
-import Home from "../views/Home.vue";
+import SavedFeedbacksView from "../views/SavedFeedbacksView.vue";
 import Feedback from "../views/Feedback.vue";
 import LoginView from "../views/LoginView.vue";
 import Profile from "../views/Profile.vue";
 import NotFound from "../views/404.vue";
 import ClassView from "../views/ClassView.vue";
-import ClassComp from "../components/ClassComp.vue";
+import ClassDetailView from "../views/ClassDetailView.vue";
 import CreateFeedbackView from "../views/CreateFeedbackView.vue";
 import FeedbackDetail from "../views/FeedbackDetail";
 import resFromAPI from "../views/resFromAPI.vue";
@@ -21,12 +21,8 @@ const routes = [
     path: "/class",
     name: "Class",
     component: ClassView,
-    // children: [
-    //   { path: "/class/:class", component: ClassComp },
-    //   { path: "/:class/:feedback", component: FeedbackDetail },
-    // ],
   },
-  { path: "/class/:courseId", component: ClassComp },
+  { path: "/class/:courseId", component: ClassDetailView },
   { path: "/class/:courseId/:feedback", component: FeedbackDetail },
   {
     path: "/resAuth",
@@ -44,9 +40,9 @@ const routes = [
     component: Feedback,
   },
   {
-    path: "/feedbacks",
+    path: "/savedfeedbacks",
     name: "Feedbacks",
-    component: Home,
+    component: SavedFeedbacksView,
   },
   {
     path: "/create",
@@ -89,11 +85,16 @@ const router = new VueRouter({
   },
 });
 
-
 router.beforeEach((to, from, next) => {
-  if (to.name !== "LoginView" && to.name !== "ResAuth" && !store.state.user)
-    next({ name: "LoginView" });
-  else next();
+  if (to.name !== "LoginView" && to.name !== "ResAuth" && !store.state.user) {
+    console.log(to);
+    next({
+      name: "LoginView",
+      query: {
+        redirect: to.path,
+      },
+    });
+  } else next();
 });
 
 export default router;

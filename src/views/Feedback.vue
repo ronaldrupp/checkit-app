@@ -22,6 +22,7 @@
       <div class="flex flex-col items-center">
         <img
           class="w-28 h-28 rounded-full object-cover mb-6"
+          referrerpolicy="no-referrer"
           :src="`https:${dataFromAPI.teacherPhotoUrl}`"
         />
         <p class="mx-2 text-base ">{{ dataFromAPI.teacherName }}</p>
@@ -94,6 +95,7 @@
         <div class="flex items-center mt-6">
           <img
             class="rounded-full w-12 h-12 object-cover"
+            referrerpolicy="no-referrer"
             :src="`https:${dataFromAPI.teacherPhotoUrl}`"
           />
           <p class="ml-2">{{ dataFromAPI.teacherName }}</p>
@@ -102,9 +104,9 @@
           v-if="!disableBtn"
           @click="postAnsweredSurvey"
           :disabled="disableBtn"
-          class="mt-20 px-20 py-2 rounded-md bg-gray-800"
+          class="mt-20 px-20 py-4 rounded-md bg-blue-500 text-white font-semibold dark:bg-gray-800"
         >
-          Submit
+          Abschicken
         </button>
       </div>
     </div>

@@ -3,25 +3,25 @@
     class="overlay absolute top-0 left-0 w-full h-full z-50 flex justify-center items-center"
   >
     <div
-      class="bg-white dark:bg-gray-800 overflow-y-scroll rounded-md text-black dark:text-white w-3/4 h-3/4 "
+      class="bg-white dark:bg-gray-800  rounded-md text-black dark:text-white w-3/4 h-3/4 overflow-hidden"
     >
       <div
-        class="sticky bg-white dark:bg-gray-800 dark:bg-dark w-full p-4 py-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-600"
+        class="sticky bg-white  dark:bg-gray-800 dark:bg-dark w-full p-4 py-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-600"
       >
         <h1 class="text-2xl font-semibold text-left ">
           Select one of your Google Classroom courses
         </h1>
         <button
           @click="$emit('closeDialog')"
-          class="text-blue-500 mr-2 border-none hover:bg-opacity-75 py-2 px-2 rounded-full  dark:hover:bg-gray-600 hover:bg-gray-200"
+          class="text-blue-500 border-none hover:bg-opacity-75 p-2 rounded-full  dark:hover:bg-gray-800 hover:bg-gray-200"
         >
-          <x-icon size="1.5x"></x-icon>
+          <x-icon size="1x"></x-icon>
         </button>
       </div>
-      <div class="p-2">
+      <div class="overflow-y-scroll">
         <button
           @click="addGClassroomCourseToCheckit(gCourse)"
-          class="w-full my-4 flex flex-col justify-start items-start hover:bg-gray-200 dark:hover:bg-gray-600 p-2 text-left cursor-pointer rounded-lg"
+          class="w-full flex flex-col justify-start items-start hover:bg-gray-200 dark:hover:bg-gray-800 p-4 text-left cursor-pointer"
           v-for="gCourse in gClassroomCourses"
           :key="gCourse.id"
         >

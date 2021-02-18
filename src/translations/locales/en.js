@@ -8,6 +8,7 @@ export default {
     class: "Class",
     recentFeedbacks: "Recent Feedbacks",
     createFeedback: "Create Feedback",
+    savedFeedbacks: "Saved Feedbacks",
   },
   profile: {
     info: "Edit profile information",
@@ -28,6 +29,6 @@ export default {
     question: "Ask a question...",
     choice: "Choice",
     createBtn: "Create",
-    addChoice: "Add Choice"
+    addChoice: "Add Choice",
   },
 };

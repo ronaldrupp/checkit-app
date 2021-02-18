@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col md:border-r md:dark:border-gray-700">
     <Header :title="this.$t('header.createFeedback')" />
     <div class="flex flex-col md:flex-row md:justify-center md:items-center flex-grow p-4">
       <div

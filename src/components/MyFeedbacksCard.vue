@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-link :to="`/class/${feedback.grade}/${feedback.id}`">
+    <router-link :to="navigateTo">
       <div
-        class="border-t active:scale-50 transition duration-100 transform hover:bg-gray-100 min-w-0 flex dark:hover:bg-gray-800 dark:border-gray-800 items-center justify-between px-4 py-8 border-solid"
+        class="border-b active:scale-50 transition duration-100 transform hover:bg-gray-100 min-w-0 flex dark:hover:bg-gray-800 dark:border-gray-800 items-center justify-between px-4 py-8 border-solid"
       >
         <div class="flex min-w-0 ">
           <div class="flex flex-col min-w-0 ">
@@ -10,11 +10,13 @@
             <h2 class="text-base font-semibold truncate">
               {{ feedback.name }}
             </h2>
-            <p class="truncate text-sm">{{ feedback.createdAt | formatDate }}</p>
+            <p class="truncate text-sm">
+              {{ feedback.createdAt | formatDate }} <span v-if="feedback.updatedAt" class="text-gray-500">Updated at {{feedback.updatedAt | formatDate}}</span>
+            </p>
           </div>
         </div>
-        <div class="flex items-center">
-          <UsersIcon size="1x"/>
+        <div class="flex items-center" v-if="feedback.answers">
+          <UsersIcon size="1x" />
           <p class="ml-2 ">{{ feedback.answers.length }}</p>
         </div>
       </div>
@@ -23,9 +25,9 @@
 </template>
 
 <script>
-import dayjs from 'dayjs'
-import 'dayjs/locale/de'
-import 'dayjs/locale/en'
+import dayjs from "dayjs";
+import "dayjs/locale/de";
+import "dayjs/locale/en";
 import { UsersIcon } from "vue-feather-icons";
 export default {
   components: {
@@ -35,12 +37,16 @@ export default {
     feedback: {
       type: Object,
     },
+    courseId: String,
+    navigateTo: String
   },
   filters: {
     formatDate: function(value) {
-      return dayjs(value).locale(navigator.language).format("dd DD. MMMM YYYY HH:mm");
-    }
-  }
+      return dayjs(value)
+        .locale(navigator.language)
+        .format("dd DD. MMMM YYYY HH:mm");
+    },
+  },
 };
 </script>
 

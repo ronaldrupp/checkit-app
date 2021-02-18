@@ -1,19 +1,17 @@
 <template>
-  <div class="overflow-y-scroll">
+  <div class="overflow-y-scroll md:border-r md:dark:border-gray-700">
     <Header
       :back="true"
       :title="course.name"
       :BtnMethod="
         () => {
-          alert('you clicked');
+          console.log('you clicked');
         }
       "
-      ><MoreHorizontalIcon
-    /></Header>
+      ><plus-icon size="1.5x" class="custom-class"></plus-icon>
+    </Header>
     <div class="mt-12">
-      <h1
-        class="text-base md:text-2xl lg:text-3xl ml-6 font-bold"
-      >
+      <h1 class="text-base md:text-2xl lg:text-3xl ml-6 font-bold">
         {{ course.name }}
       </h1>
       <h2 class="text-sm md:text-lg lg:text-xl ml-6 my-2">
@@ -24,6 +22,7 @@
           <div class="border-r pr-4">
             <img
               class="object-cover rounded-full w-8 h-8 md:w-12 md:h-12"
+              referrerpolicy="no-referrer"
               :src="`https:${course.teacherPhotoUrl}`"
             />
           </div>
@@ -36,6 +35,7 @@
           >
             <img
               class="object-cover rounded-full w-8 h-8 md:w-12 md:h-12"
+              referrerpolicy="no-referrer"
               :src="`https:${student.profile.photoUrl}`"
             />
           </div>
@@ -43,9 +43,10 @@
       </div>
       <div class="">
         <my-feedbacks-card
-          v-for="survey of myfeedbacks"
-          :key="survey._id"
-          :feedback="survey"
+          :navigateTo="`/class/${course._id}/${feedback._id}`"
+          v-for="feedback of feedbacks"
+          :key="feedback._id"
+          :feedback="feedback"
         />
       </div>
     </div>
@@ -53,9 +54,9 @@
 </template>
 
 <script>
-import Header from "./Header";
-import MyFeedbacksCard from "./MyFeedbacksCard";
-import { MoreHorizontalIcon } from "vue-feather-icons";
+import Header from "./../components/Header";
+import MyFeedbacksCard from "./../components/MyFeedbacksCard";
+import { PlusIcon } from "vue-feather-icons";
 import axios from "axios";
 import { sharedElementMixin } from "v-shared-element";
 
@@ -64,7 +65,7 @@ export default {
   components: {
     Header,
     MyFeedbacksCard,
-    MoreHorizontalIcon,
+    PlusIcon,
   },
   metaInfo() {
     return {
@@ -73,7 +74,7 @@ export default {
   },
   data() {
     return {
-      myfeedbacks: [],
+      feedbacks: [],
       course: {},
     };
   },
@@ -90,7 +91,7 @@ export default {
           },
         }
       );
-      this.myfeedbacks = res.data.reverse();
+      this.feedbacks = res.data.reverse();
     },
     async getCourse() {
       let res = await axios.get(
@@ -101,7 +102,7 @@ export default {
           },
         }
       );
-      this.course = res.data[0];
+      this.course = res.data;
       this.getSurveys();
     },
   },
@@ -109,13 +110,13 @@ export default {
 </script>
 
 <style scoped>
-
-.overflow-x-scroll{
+.overflow-x-scroll {
   overflow-x: hidden;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

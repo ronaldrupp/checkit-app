@@ -3,10 +3,10 @@
     id="app"
     class="dark:bg-gray-900 bg-white dark:text-white overflow-hidden outline-none"
   >
-    <NavBar v-if="showNav && $store.state.user" />
-    <keep-alive>
+    <div class="app-wrapper">
+      <NavBar v-if="showNav && $store.state.user" />
       <router-view class="flex-1" />
-    </keep-alive>
+    </div>
   </div>
 </template>
 
@@ -70,6 +70,12 @@ a {
   overflow: hidden;
   width: 100%;
   height: 100%;
+}
+.app-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0rem auto;
 }
 /*
 #nav a {

@@ -5,9 +5,10 @@ export default {
     subtxt: "Eine Diplomarbeit von ",
   },
   navbar: {
-    class: "Klasse",
+    class: "Klassen",
     recentFeedbacks: "Aktuelle Feedbacks",
     createFeedback: "Feedback erstellen",
+    savedFeedbacks: "gespeicherte Feedbacks",
   },
   profile: {
     info: "Profil bearbeiten",
@@ -17,7 +18,7 @@ export default {
   },
   header: {
     myClass: "Meine Klasse",
-    myFeedback: "Meine Feedbacks",
+    mySavedFeedback: "Meine gespeicherten Feedbacks",
     createFeedback: "Feedback erstellen",
   },
   resFromAPI: {
@@ -25,6 +26,7 @@ export default {
   },
   create: {
     titleFeedback: "Titel des Feedbacks",
+    descriptionFeedback: "Beschreibung des Feedbacks",
     question: "Stelle eine Frage...",
     choice: "Antwortmöglichkeit",
     createBtn: "Erstellen",

@@ -1,15 +1,23 @@
 <template>
-  <div class="overflow-y-scroll pb-20">
+  <div class="overflow-y-scroll pb-20 md:border-r md:dark:border-gray-700">
     <div class="flex flex-col ">
       <Header
         :title="this.$t('header.createFeedback')"
         back
-        :BtnMethod="saveFeedback"
+        :BtnMethod1="deleteFeedback"
+        :BtnMethod2="saveFeedback"
+        :BtnMethod3="postFeedback"
       >
-        <!-- <PlusIcon
-      /> -->
-        <p>Posten</p></Header
-      >
+        <template v-slot:btn1 v-if="id">
+          <trash-icon size="1.5x" class="custom-class"></trash-icon>
+        </template>
+        <template v-slot:btn2>
+          <save-icon size="1.5x" class="custom-class"></save-icon>
+        </template>
+        <template v-slot:btn3>
+          <send-icon size="1.5x" />
+        </template>
+      </Header>
       <div class="flex items-center px-4 py-8">
         <div class="flex flex-col w-full">
           <input
@@ -18,16 +26,14 @@
             :placeholder="$t('create.titleFeedback')"
             v-model="name"
           />
+          <input
+            class="bg-transparent w-full outline-none dark:text-white dark:placeholder-white text-base font-medium rounded-md p-1 placeholder-gray-800 placeholder-opacity-75"
+            type="text"
+            :placeholder="$t('create.descriptionFeedback')"
+            v-model="description"
+          />
         </div>
       </div>
-      <button
-        @click="
-          getCourses();
-          showCoursesDialog = true;
-        "
-      >
-        {{ selectedCourse.name ? selectedCourse.name : "Klasse auswählen" }}
-      </button>
       <selectCourseDialog
         v-if="showCoursesDialog"
         :gClassroomCourses="courses"
@@ -58,34 +64,37 @@
 import Header from "@/components/Header.vue";
 import selectCourseDialog from "@/components/selectCourseDialog.vue";
 import CreateFeedbackInput from "@/components/CreateFeedbackInput.vue";
-import { PlusIcon } from "vue-feather-icons";
+import { SendIcon, SaveIcon, PlusIcon, TrashIcon } from "vue-feather-icons";
 import axios from "axios";
 
 export default {
   components: {
     Header,
     CreateFeedbackInput,
-    PlusIcon,
+    SendIcon,
     selectCourseDialog,
+    SaveIcon,
+    PlusIcon,
+    TrashIcon,
   },
   data() {
     return {
       QuestionCount: 1,
       showCoursesDialog: false,
-      courses: [],
       selectedCourse: {},
+      id: "",
       name: "",
       questions: [
         {
           survey_id: 0,
           question: "",
           answers: [
-            { id: 0, choice: "" },
-            { id: 1, choice: "" },
+            { id: 0, choice: "", votes: 0 },
+            { id: 1, choice: "", votes: 0 },
           ],
         },
       ],
-      description: "s",
+      description: "",
     };
   },
   metaInfo() {
@@ -93,14 +102,43 @@ export default {
       title: "Create Feedback",
     };
   },
+  created() {
+    this.$route.query.feedbackdraft && this.getFeedbackDraft();
+  },
   methods: {
+    async deleteFeedback() {
+      let res = await axios.delete(
+        `${process.env.VUE_APP_API_URL}/feedbackdraft/${this.$route.query.feedbackdraft}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
+      );
+      console.log(res)
+      this.$router.replace({ path: `/savedfeedbacks` });
+    },
+    async getFeedbackDraft() {
+      let res = await axios.get(
+        `${process.env.VUE_APP_API_URL}/feedbackdraft/${this.$route.query.feedbackdraft}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
+      );
+      this.id = res.data._id;
+      this.name = res.data.name;
+      this.questions = res.data.questions;
+      this.description = res.data.description;
+    },
     addNewQuestion() {
       this.questions.push({
         survey_id: this.questions.length,
         question: "",
         answers: [
-          { id: 0, choice: "" },
-          { id: 1, choice: "" },
+          { id: 0, choice: "", votes: 0 },
+          { id: 1, choice: "", votes: 0 },
         ],
       });
       setTimeout(
@@ -109,21 +147,12 @@ export default {
         10
       );
     },
-    setSelectedCourse(value) {
+    async setSelectedCourse(value) {
       this.selectedCourse = value;
-    },
-    async getCourses() {
-      let res = await axios.get(`${process.env.VUE_APP_API_URL}/courses`, {
-        headers: {
-          Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
-        },
-      });
-      this.courses = res.data;
-    },
-    async saveFeedback() {
       let res = await axios.post(
         `${process.env.VUE_APP_API_URL}/survey`,
         {
+          _id: this.id,
           name: this.name,
           description: this.description,
           createdAt: new Date(),
@@ -138,14 +167,60 @@ export default {
           },
         }
       );
-      this.$router.push({path: `/class/${this.selectedCourse._id}`})
       console.log(res.data);
+      this.$router.push({ path: `/class/${res.data.courseId}` });
+    },
+
+    async postFeedback() {
+      this.showCoursesDialog = true;
+    },
+    async saveFeedback() {
+      if (this.id) {
+        let res = await axios.put(
+          `${process.env.VUE_APP_API_URL}/feedbackdraft`,
+          {
+            _id: this.id,
+            name: this.name,
+            description: this.description,
+            createdAt: new Date(),
+            isMultipleChoice: true,
+            questions: this.questions,
+            teacherId: this.$store.state.user._id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+            },
+          }
+        );
+        console.log(res.data);
+      } else {
+        let res = await axios.post(
+          `${process.env.VUE_APP_API_URL}/feedbackdraft`,
+          {
+            name: this.name,
+            description: this.description,
+            createdAt: new Date(),
+            isMultipleChoice: true,
+            questions: this.questions,
+            teacherId: this.$store.state.user._id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+            },
+          }
+        );
+        console.log(res.data);
+      }
+      this.$router.push({ path: `/savedfeedbacks` });
     },
     addChoice(value) {
       if (this.questions[value.survey_id].answers.length < 4) {
         this.questions[value.survey_id].answers.push({
           id: this.questions[value.survey_id].answers.length,
           choice: "",
+          votes: 0
         });
       }
     },

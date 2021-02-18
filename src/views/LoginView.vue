@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-full flex items-center justify-center bg-white md:dark:bg-gray-900 md:bg-gray-100 dark:bg-gray-800"
+    class="w-full h-full flex items-center justify-center bg-white md:dark:bg-gray-900 dark:bg-gray-800"
   >
     <!-- <header class="header">
       <img class="logo" src="@/assets/logo_white.svg" />
@@ -26,15 +26,16 @@
       <RegisterForm v-else />
     </div> -->
     <div
-      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 rounded-md"
+      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 border rounded-md"
     >
       <img class="w-12 my-12" src="@/assets/logo_black.svg" />
       <h1 class="font-bold text-3xl my-4">Login</h1>
       <p class="text-center">{{ this.$t("login.logintxt") }}</p>
       <button
-        class="w-full my-1 bg-black hover:bg-opacity-50 text-white py-4 px-4 rounded-md mt-20"
+        class="loginBtn w-full my-1 bg-black disabled:bg-opacity-50 hover:bg-opacity-50 text-white py-4 px-4 rounded-md mt-20"
         ref="signinBtn"
         @click="handleGoogle"
+        :disabled="!isInit"
       >
         <span v-if="isInit">Continue with Google</span>
         <span v-else>Loading...</span>
@@ -60,15 +61,15 @@ export default {
   },
   created() {
     let that = this;
-    let checkGauthLoad = setInterval(function () {
+    let checkGauthLoad = setInterval(function() {
       that.isInit = that.$gAuth.isInit;
       if (that.isInit) clearInterval(checkGauthLoad);
     }, 1000);
   },
   methods: {
-    redirectToGoogle() {
-      document.location.href = `${process.env.VUE_APP_API_URL}/user/login`;
-    },
+    // redirectToGoogle() {
+    //   document.location.href = `${process.env.VUE_APP_API_URL}/user/login`;
+    // },
     async handleGoogle() {
       const authCode = await this.$gAuth.getAuthCode();
       const res = await axios.post(
@@ -78,8 +79,14 @@ export default {
       console.log(res.data);
       this.$store.dispatch("setToken", res.data);
       this.$store.dispatch("setUser", res.data.user);
-      this.$router.push("/");
+      this.$router.replace(this.$route.query.redirect || "/");
     },
   },
 };
 </script>
+
+<style scoped>
+.loginBtn:disabled {
+  opacity: 0.5;
+}
+</style>

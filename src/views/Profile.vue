@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <Header :title="`${$store.state.user.name}`" :BtnMethod="logout"
-      ><LogOutIcon
-    /></Header>
+  <div class="md:border-r md:dark:border-gray-700">
+    <Header :title="`${$store.state.user.name}`" :BtnMethod1="logout">
+      <template v-slot:btn1> <LogOutIcon /></template
+    ></Header>
     <div class="flex flex-col p-2">
       <ProfilePageHeader />
       <ProfileSettings class="lg:w-1/3" />

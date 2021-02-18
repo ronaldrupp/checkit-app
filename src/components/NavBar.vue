@@ -12,20 +12,20 @@
     <nav-item :title="$t('navbar.class')" redirectTo="/class">
       <grid-icon size="1.5x" class="custom-class"></grid-icon>
     </nav-item>
-    <!-- <nav-item :title="$t('navbar.recentFeedbacks')" redirectTo="/feedbacks">
-      <message-circle-icon
+    <nav-item :title="$t('navbar.savedFeedbacks')" redirectTo="/savedfeedbacks">
+      <edit-3-icon
         size="1.5x"
         class="custom-class"
-      ></message-circle-icon>
-    </nav-item> -->
+      ></edit-3-icon>
+    </nav-item>
+    <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create" v-if="isTeacher">
+      <plus-icon size="1.5x" class="custom-class"></plus-icon>
+    </nav-item>
     <nav-item
       :title="`${$store.state.user.name}`"
       redirectTo="/profile"
     >
       <user-icon size="1.5x" class="custom-class"></user-icon>
-    </nav-item>
-    <nav-item :title="$t('navbar.createFeedback')" redirectTo="/create" v-if="isTeacher">
-      <plus-icon size="1.5x" class="custom-class"></plus-icon>
     </nav-item>
   </div>
 </template>
@@ -36,6 +36,7 @@ import {
   UserIcon,
   GridIcon,
   PlusIcon,
+  Edit3Icon
 } from "vue-feather-icons";
 import NavItem from "./NavItem";
 export default {
@@ -45,6 +46,7 @@ export default {
     PlusIcon,
     UserIcon,
     NavItem,
+    Edit3Icon
   },
   computed: {
     isTeacher() {
