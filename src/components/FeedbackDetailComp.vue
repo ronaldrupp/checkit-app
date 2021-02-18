@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Charts from "@/components/Charts.vue";
 export default {
   components: {
@@ -31,79 +32,29 @@ export default {
   },
   data() {
     return {
-      dataFromAPI: [
-        {
-          question: "Wie fandest du den heutigen Unterricht?",
-          answer: [
-            {
-              option: "Gut",
-              percent: 0.33,
-              count: 8,
-            },
-            {
-              option: "Schlecht",
-              percent: 0.12,
-              count: 3,
-            },
-            {
-              option: "Naja",
-              percent: 0.55,
-              count: 13,
-            },
-          ],
-        },
-        {
-          question: "Wie fandest du die Folien?",
-          answer: [
-            {
-              option: "Gut",
-              percent: 0.66,
-              count: 16,
-            },
-            {
-              option: "Schlecht",
-              percent: 0.08,
-              count: 2,
-            },
-            {
-              option: "Unverständlich",
-              percent: 0.32,
-              count: 6,
-            },
-          ],
-        },
-        {
-          question: "Die Stunde heute war in Summe:",
-          answer: [
-            {
-              option: "Fad",
-              percent: 0.41,
-              count: 10,
-            },
-            {
-              option: "Ok",
-              percent: 0.12,
-              count: 3,
-            },
-            {
-              option: "Interessant",
-              percent: 0.37,
-              count: 9,
-            },
-            {
-              option: "Episch",
-              percent: 0.1,
-              count: 3,
-            },
-          ],
-        },
-      ],
+      dataFromAPI: [],
     };
   },
   props: {
     feedback: {
       type: Object,
     },
+  },
+  methods: {
+    async getData() {
+      const apiRes = await axios.get(
+        `${process.env.VUE_APP_API_URL}/surveydetail/${this.$route.params.feedback}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
+          },
+        }
+      );
+      this.dataFromAPI = apiRes.data;
+    },
+  },
+  created() {
+    this.getData();
   },
 };
 </script>
