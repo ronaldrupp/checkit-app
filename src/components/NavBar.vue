@@ -35,9 +35,9 @@
       >
         {{ $t("navbar.createFeedback") }}
       </p>
-      <div class="bottom-0 absolute md:top-0 z-40 left-0 bg-white dark:bg-gray-800 flex flex-col" v-if="showActions">
-        <router-link to="/create/swipe" class="p-4 md:hover:bg-gray-200">SWIPE</router-link>
-        <router-link to="/create/classic" class="p-4 md:hover:bg-gray-200">CLASSIC</router-link>
+      <div class="bottom-0 absolute md:top-0 z-50 left-0 border dark:bg-gray-800 flex flex-col" v-if="showActions">
+        <router-link to="/create/swipe" class="p-4 md:hover:bg-gray-200 bg-white">SWIPE</router-link>
+        <router-link to="/create/classic" class="p-4 md:hover:bg-gray-200 bg-white">CLASSIC</router-link>
       </div>
     </button>
     <nav-item :title="`${$store.state.user.name}`" redirectTo="/profile">

@@ -9,22 +9,25 @@ import "./tailwind.css";
 import { i18n } from "./plugins/i18n.js";
 import GAuth from "vue-google-oauth2";
 import { polyfill } from "seamless-scroll-polyfill";
-import {SharedElementRouteGuard, SharedElementDirective} from 'v-shared-element'
+import {
+  SharedElementRouteGuard,
+  SharedElementDirective,
+} from "v-shared-element";
 import VuePageTransition from "vue-page-transition";
 polyfill();
 
 const gauthOption = {
   clientId:
-    "10275853460-f457s1rj15u25f4lj0irtnt701187acv.apps.googleusercontent.com",
+    "418627707496-hl0gttfaackfeabfr7nv5vfu6pdqjmhv.apps.googleusercontent.com",
   scope:
-    "https://www.googleapis.com/auth/classroom.announcements https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/classroom.rosters.readonly openid",
+    "https://www.googleapis.com/auth/classroom.announcements https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.rosters.readonly openid",
   prompt: "select_account",
 };
 
 router.beforeEach(SharedElementRouteGuard);
 
 Vue.use(VuePageTransition);
-Vue.use(SharedElementDirective)
+Vue.use(SharedElementDirective);
 Vue.use(GAuth, gauthOption);
 Vue.use(VueConfetti);
 Vue.use(VueMeta);

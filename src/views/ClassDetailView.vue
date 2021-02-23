@@ -19,11 +19,13 @@
       </h2>
       <div class="flex ml-6 overflow-x-scroll my-12">
         <div class="flex   ">
-          <div class="border-r pr-4">
+          <div class="flex border-r pr-4 dark:border-gray-600">
             <img
+              v-for="teacher in course.teachers"
+              :key="teacher._id"
               class="object-cover rounded-full w-8 h-8 md:w-12 md:h-12"
               referrerpolicy="no-referrer"
-              :src="`https:${course.teacherPhotoUrl}`"
+              :src="`${teacher.photoUrl}` | checkHttps"
             />
           </div>
         </div>
@@ -36,7 +38,7 @@
             <img
               class="object-cover rounded-full w-8 h-8 md:w-12 md:h-12"
               referrerpolicy="no-referrer"
-              :src="`https:${student.profile.photoUrl}`"
+              :src="`${student.photoUrl}` | checkHttps"
             />
           </div>
         </div>
@@ -81,6 +83,13 @@ export default {
   created() {
     this.getCourse();
   },
+  filters: {
+    checkHttps: function(value) {
+      if (/^(f|ht)tp?s/i.test(value)) {
+        return `${value}`;
+      } else return `https:${value}`;
+    },
+  },
   methods: {
     async getSurveys() {
       let res = await axios.get(
@@ -103,6 +112,8 @@ export default {
         }
       );
       this.course = res.data;
+      console.log(this.course);
+
       this.getSurveys();
     },
   },

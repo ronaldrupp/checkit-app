@@ -17,7 +17,7 @@ export default {
     settingsDescr: "Beschreibung",
   },
   header: {
-    myClass: "Meine Klasse",
+    myClass: "Meine Klassen",
     mySavedFeedback: "Meine gespeicherten Feedbacks",
     createFeedback: "Feedback erstellen",
   },

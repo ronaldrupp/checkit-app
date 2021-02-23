@@ -1,7 +1,7 @@
 <template>
   <div
     class="overflow-y-scroll"
-    style="scroll-snap-type: y mandatory;max-height: 100vh;"
+    style="scroll-snap-type: y mandatory;max-height: 90vh;"
   >
     <!-- <div
       class=""

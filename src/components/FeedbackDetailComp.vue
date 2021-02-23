@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(result, idx) in dataFromAPI"
+      v-for="(result, idx) in feedback"
       :key="idx"
       class="flex flex-col border rounded-md m-5 p-5 border-b transition duration-100 dark:border-gray-800 "
     >
@@ -37,7 +37,7 @@ export default {
   },
   props: {
     feedback: {
-      type: Object,
+      type: Array,
     },
   },
   methods: {

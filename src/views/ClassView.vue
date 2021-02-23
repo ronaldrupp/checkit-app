@@ -20,15 +20,15 @@
         <h1 class="text-base md:text-2xl lg:text-2xl font-bold">
           {{ course.name }}
         </h1>
-        <div class="flex mt-4 overflow-x-scroll">
-          <div class="flex">
-            <div class="border-r pr-4 dark:border-gray-600">
-              <img
-                class="object-cover rounded-full w-6 h-6"
-                referrerpolicy="no-referrer"
-                :src="`https:${course.teacherPhotoUrl}`"
-              />
-            </div>
+        <div class="flex mt-4">
+          <div class="flex border-r pr-4 dark:border-gray-600">
+            <img
+              v-for="teacher in course.teachers"
+              :key="teacher._id"
+              class="object-cover rounded-full w-6 h-6 -mr-1"
+              referrerpolicy="no-referrer"
+              :src="`${teacher.photoUrl}` | checkHttps"
+            />
           </div>
           <div class="flex ml-4 ">
             <div
@@ -39,7 +39,7 @@
               <img
                 class="object-cover rounded-full w-6 h-6"
                 referrerpolicy="no-referrer"
-                :src="`https:${student.profile.photoUrl}`"
+                :src="`${student.photoUrl}` | checkHttps"
               />
             </div>
           </div>
@@ -67,6 +67,11 @@ export default {
     PlusIcon,
     GClassroomCoursesDialog,
   },
+  metaInfo() {
+    return {
+      title: this.$t('header.myClass'),
+    };
+  },
   data() {
     return {
       showGCoursesDialog: false,
@@ -74,6 +79,13 @@ export default {
       courses: [],
       loading: false,
     };
+  },
+  filters: {
+    checkHttps: function(value) {
+      if (/^(f|ht)tp?s/i.test(value)) {
+        return `${value}`;
+      } else return `https:${value}`;
+    },
   },
   methods: {
     async addNewClass() {
