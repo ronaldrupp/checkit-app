@@ -21,7 +21,9 @@ export default {
     ChartLabels() {
       let labels = [];
       for (const i of this.result.answer) {
-        labels.push(i.option);
+        if (i.option.length > 16) {
+          labels.push(i.option.substr(0, 15) + "...");
+        } else labels.push(i.option);
       }
       return labels;
     },
