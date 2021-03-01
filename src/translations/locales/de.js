@@ -32,4 +32,7 @@ export default {
     createBtn: "Erstellen",
     addChoice: "noch eine Antwortmöglichkeit hinzufügen",
   },
+  result: {
+    resText: "% der Befragten antworteten mit:"
+  }
 };

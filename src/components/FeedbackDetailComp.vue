@@ -14,8 +14,7 @@
             v-for="(answers, idx) in result.answer"
             :key="idx"
           >
-            {{ (answers.percent * 100).toFixed(0) }} % der Befragten antworteten
-            mit: {{ answers.option }}
+            {{ (answers.percent * 100).toFixed(0) }} {{$t('result.resText')}} {{ answers.option }}
           </p>
         </div>
       </div>

@@ -18,6 +18,7 @@ export default {
   },
   header: {
     myClass: "My Class",
+    mySavedFeedback: "My Saved Feedbacks",
     myFeedback: "My Feedback",
     createFeedback: "Create Feedback",
   },
@@ -26,9 +27,13 @@ export default {
   },
   create: {
     titleFeedback: "Feedback title",
+    descriptionFeedback: "Feedback description",
     question: "Ask a question...",
     choice: "Choice",
     createBtn: "Create",
     addChoice: "Add Choice",
   },
+  result: {
+    resText: "% of the respondents answered with:"
+  }
 };

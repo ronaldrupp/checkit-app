@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-y-scroll md:border-r md:dark:border-gray-700">
     <Header
-      :title="this.$t('header.mySavedFeedback')"
+      :title="$t('header.mySavedFeedback')"
       BtnTitle="Create Feedback"
       :BtnMethod1="navigateToCreateFeedback"
     >
