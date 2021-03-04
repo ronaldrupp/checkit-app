@@ -1,7 +1,7 @@
 <template>
   <div
     class="overflow-y-scroll"
-    style="scroll-snap-type: y mandatory;max-height: 90vh;"
+    style="scroll-snap-type: y mandatory;max-height: 100vh;"
   >
     <!-- <div
       class=""
@@ -33,7 +33,7 @@
       </p>
       <chevrons-down-icon
         v-else
-        @click="$refs.questionRef[0].scrollIntoView({ behavior: 'smooth' })"
+        @click="$refs.questionRef[0].scrollIntoView({ behavior: 'smooth', block: 'center' })"
         class="chevrons-down absolute bottom-0 mb-12 cursor-pointer"
         size="2x"
       ></chevrons-down-icon>
@@ -44,20 +44,12 @@
       class="relative viewSection"
       :ref="`questionRef`"
     >
-      <p class="p-5 pt-12 text-3xl font-bold max-width">
+      <p class="p-5 text-3xl font-bold max-width">
         {{ questionObj.question }}
       </p>
       <div
         class="flex p-5 pb-0 flex-col justify-center items-center absolute bottom-0 rounded-md w-full"
       >
-        <!-- <button
-          v-for="answer in question.answers"
-          :key="answer"
-          @click="scrollToNextQuestion(index)"
-          class="outline-none w-full mt-4 p-4 rounded-md dark:bg-gray-900 bg-gray-200"
-        >
-          {{ answer }}
-        </button> -->
         <label
           class="radio bg-gray-200 dark:bg-gray-800 mt-4 w-full flex"
           v-for="answerObj in questionObj.answers"
@@ -162,14 +154,12 @@ export default {
       if (this.dataFromAPI.questions.length != index + 1) {
         this.$refs.questionRef[index + 1].scrollIntoView({
           behavior: "smooth",
-          block: "start",
-          inline: "nearest",
+          block: "center",
         });
       } else {
         this.$refs.completedContainer.scrollIntoView({
           behavior: "smooth",
-          block: "start",
-          inline: "nearest",
+          block: "center",
         });
       }
     },
@@ -210,7 +200,7 @@ export default {
   max-width: 450px;
   margin: 30px auto;
   scroll-snap-align: center;
-  height: 100%;
+  height: 80%;
 }
 
 .max-width {
