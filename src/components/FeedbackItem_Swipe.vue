@@ -53,7 +53,7 @@ export default {
       }
       this.queue = this.queue.concat(list);
       console.log(this.queue)
-    },
+    }
   },
   components:{
     Tinder

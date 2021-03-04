@@ -160,6 +160,7 @@ export default {
           questions: this.questions,
           teacherId: this.$store.state.user._id,
           courseId: this.selectedCourse._id,
+          swipe: false
         },
         {
           headers: {

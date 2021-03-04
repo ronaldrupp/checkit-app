@@ -11,7 +11,7 @@
         :dataFromAPI="dataFromAPI"
         :questionIndex="questionIndex"
       />
-      <FeedbackItemTinder
+      <FeedbackItemSwipe
         v-if="questionIndex <= dataFromAPI.questions.length"
         :questions="dataFromAPI.questions"
         @next-quest="handleIncoming"
@@ -38,6 +38,12 @@
         size="2x"
       ></chevrons-down-icon>
     </div>
+
+    <div v-if="this.dataFromAPI.swipe == true">
+        <FeedbackItemSwipe :questions="this.dataFromAPI.questions"></FeedbackItemSwipe>
+    </div>
+    
+  <div v-if="this.dataFromAPI.swipe == false">
     <div
       v-for="(questionObj, index) in dataFromAPI.questions"
       :key="questionObj.id"
@@ -58,6 +64,7 @@
         >
           {{ answer }}
         </button> -->
+
         <label
           class="radio bg-gray-200 dark:bg-gray-800 mt-4 w-full flex"
           v-for="answerObj in questionObj.answers"
@@ -83,6 +90,7 @@
         </div>
       </div>
     </div>
+  </div>
     <div
       class="viewSection relative flex flex-col justify-center items-center"
       ref="completedContainer"
@@ -120,7 +128,7 @@ import { ChevronsDownIcon, ShieldIcon } from "vue-feather-icons";
 // import FeedbackHeader from "@/components/FeedbackHeader.vue";
 // import FeedbackItem from "@/components/FeedbackItem.vue";
 // import FeedbackCompleted from "@/components/FeedbackCompleted.vue";
-// import FeedbackItemTinder from "@/components/FeedbackItem_Tinder.vue";
+ import FeedbackItemSwipe from "@/components/FeedbackItem_Swipe.vue";
 
 export default {
   data() {
@@ -135,9 +143,9 @@ export default {
     // FeedbackItem,
     // FeedbackCompleted,
     // FeedbackHeader,
-    // FeedbackItemTinder
+    FeedbackItemSwipe,
     ChevronsDownIcon,
-    ShieldIcon,
+    ShieldIcon
   },
   created() {
     this.getFeedback();

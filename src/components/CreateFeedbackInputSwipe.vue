@@ -29,11 +29,10 @@
 </template>
 
 <script>
-import { XCircleIcon, PlusIcon } from "vue-feather-icons";
+import { XCircleIcon, } from "vue-feather-icons";
 export default {
   components: {
     XCircleIcon,
-    PlusIcon,
   },
   props: {
     questions: {

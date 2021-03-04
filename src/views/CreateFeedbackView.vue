@@ -8,7 +8,7 @@
         <router-link
           class="w-full h-full flex justify-center items-center"
           to="/create/swipe"
-          ><p>TINDER SWIPE</p></router-link
+          ><p>SWIPE Q-A</p></router-link
         >
       </div>
       <div

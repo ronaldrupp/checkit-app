@@ -12,7 +12,7 @@ import CreateFeedbackView from "../views/CreateFeedbackView.vue";
 import FeedbackDetail from "../views/FeedbackDetail";
 import resFromAPI from "../views/resFromAPI.vue";
 import CreateFeedbackClassic from "../views/CreateFeedbackClassic.vue";
-
+import CreateFeedbackSwipe from "../views/CreateFeedbackSwipe.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -58,6 +58,11 @@ const routes = [
     path: "/create/classic",
     name: "classicfeedback",
     component: CreateFeedbackClassic,
+  },
+  {
+    path: "/create/swipe",
+    name: "swipefeedback",
+    component: CreateFeedbackSwipe,
   },
   {
     path: "/imprint",
