@@ -91,13 +91,14 @@ export default {
           survey_id: 0,
           question: "",
           answers: [
-            { id: 0, choice: "Ja" },
-            { id: 1, choice: "Nein" },
-            { id: 2, choice: "Vielleicht" },
+            { id: 0, choice: "Ja" , votes: 0 },
+            { id: 1, choice: "Nein", votes: 0  },
+            { id: 2, choice: "Vielleicht", votes: 0  },
           ],
         },
       ],
-      description: "s",
+      description: "",
+      swipe: true
     };
   },
   metaInfo() {
@@ -126,9 +127,9 @@ export default {
         survey_id: this.questions.length,
         question: "",
         answers: [
-           { id: 0, choice: "Ja" },
-           { id: 1, choice: "Nein" },
-           { id: 2, choice: "Vielleicht" },
+          { id: 0, choice: "Ja" , votes: 0 },
+          { id: 1, choice: "Nein", votes: 0  },
+          { id: 2, choice: "Vielleicht", votes: 0  },
         ],
       });
       setTimeout(

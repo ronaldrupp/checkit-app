@@ -4,7 +4,7 @@
       <template>
         <div
           class="pic">
-          <p class="questiontext">{{this.queue[itemid].text}}</p>
+          <p class="questiontext">{{queue[itemid].text}}</p>
         </div>
       </template>
       <img class="like-pointer" slot="like" src="../assets/happy.svg">
@@ -12,9 +12,9 @@
       <img class="nope-pointer" slot="nope" src="../assets/sad.svg">
     </Tinder>
     <div class="btns">
-       <img src="../assets/sad.svg" @click="btndecide('nope')">
-      <img src="../assets/neutral.svg" @click="btndecide('maybe')">
-      <img src="../assets/happy.svg" @click="btndecide('like')">
+       <img src="../assets/sad.svg" @click="btndecide('nein')">
+      <img src="../assets/neutral.svg" @click="btndecide('vielleicht')">
+      <img src="../assets/happy.svg" @click="btndecide('ja')">
     </div>
   </div>
 </template>
@@ -31,24 +31,41 @@ export default {
    data: () => ({
     queue: [],
     itemid: 0,
-    offset: 0
+    offset: 0,
+    questionsNew: []
   }),
+  watch: {  
+    questions: function () {
+      this.questionsNew = this.questions
+    }  
+  },
   methods: {
     clickChoice(choice) {
       this.$emit("next-quest", choice);
     },
     decide (choice) {
      this.clickChoice(choice)
+     this.questionsNew[this.itemid].answers.forEach(element => {
+       if(element.choice==choice){
+         element.votes+=1
+       }
+     });
      this.itemid+1
     },
     btndecide(choice){
     this.$refs.tinder.decide(choice)
+    this.questionsNew[this.itemid].answers.forEach(element => {
+       if(element.choice==choice){
+         element.votes+=1
+       }
+     });
      this.itemid+1
     },
-    start(count= this.questions.length) {
+    start() {
+      console.log("test")
       const list = [];
-      for (let i = 0; i < count; i++) {
-        list.push({ id: this.questions[i].id, text: this.questions[i].question });
+      for (let i = 0; i < this.questionsNew.length; i++) {
+        list.push({ id: i, text: this.questionsNew[i].question });
         this.offset+=1;
       }
       this.queue = this.queue.concat(list);

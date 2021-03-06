@@ -95,6 +95,7 @@ export default {
         },
       ],
       description: "",
+      swipe: false
     };
   },
   metaInfo() {

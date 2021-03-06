@@ -38,12 +38,27 @@
         size="2x"
       ></chevrons-down-icon>
     </div>
-
-    <div v-if="this.dataFromAPI.swipe == true">
-        <FeedbackItemSwipe :questions="this.dataFromAPI.questions"></FeedbackItemSwipe>
+<div>
+ <div
+      class="relative viewSection"
+      :ref="`questionRef`"
+    >
+      <div
+        class="flex p-5 pb-0 flex-col justify-center items-center absolute bottom-0 rounded-md w-full"
+      >
+      <FeedbackItemSwipe :questions="dataFromAPI.questions"></FeedbackItemSwipe>
+        <div class="flex w-full justify-start py-3 dark:text-gray-400">
+          <shield-icon size="1.25x"></shield-icon>
+          <p class=" ml-2 text-sm">    
+            {{ dataFromAPI.teacherName }} kann deine Antwort nicht sehen
+          </p>
+        </div>
+      </div>
     </div>
-    
-  <div v-if="this.dataFromAPI.swipe == false">
+
+
+</div>
+  <div v-if="!dataFromAPI.isMultipleChoice">
     <div
       v-for="(questionObj, index) in dataFromAPI.questions"
       :key="questionObj.id"
