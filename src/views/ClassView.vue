@@ -6,7 +6,7 @@
       <template v-slot:btn1> <plus-icon /></template
     ></Header>
     <GClassroomCoursesDialog
-      v-if="showGCoursesDialog"
+      :show="showGCoursesDialog"
       :gClassroomCourses="gClassroomCourses"
       @closeDialog="closeDialog"
     />

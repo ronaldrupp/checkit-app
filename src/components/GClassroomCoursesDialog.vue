@@ -1,14 +1,17 @@
 <template>
-  <div
-    class="overlay absolute top-0 left-0 w-full h-full z-50 flex justify-center items-center"
-  >
+  <div>
     <div
-      class="bg-white dark:bg-gray-800  rounded-md text-black dark:text-white w-3/4 h-3/4 overflow-hidden"
+      class="hidden overlay-background absolute top-0 left-0 w-full h-full z-50"
+      @click="$emit('closeDialog')"
+    ></div>
+
+    <div
+      class="hidden overlay flex-col absolute m-auto z-50  left-0 right-0 bottom-0 top-0 bg-white dark:bg-gray-800 md:rounded-md text-black dark:text-white md:w-3/4 md:h-3/4 overflow-hidden"
     >
       <div
-        class="sticky bg-white  dark:bg-gray-800 dark:bg-dark w-full p-4 py-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-600"
+        class="sticky bg-white  dark:bg-gray-800 dark:bg-dark w-full p-2 py-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-600"
       >
-        <h1 class="text-2xl font-semibold text-left ">
+        <h1 class="text-lg md:text-2xl font-semibold text-left ">
           Select one of your Google Classroom courses
         </h1>
         <button
@@ -26,8 +29,8 @@
           :key="gCourse.id"
         >
           <div>
-            <h6 class="font-semibold text-lg">{{ gCourse.name }}</h6>
-            <p class="font-light text-gray-700 dark:text-gray-200">
+            <h6 class="font-semibold">{{ gCourse.name }}</h6>
+            <p class="font-light text-gray-700 dark:text-gray-200 text-sm">
               {{ gCourse.descriptionHeading }}
             </p>
           </div>
@@ -40,12 +43,14 @@
 <script>
 import axios from "axios";
 import { XIcon } from "vue-feather-icons";
+import { gsap } from "gsap";
 
 export default {
   props: {
     gClassroomCourses: {
       type: Array,
     },
+    show: Boolean,
   },
   components: {
     XIcon,
@@ -71,11 +76,64 @@ export default {
       this.$emit("closeDialog");
     },
   },
+  watch: {
+    show() {
+      if (this.show) {
+        let tl = gsap.timeline();
+        tl.to(".overlay", { y: "100vh" }, "group");
+        tl.to(
+          ".overlay-background",
+          {
+            opacity: 0,
+          },
+          "group"
+        );
+        tl.to(".overlay-background", { css: { display: "block" } }, "group0");
+        tl.to(".overlay", { css: { display: "block" } }, "group0");
+
+        tl.to(
+          ".overlay-background",
+          {
+            opacity: 1,
+            ease: "expo.inOut",
+            duration: 0.8,
+          },
+          "group1"
+        );
+        tl.to(
+          ".overlay",
+          { y: 0, opacity: 1, ease: "expo.inOut", duration: 0.8 },
+          "group1"
+        );
+      } else {
+        let tl = gsap.timeline();
+        //transform background and overlay down
+        tl.to(
+          ".overlay-background",
+          {
+            opacity: 0,
+            ease: "expo.inOut",
+            duration: 1,
+          },
+          "group1"
+        );
+        tl.to(
+          ".overlay",
+          { y: "100vh", ease: "expo.inOut", duration: 0.8 },
+          "group1"
+        );
+
+        //hide background and overlay
+        tl.to(".overlay-background", { css: { display: "none" } }, "group2");
+        tl.to(".overlay", { css: { display: "none" } }, "group2");
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.overlay {
+.overlay-background {
   background-color: rgba(20, 20, 20, 0.6);
 }
 </style>
