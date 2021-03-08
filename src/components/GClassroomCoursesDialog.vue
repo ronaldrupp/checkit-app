@@ -95,14 +95,14 @@ export default {
           ".overlay-background",
           {
             opacity: 1,
-            ease: "expo.inOut",
+            ease: "expo.easeOut",
             duration: 0.8,
           },
           "group1"
         );
         tl.to(
           ".overlay",
-          { y: 0, opacity: 1, ease: "expo.inOut", duration: 0.8 },
+          { y: 0, opacity: 1, ease: "expo.easeOut", duration: 0.8 },
           "group1"
         );
       } else {
@@ -112,14 +112,14 @@ export default {
           ".overlay-background",
           {
             opacity: 0,
-            ease: "expo.inOut",
+            ease: "expo.easeIn",
             duration: 1,
           },
           "group1"
         );
         tl.to(
           ".overlay",
-          { y: "100vh", ease: "expo.inOut", duration: 0.8 },
+          { y: "100vh", ease: "expo.easeIn", duration: 0.8 },
           "group1"
         );
 
