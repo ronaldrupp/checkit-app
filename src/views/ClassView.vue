@@ -3,7 +3,14 @@
     class="flex w-full md:h-full  flex-col md:border-r md:dark:border-gray-700"
   >
     <Header :title="$t('header.myClass')" :BtnMethod1="isTeacher">
-      <template v-slot:btn1> <plus-icon /></template
+      <template v-slot:btn1>
+        <div class="lds-ring" v-if="loadingGClassroomCourses">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <plus-icon v-else></plus-icon></template
     ></Header>
     <GClassroomCoursesDialog
       :show="showGCoursesDialog"
@@ -69,7 +76,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: this.$t('header.myClass'),
+      title: this.$t("header.myClass"),
     };
   },
   data() {
@@ -78,6 +85,7 @@ export default {
       gClassroomCourses: [],
       courses: [],
       loading: false,
+      loadingGClassroomCourses: false,
     };
   },
   filters: {
@@ -89,14 +97,15 @@ export default {
   },
   methods: {
     async addNewClass() {
-      this.showGCoursesDialog = true;
+      this.loadingGClassroomCourses = true;
       let res = await axios.get(`${process.env.VUE_APP_API_URL}/allCourses`, {
         headers: {
           Authorization: `Bearer ${this.$store.state.tokens.accessToken}`,
         },
       });
-      console.log(res.data);
+      this.showGCoursesDialog = true;
       this.gClassroomCourses = res.data;
+      this.loadingGClassroomCourses = false;
     },
     closeDialog() {
       this.showGCoursesDialog = false;
@@ -128,5 +137,39 @@ export default {
 <style lang="scss" scoped>
 .overflow-x-scroll {
   overflow-x: hiddenv;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #0c8fed;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #0c8fed transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
