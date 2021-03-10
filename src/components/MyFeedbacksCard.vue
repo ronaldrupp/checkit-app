@@ -15,9 +15,9 @@
             </p>
           </div>
         </div>
-        <div class="flex items-center" v-if="feedback.answers">
+        <div class="flex items-center" v-if="feedback.students">
           <UsersIcon size="1x" />
-          <p class="ml-2 ">{{ feedback.answers.length }}</p>
+          <p class="ml-2 ">{{ feedback.students.length }}</p>
         </div>
       </div>
     </router-link>
