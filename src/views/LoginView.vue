@@ -2,31 +2,8 @@
   <div
     class="w-full h-full flex items-center justify-center bg-white md:dark:bg-gray-900 dark:bg-gray-800"
   >
-    <!-- <header class="header">
-      <img class="logo" src="@/assets/logo_white.svg" />
-      <a
-        href="https://check-it.at"
-        target="_blank"
-        class="btn-primary bg-black text-white hover:bg-opacity-75"
-        >DA-Seite</a
-      >
-    </header>
-
-    <div class="left-section pr-3">
-      <h1 class="font-bold text-5xl text-white uppercase">
-        {{ this.$t("login.slogan") }}
-      </h1>
-      <p class="text-white mt-20">
-        {{ this.$t("login.subtxt") }} <br />Josef Tungl, Pascal Rengelshausen,
-        <br />Tom Kalchmann und Ronald Rupp
-      </p>
-    </div>
-    <div class="right-section">
-      <LoginForm v-if="mode == 'login'" @change-mode="mode = 'register'" />
-      <RegisterForm v-else />
-    </div> -->
     <div
-      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 border dark:border-gray-800 rounded-md"
+      class="flex flex-col p-5 justify-center items-center bg-white dark:bg-gray-800 w-96 md:border dark:border-gray-800 rounded-md"
     >
       <img class="w-12 my-12" src="@/assets/logo_black.svg" />
       <h1 class="font-bold text-3xl my-4">Login</h1>
@@ -67,16 +44,21 @@ export default {
     }, 1000);
   },
   methods: {
-    // redirectToGoogle() {
-    //   document.location.href = `${process.env.VUE_APP_API_URL}/user/login`;
-    // },
     async handleGoogle() {
-      const authCode = await this.$gAuth.getAuthCode();
+      this.isInit = false;
+      let authCode = null;
+
+      try {
+        authCode = await this.$gAuth.getAuthCode();
+      } catch (err) {
+        if (err.error == "popup_closed_by_user") this.isInit = true;
+        return;
+      }
+      
       const res = await axios.post(
         `${process.env.VUE_APP_API_URL}/google/token`,
-        { authCode: authCode, redirect_uri: "postmessage" }
+        { authCode: authCode }
       );
-      console.log(res.data);
       this.$store.dispatch("setToken", res.data);
       this.$store.dispatch("setUser", res.data.user);
       this.$router.replace(this.$route.query.redirect || "/");
