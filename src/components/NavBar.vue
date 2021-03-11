@@ -1,7 +1,6 @@
 <template>
   <div
     class="flex z-50 lg:w-64 md:w-auto md:shadow-none md:p-2 md:py-6 shadow-lg md:justify-start md:static md:border-r md:dark:border-gray-700 lg:items-start md:flex-col md:h-full items-center select-none h-12 fixed flex-row bottom-0 w-full justify-evenly"
-    style="padding-bottom:env(safe-area-inset-bottom);backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px)"
   >
     <router-link
       to="/class"
