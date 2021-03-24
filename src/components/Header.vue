@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-translucent w-full flex z-50 top-0 items-center sticky bg-opacity-70 justify-between p-2 border-b dark:border-gray-800"
+    class="w-full flex z-50 top-0 items-center sticky bg-opacity-70 justify-between p-2 border-b dark:border-gray-800"
   >
     <div class="flex items-center min-w-0">
       <button
@@ -70,10 +70,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.bg-translucent {
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(8px);
-}
-</style>
