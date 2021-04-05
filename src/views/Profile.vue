@@ -5,7 +5,7 @@
     ></Header>
     <div class="flex flex-col p-2">
       <ProfilePageHeader />
-      <ProfileSettings class="lg:w-1/3" />
+      <h5 class="text-right mt-6 p-4">App Version: {{packageJson.version}} </h5>
     </div>
   </div>
 </template>
@@ -14,13 +14,17 @@
 import { LogOutIcon } from "vue-feather-icons";
 import Header from "./../components/Header";
 import ProfilePageHeader from "../components/ProfilePageHeader";
-import ProfileSettings from "../components/ProfileSettings";
+import PackageJson from "./../../package.json";
 
 export default {
+  data() {
+    return {
+      packageJson: PackageJson
+    }
+  },
   components: {
     Header,
     ProfilePageHeader,
-    ProfileSettings,
     LogOutIcon,
   },
   metaInfo() {
