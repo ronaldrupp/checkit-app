@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex z-50 top-0 items-center sticky bg-opacity-70 justify-between p-2 border-b dark:border-gray-800"
+    class="w-full bg-white dark:bg-gray-900 flex z-50 top-0 items-center sticky top-0 justify-between p-2 border-b dark:border-gray-800"
   >
     <div class="flex items-center min-w-0">
       <button
