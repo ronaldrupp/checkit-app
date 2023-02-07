@@ -1,5 +1,7 @@
 # checkit-app
 
+A Vue web application that gives teachers the ability to create feedback on their lessons and post it in Google Classroom for their students to respond to anonymously.
+
 ## Project setup
 ```
 yarn install
